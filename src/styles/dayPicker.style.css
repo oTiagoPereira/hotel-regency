@@ -1,0 +1,5 @@
+.rdp-chevron {
+  fill: var(--color-icons);
+}
+
+/* Cor aplicada ao ícone de seta do diaPicker, que é um ícone SVG. Não estava aplicando com o tailwind */

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-body: Roboto, sans-serif;
+  --font-heading: Merriweather, serif;
+  --color-background: #efefef;
+  --color-primary: #2f4f4f;
+  --color-primary-hover: #2d3f3f;
+  --color-secondary: #f1e4d3;
+  --color-secondary-hover: #ffdfb4;
+  --color-neutral: #f8f8f8;
+  --color-surface: #f8f8f8;
+  --color-text-color: #4a4a4a;
+  --color-text-neutral: #f8f8f8;
+  --color-icons: #4a4a4a;
+  --color-border: #2f4f4f;
+  --color-error: #ef4444;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+}
+
+/*
+sm: aplica para >= 640px (tablet pequeno em diante)
+md: aplica para >= 768px (tablet grande ou notebook pequeno em diante)
+lg: aplica para >= 1024px (notebook em diante)
+xl: aplica para >= 1280px (desktop grande)
+2xl: aplica para >= 1536px (monitores 2K+)
+*/
