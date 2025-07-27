@@ -21,7 +21,7 @@ function HeroBanner() {
             proporcionar uma experiência inesquecível, com serviço personalizado
             e atenção aos mínimos detalhes.
           </p>
-          <Button label="Explore Nossas Suítes" variant="primary"/>
+          <Button label="Explore Nossas Suítes" variant="primary" size="default"/>
         </div>
 
         <div className={styles.imageContainerStyle}>

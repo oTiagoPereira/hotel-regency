@@ -7,3 +7,8 @@ export const variants = {
     danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-400 cursor-pointer",
     disabled: "bg-primary text-text-neutral opacity-50 cursor-not-allowed",
   };
+
+export const sizes = {
+  width_full: "w-full md:w-full",
+  default: "w-auto md:w-auto"
+}

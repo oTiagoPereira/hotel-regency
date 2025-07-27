@@ -1,4 +1,4 @@
-import { baseStyles, variants } from "./Button.style";
+import { baseStyles, variants, sizes } from "./Button.style";
 
 type ButtonProps = {
   label: string;
@@ -6,6 +6,7 @@ type ButtonProps = {
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "terciary" | "danger" | "disabled";
+  size?: "width_full" | "default";
 };
 
 export const Button = ({
@@ -14,6 +15,7 @@ export const Button = ({
   disabled = false,
   type = "button",
   variant = "primary",
+  size = "width_full",
 }: ButtonProps) => {
   return (
     <button
@@ -22,7 +24,7 @@ export const Button = ({
       type={type}
       className={`${baseStyles} ${
         disabled ? variants.disabled : variants[variant]
-      }`}
+      } ${sizes[size]}`}
     >
       {label}
     </button>

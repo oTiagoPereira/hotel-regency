@@ -24,7 +24,7 @@ function AboutUs() {
               transformar sua estadia em uma lembrança inesquecível – com a
               sofisticação e o cuidado que você merece.
             </p>
-            <Button label="Saiba mais sobre nós" variant="secondary" />
+            <Button label="Saiba mais sobre nós" variant="secondary" size="default" />
           </div>
         </div>
 
@@ -39,7 +39,5 @@ function AboutUs() {
     </section>
   );
 }
-
-// https://www.404s.design/sites/dynacap
 
 export default AboutUs;
