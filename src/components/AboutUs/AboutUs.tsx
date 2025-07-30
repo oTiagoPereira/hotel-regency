@@ -8,7 +8,7 @@ function AboutUs() {
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <div className={styles.textContent}>
-            <h1 className={styles.heading}>Sobre Nós</h1>
+            <h2 className={styles.heading}>Sobre Nós</h2>
             <p className={styles.paragraph}>
               Aninhado entre montanhas majestosas e o azul infinito do mar, o
               Regency não é apenas um hotel – é um refúgio onde o tempo

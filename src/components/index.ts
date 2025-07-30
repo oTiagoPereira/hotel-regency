@@ -7,3 +7,4 @@ export { default as HomeRooms } from "./HomeRooms"
 export { default as RoomsCard } from "./RoomsCard";
 export { default as Carousel } from "./Carousel";
 export { default as Amenities } from "./Amenities";
+export { default as GuestExperience } from "./GuestExperience";
