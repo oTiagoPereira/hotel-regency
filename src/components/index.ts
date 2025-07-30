@@ -6,3 +6,4 @@ export { default as WhyRegency } from "./WhyRegency";
 export { default as HomeRooms } from "./HomeRooms"
 export { default as RoomsCard } from "./RoomsCard";
 export { default as Carousel } from "./Carousel";
+export { default as Amenities } from "./Amenities";

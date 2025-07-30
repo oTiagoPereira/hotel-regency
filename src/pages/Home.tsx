@@ -4,6 +4,7 @@ import {
   AboutUs,
   WhyRegency,
   HomeRooms,
+  Amenities,
 } from "../components";
 import { MainLayout } from "../layouts/mainLayout";
 
@@ -15,6 +16,7 @@ function Home() {
       <AboutUs />
       <WhyRegency />
       <HomeRooms />
+      <Amenities />
     </MainLayout>
   );
 }
