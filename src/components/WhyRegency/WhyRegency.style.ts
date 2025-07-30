@@ -3,7 +3,7 @@ export const whyRegencyStyles = {
     bg-secondary min-h-[600px] flex items-center justify-center mt-10 md:mt-0 overflow-hidden
   `,
   container: `
-    w-full max-w-7xl mx-auto flex flex-col py-10 px-4
+    w-full max-w-7xl mx-auto flex flex-col py-10 px-4 sm:px-6 lg:px-8 md:gap-4
   `,
   header: `
     text-center md:text-start mb-12
