@@ -1,6 +1,9 @@
 import { Rating } from "@mui/material";
 import Carousel from "../Carousel";
 import { GuestExperienceStyles as styles } from "./GuestExperience.style";
+import { motion } from "framer-motion";
+import { useIsVisible } from "../../hooks/useIsVisible";
+import { fadeInStagger } from "../../animations/fadeInStagger";
 
 type GuestExperienceCardProps = {
   name: string;
@@ -13,12 +16,13 @@ const GuestExperienceCard = ({
   rating,
   review,
 }: GuestExperienceCardProps) => {
+  const fade = fadeInStagger(1.0);
   return (
-    <div className={styles.cardWrapper}>
+    <motion.div variants={fade.item} className={styles.cardWrapper}>
       <h3 className={styles.cardTitle}>{name}</h3>
       <Rating name="rating" value={rating} precision={0.5} readOnly />
       <p className={styles.cardText}>{review}</p>
-    </div>
+    </motion.div>
   );
 };
 
@@ -43,12 +47,15 @@ const guestExperienceText = [
 ];
 
 function GuestExperience() {
+  const { ref, inView } = useIsVisible();
+  const fade = fadeInStagger();
+
   const cardElements = guestExperienceText.map((card) => (
     <GuestExperienceCard key={card.name} {...card} />
   ));
 
   return (
-    <section className={styles.sectionWrapper}>
+    <section className={styles.sectionWrapper} ref={ref}>
       <div className={styles.titleWrapper}>
         <h2 className={styles.sectionTitle}>Experiências dos Hóspedes</h2>
         <p className={styles.sectionDescription}>
@@ -57,11 +64,30 @@ function GuestExperience() {
         </p>
       </div>
 
-      <Carousel
-        items={cardElements}
-        showDots
-        desktopGridCols="md:grid-cols-3"
-      />
+      <motion.div
+        className="hidden md:grid md:grid-cols-3 gap-6"
+        variants={fade.container}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+      >
+        {cardElements}
+      </motion.div>
+
+      <motion.div
+        variants={fade.container}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        transition={{delay: 0.9}}
+        className="md:hidden"
+      >
+        <Carousel
+          items={guestExperienceText.map((card) => (
+            <GuestExperienceCard key={card.name} {...card} />
+          ))}
+          showDots
+          desktopGridCols=""
+        />
+      </motion.div>
     </section>
   );
 }

@@ -13,6 +13,9 @@ import { useState } from "react";
 import Button from "../Button";
 import { amenitiesStyle as styles } from "./Amenities.style";
 import { useMediaQuery } from "@mui/material";
+import { motion } from "framer-motion";
+import { useIsVisible } from "../../hooks/useIsVisible";
+import { fadeInStagger } from "../../animations/fadeInStagger";
 
 type AmenitiesCardProps = {
   title: string;
@@ -21,14 +24,14 @@ type AmenitiesCardProps = {
 };
 
 const AmenitiesCard = ({ title, description, Icon }: AmenitiesCardProps) => {
-  return (
-    <div className={styles.card}>
+  const fade = fadeInStagger();  return (
+    <motion.div variants={fade.item} className={styles.card}>
       <span className={styles.iconWrapper}>
         <Icon />
       </span>
       <h3 className={styles.cardTitle}>{title}</h3>
       <p className={styles.cardDescription}>{description}</p>
-    </div>
+    </motion.div>
   );
 };
 
@@ -77,20 +80,19 @@ const amenitiesList = [
 
 function Amenities() {
   const [showAll, setShowAll] = useState(false);
-
   const half = Math.ceil(amenitiesList.length / 2);
-
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const displayAll = isDesktop || showAll;
 
-  const cardElements = displayAll
-    ? amenitiesList.map((card, idx) => <AmenitiesCard key={idx} {...card} />)
-    : amenitiesList
-        .slice(0, half)
-        .map((card, idx) => <AmenitiesCard key={idx} {...card} />);
+  const { ref, inView } = useIsVisible();
+  const fade = fadeInStagger();
+
+  const cardElements = (displayAll ? amenitiesList : amenitiesList.slice(0, half)).map(
+    (card, idx) => <AmenitiesCard key={idx} {...card} />
+  );
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} ref={ref}>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.heading}>Comodidades do Hotel</h2>
@@ -99,7 +101,14 @@ function Amenities() {
             sua estadia e proporcionar o máximo conforto.
           </p>
         </div>
-        <div className={styles.grid}>{cardElements}</div>
+        <motion.div
+          className={styles.grid}
+          variants={fade.container}
+          initial="hidden"
+          animate={ inView ? "show" : "hidden"}
+        >
+          {cardElements}
+        </motion.div>
         <span className={styles.buttonWrapper}>
           {!displayAll ? (
             <Button

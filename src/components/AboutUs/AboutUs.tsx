@@ -1,12 +1,23 @@
 import Button from "../Button";
 import ImageLobby from "../../assets/images/img-lobby.svg";
 import { aboutUsStyles as styles } from "./AboutUs.style";
+import { motion } from "framer-motion";
+import { useIsVisible } from "../../hooks/useIsVisible";
+import { fadeInStagger } from "../../animations/fadeInStagger";
 
 function AboutUs() {
+  const { ref, inView } = useIsVisible();
+  const fade = fadeInStagger();
+
   return (
-    <section className={styles.aboutUsSection}>
+    <section className={styles.aboutUsSection} ref={ref}>
       <div className={styles.container}>
-        <div className={styles.textContainer}>
+        <motion.div
+          variants={fade.item}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          className={styles.textContainer}
+        >
           <div className={styles.textContent}>
             <h2 className={styles.heading}>Sobre Nós</h2>
             <p className={styles.paragraph}>
@@ -26,7 +37,7 @@ function AboutUs() {
             </p>
             <Button label="Saiba mais sobre nós" variant="secondary" size="default" />
           </div>
-        </div>
+        </motion.div>
 
         <div className={styles.imageContainer}>
           <img

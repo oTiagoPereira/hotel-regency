@@ -1,6 +1,9 @@
+import { fadeInStagger } from "../../animations/fadeInStagger";
+import { useIsVisible } from "../../hooks/useIsVisible";
 import Button from "../Button";
 import { Carousel, RoomsCard } from "../index";
 import { HomeRoomsStyles as styles } from "./HomeRooms.style";
+import { motion } from "framer-motion";
 
 const TextCards = [
   {
@@ -33,12 +36,17 @@ const TextCards = [
 ];
 
 function HomeRooms() {
+  const { ref, inView } = useIsVisible();
+  const fade = fadeInStagger();
+
   const cardElements = TextCards.map((card, idx) => (
-    <RoomsCard key={idx} {...card} />
+    <motion.div key={idx} variants={fade.item}>
+      <RoomsCard {...card} />
+    </motion.div>
   ));
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} ref={ref}>
       <div className={styles.headingWrapper}>
         <h2 className={styles.title}>Quartos em destaque</h2>
         <p className={styles.description}>
@@ -47,11 +55,30 @@ function HomeRooms() {
         </p>
       </div>
 
-      <Carousel
-        items={cardElements}
-        showDots
-        desktopGridCols="md:grid-cols-3"
-      />
+      <motion.div
+        className="hidden md:grid md:grid-cols-3 gap-6"
+        variants={fade.container}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+      >
+        {cardElements}
+      </motion.div>
+
+      <motion.div
+        variants={fade.container}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        transition={{ delay: 0.9 }}
+        className="md:hidden"
+      >
+        <Carousel
+          items={TextCards.map((card, idx) => (
+            <RoomsCard key={idx} {...card} />
+          ))}
+          showDots
+          desktopGridCols=""
+        />
+      </motion.div>
 
       <div className={styles.buttonWrapper}>
         <Button
