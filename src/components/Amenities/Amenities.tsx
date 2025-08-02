@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import Button from "../Button";
 import { amenitiesStyle as styles } from "./Amenities.style";
+import { useMediaQuery } from "@mui/material";
 
 type AmenitiesCardProps = {
   title: string;
@@ -79,11 +80,7 @@ function Amenities() {
 
   const half = Math.ceil(amenitiesList.length / 2);
 
-  const isDesktop =
-    typeof window !== "undefined"
-      ? window.matchMedia("(min-width: 768px)").matches
-      : false;
-
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const displayAll = isDesktop || showAll;
 
   const cardElements = displayAll
