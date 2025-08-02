@@ -39,13 +39,17 @@ function AboutUs() {
           </div>
         </motion.div>
 
-        <div className={styles.imageContainer}>
+        <motion.div
+        variants={fade.item}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className={styles.imageContainer}>
           <img
             src={ImageLobby}
             alt="Imagem do Hotel Regency Heights"
             className={styles.image}
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
