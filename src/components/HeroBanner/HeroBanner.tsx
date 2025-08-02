@@ -1,14 +1,28 @@
-import ImageHotel from "../../assets/images/img-hotel.svg";
+import { fadeInStagger } from "../../animations/fadeInStagger";
+import ImageHotel from "../../assets/images/img-hotel.webp";
+import { useIsVisible } from "../../hooks/useIsVisible";
 import Button from "../Button";
-import {HeroBannerStyles as styles} from "./HeroBanner.style"
+import { HeroBannerStyles as styles } from "./HeroBanner.style";
+import { motion } from "framer-motion";
 
 function HeroBanner() {
+  const fade = fadeInStagger();
+  const { ref, inView } = useIsVisible();
+
   return (
-    <section className={styles.sectionStyle}>
-
-      <div className={styles.containerStyle}>
-
-        <div className={styles.contentStyle}>
+    <motion.section
+      variants={fade.container}
+      ref={ref}
+      className={styles.sectionStyle}
+    >
+      <div
+        className={styles.containerStyle}
+      >
+        <motion.div
+        variants={fade.item}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className={styles.contentStyle}>
           <h1 className={styles.titleStyle}>
             Bem-Vindo ao
             <br />
@@ -21,18 +35,26 @@ function HeroBanner() {
             proporcionar uma experiência inesquecível, com serviço personalizado
             e atenção aos mínimos detalhes.
           </p>
-          <Button label="Explore Nossas Suítes" variant="primary"/>
-        </div>
+          <Button
+            label="Explore Nossas Suítes"
+            variant="primary"
+            size="default"
+          />
+        </motion.div>
 
-        <div className={styles.imageContainerStyle}>
+        <motion.div
+        variants={fade.item}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className={styles.imageContainerStyle}>
           <img
             src={ImageHotel}
             alt="Imagem do Hotel Regency Heights"
             className={styles.imageStyle}
           />
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

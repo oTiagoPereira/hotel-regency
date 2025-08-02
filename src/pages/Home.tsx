@@ -1,4 +1,12 @@
-import { CheckBox, HeroBanner, AboutUs } from "../components";
+import {
+  CheckBox,
+  HeroBanner,
+  AboutUs,
+  WhyRegency,
+  HomeRooms,
+  Amenities,
+  GuestExperience,
+} from "../components";
 import { MainLayout } from "../layouts/mainLayout";
 
 function Home() {
@@ -7,6 +15,10 @@ function Home() {
       <HeroBanner />
       <CheckBox />
       <AboutUs />
+      <WhyRegency />
+      <HomeRooms />
+      <Amenities />
+      <GuestExperience />
     </MainLayout>
   );
 }
