@@ -1,5 +1,5 @@
 import { fadeInStagger } from "../../animations/fadeInStagger";
-import ImageHotel from "../../assets/images/img-hotel.svg";
+import ImageHotel from "../../assets/images/img-hotel.webp";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import Button from "../Button";
 import { HeroBannerStyles as styles } from "./HeroBanner.style";

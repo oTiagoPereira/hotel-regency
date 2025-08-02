@@ -1,5 +1,5 @@
 import Button from "../Button";
-import ImageLobby from "../../assets/images/img-lobby.svg";
+import ImageLobby from "../../assets/images/img-lobby.webp";
 import { aboutUsStyles as styles } from "./AboutUs.style";
 import { motion } from "framer-motion";
 import { useIsVisible } from "../../hooks/useIsVisible";
