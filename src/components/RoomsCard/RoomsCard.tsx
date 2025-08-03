@@ -23,7 +23,15 @@ function RoomsCard({
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageWrapper}>
-        <img src={image} alt={title} className={styles.image} />
+        <img
+          src={image}
+          alt={title}
+          className={styles.image}
+          width={400}
+          height={250}
+          loading="lazy"
+          decoding="async"
+        />
 
         <span className={styles.priceTag}>
           <p>

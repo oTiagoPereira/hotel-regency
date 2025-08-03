@@ -9,7 +9,7 @@ import {
   Wifi,
   type SvgIconComponent,
 } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, memo, useMemo } from "react";
 import Button from "../Button";
 import { amenitiesStyle as styles } from "./Amenities.style";
 import { useMediaQuery } from "@mui/material";
@@ -23,8 +23,9 @@ type AmenitiesCardProps = {
   Icon: SvgIconComponent;
 };
 
-const AmenitiesCard = ({ title, description, Icon }: AmenitiesCardProps) => {
-  const fade = fadeInStagger();  return (
+const AmenitiesCard = memo(({ title, description, Icon }: AmenitiesCardProps) => {
+  const fade = fadeInStagger();
+  return (
     <motion.div variants={fade.item} className={styles.card}>
       <span className={styles.iconWrapper}>
         <Icon />
@@ -33,7 +34,7 @@ const AmenitiesCard = ({ title, description, Icon }: AmenitiesCardProps) => {
       <p className={styles.cardDescription}>{description}</p>
     </motion.div>
   );
-};
+});
 
 const amenitiesList = [
   {
@@ -87,8 +88,12 @@ function Amenities() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
 
-  const cardElements = (displayAll ? amenitiesList : amenitiesList.slice(0, half)).map(
-    (card, idx) => <AmenitiesCard key={idx} {...card} />
+  const cardElements = useMemo(
+    () =>
+      (displayAll ? amenitiesList : amenitiesList.slice(0, half)).map(
+        (card, idx) => <AmenitiesCard key={idx} {...card} />
+      ),
+    [displayAll, half]
   );
 
   return (
