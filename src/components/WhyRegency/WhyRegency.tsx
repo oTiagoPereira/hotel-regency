@@ -5,6 +5,7 @@ import Carousel from "../Carousel";
 import { motion } from "framer-motion";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useIsVisible } from "../../hooks/useIsVisible";
+import { useMemo } from "react";
 
 type CardProps = {
   title: string;
@@ -46,9 +47,12 @@ const cards = [
 
 export default function WhyRegency() {
   const { ref, inView } = useIsVisible();
-    const fade = fadeInStagger();
+  const fade = fadeInStagger();
 
-  const cardElements = cards.map((card, idx) => <Card key={idx} {...card} />);
+  const cardElements = useMemo(
+    () => cards.map((card, idx) => <Card key={idx} {...card} />),
+    []
+  );
 
   return (
     <section className={styles.section} ref={ref}>
@@ -78,11 +82,12 @@ export default function WhyRegency() {
         </motion.div>
 
         <motion.div
-        variants={fade.container}
-        initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        transition={{delay: 0.9}}
-        className="md:hidden">
+          variants={fade.container}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          transition={{ delay: 0.9 }}
+          className="md:hidden"
+        >
           <Carousel
             items={cards.map((card, idx) => <Card key={idx} {...card} />)}
             showDots

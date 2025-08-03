@@ -4,6 +4,7 @@ import { GuestExperienceStyles as styles } from "./GuestExperience.style";
 import { motion } from "framer-motion";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import { fadeInStagger } from "../../animations/fadeInStagger";
+import { useMemo } from "react";
 
 type GuestExperienceCardProps = {
   name: string;
@@ -50,9 +51,13 @@ function GuestExperience() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
 
-  const cardElements = guestExperienceText.map((card) => (
-    <GuestExperienceCard key={card.name} {...card} />
-  ));
+  const cardElements = useMemo(
+    () =>
+      guestExperienceText.map((card) => (
+        <GuestExperienceCard key={card.name} {...card} />
+      )),
+    []
+  );
 
   return (
     <section className={styles.sectionWrapper} ref={ref}>
@@ -77,7 +82,7 @@ function GuestExperience() {
         variants={fade.container}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        transition={{delay: 0.9}}
+        transition={{ delay: 0.9 }}
         className="md:hidden"
       >
         <Carousel

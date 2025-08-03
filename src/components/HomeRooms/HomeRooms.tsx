@@ -4,6 +4,7 @@ import Button from "../Button";
 import { Carousel, RoomsCard } from "../index";
 import { HomeRoomsStyles as styles } from "./HomeRooms.style";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 const TextCards = [
   {
@@ -39,11 +40,15 @@ function HomeRooms() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
 
-  const cardElements = TextCards.map((card, idx) => (
-    <motion.div key={idx} variants={fade.item}>
-      <RoomsCard {...card} />
-    </motion.div>
-  ));
+  const cardElements = useMemo(
+    () =>
+      TextCards.map((card, idx) => (
+        <motion.div key={idx} variants={fade.item}>
+          <RoomsCard {...card} />
+        </motion.div>
+      )),
+    [fade.item]
+  );
 
   return (
     <section className={styles.section} ref={ref}>

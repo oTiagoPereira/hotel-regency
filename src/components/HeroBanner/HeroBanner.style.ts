@@ -32,7 +32,7 @@ export const HeroBannerStyles = {
 
   imageStyle: `
     w-full max-h-[350px] h-auto object-cover object-center
-    md:h-full md:max-h-[800px]
+    md:h-full md:max-h-[800px] md:max-w-[800px]
     rounded-tl-[100px] md:rounded-tl-[200px]
     rounded-tr-[10px] rounded-bl-[10px]
     rounded-br-[100px] md:rounded-br-[200px]

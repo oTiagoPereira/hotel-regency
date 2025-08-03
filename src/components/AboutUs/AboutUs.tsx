@@ -46,8 +46,12 @@ function AboutUs() {
         className={styles.imageContainer}>
           <img
             src={ImageLobby}
-            alt="Imagem do Hotel Regency Heights"
+            alt="Imagem da Recepção Hotel Regency Heights"
             className={styles.image}
+            width={600}
+            height={400}
+            loading="lazy"
+            decoding="async"
           />
         </motion.div>
       </div>

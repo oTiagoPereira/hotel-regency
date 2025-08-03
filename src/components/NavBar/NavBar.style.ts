@@ -6,7 +6,7 @@ export const navbarStyles = {
 
     logoContainer: "flex-shrink-0 flex items-center",
     logoLink: "text-white text-2xl font-bold",
-    logoImage: "h-10 w-auto",
+    logoImage: "h-10 w-10",
 
     mobileButton:
       "inline-flex items-center justify-center p-2 rounded-md text-text-neutral hover:bg-primary-hover focus:outline-none",
@@ -25,4 +25,3 @@ export const navbarStyles = {
     mobileLinkActive: "text-text-neutral bg-primary-hover",
     mobileLinkInactive: "text-text-neutral hover:bg-primary-hover",
   };
-  
