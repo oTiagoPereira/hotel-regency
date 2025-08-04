@@ -8,10 +8,10 @@ export const amenitiesStyle = {
   paragraph: "text-text-color font-body",
   grid: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-12",
   buttonWrapper: "block md:hidden mt-8",
-  card: "text-center flex flex-col items-center justify-between w-fit mx-auto h-auto",
+  card: "text-center flex flex-col items-center my-0 justify-center w-fit mx-auto h-auto",
   iconWrapper:
     "bg-neutral p-3 flex items-center justify-center rounded-full text-icons-secondary",
   cardTitle:
     "text-lg font-semibold font-heading text-text-color my-2",
-  cardDescription: "text-sm text-text-color opacity-80",
+  cardDescription: "text-sm text-text-color opacity-90",
 };
