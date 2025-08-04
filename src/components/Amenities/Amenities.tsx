@@ -1,9 +1,9 @@
 import {
   FitnessCenter,
-  ForkLeft,
   LocalBar,
   LocalParking,
   Poll,
+  Restaurant,
   RoomService,
   Spa,
   Wifi,
@@ -50,7 +50,7 @@ const amenitiesList = [
   {
     title: "Refeições Finas",
     description: "Restaurantes premiados.",
-    Icon: ForkLeft,
+    Icon: Restaurant,
   },
   {
     title: "Spa Luxuoso",
