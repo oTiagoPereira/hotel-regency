@@ -1,8 +1,30 @@
 {
   "name": "hotel-regency",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Site institucional do Hotel Regency Heights, com foco em UX, responsividade e SEO para portfólio.",
+  "author": "Tiago Pereira <tiagopereira14200@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seu-user/hotel-regency.git"
+  },
+  "homepage": "https://regencyheights.vercel.app/",
+  "keywords": [
+    "hotel",
+    "typescript",
+    "react",
+    "vite",
+    "portfólio",
+    "hospedagem",
+    "regency heights",
+    "hotelaria"
+  ],
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
