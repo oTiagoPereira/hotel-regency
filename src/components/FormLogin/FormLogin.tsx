@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
@@ -7,6 +7,22 @@ import { FormLoginStyles as styles } from "./FormLogin.style";
 
 function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  async function VerifyEmail(e: React.FormEvent) {
+    e.preventDefault()
+
+    const sucesso = true
+
+    if (sucesso == true) {
+      return navigate("/verify-email", {
+        state: {email},
+        replace: true
+      })
+    }
+  }
 
   return (
     <section className={styles.section}>
@@ -18,7 +34,7 @@ function FormLogin() {
           </p>
         </div>
 
-        <form action="" className={styles.form}>
+        <form onSubmit={VerifyEmail} className={styles.form}>
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>
               Digite seu e-mail
@@ -27,6 +43,8 @@ function FormLogin() {
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="exemplo@regency.com"
               required
               className={styles.input}
@@ -46,6 +64,8 @@ function FormLogin() {
                 type={showPassword ? "text" : "password"}
                 id="login-password"
                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder={showPassword ? "Insira sua senha" : "********"}
                 required
                 className={styles.input}

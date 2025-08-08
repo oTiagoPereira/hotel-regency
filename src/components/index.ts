@@ -11,3 +11,4 @@ export { default as GuestExperience } from "./GuestExperience";
 export { default as FormLogin } from "./FormLogin";
 export { default as FormRegistration } from "./FormRegistration"
 export { default as CarouselRegister } from "./CarouselRegister";
+export { default as LoginVerifyEmail } from "./LoginVerifyEmail"
