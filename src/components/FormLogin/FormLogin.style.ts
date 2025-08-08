@@ -26,4 +26,5 @@ export const FormLoginStyles = {
   linkRegistration:
     "font-medium text-primary",
   textCenter: "text-center text-text-color",
+  carouselWrapper: "hidden md:flex w-3/5 h-full py-2.5",
 };

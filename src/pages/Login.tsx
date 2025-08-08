@@ -4,7 +4,7 @@ import { MainLayout } from "../layouts/mainLayout";
 
 function Login() {
   useHead({
-    title: "Login",
+    title: "Entrar - Hotel Regency",
     metaTags: [
       {
         name: "description",

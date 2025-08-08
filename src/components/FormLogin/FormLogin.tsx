@@ -91,7 +91,9 @@ function FormLogin() {
         </p>
       </div>
 
-      <CarouselRegister />
+      <div className={styles.carouselWrapper}>
+        <CarouselRegister />
+      </div>
     </section>
   );
 }

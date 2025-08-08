@@ -14,7 +14,7 @@ const fallbackElement = <div className="h-[300px] bg-gray-300 animate-pulse" />;
 
 function Home() {
   useHead({
-    title: "Home - Regency Hotel",
+    title: "Início - Regency Hotel",
     metaTags: [
       {
         name: "description",

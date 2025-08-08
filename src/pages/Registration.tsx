@@ -4,7 +4,7 @@ import { MainLayout } from "../layouts/mainLayout";
 
 function Registration() {
   useHead({
-    title: "Cadastro",
+    title: "Cadastro - Hotel Regency",
     metaTags: [
       {
         name: "description",
