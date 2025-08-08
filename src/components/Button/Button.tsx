@@ -7,6 +7,7 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "terciary" | "danger" | "disabled";
   size?: "width_full" | "default";
+  Icon?: React.ElementType;
 };
 
 export const Button = ({
@@ -16,6 +17,7 @@ export const Button = ({
   type = "button",
   variant = "primary",
   size = "width_full",
+  Icon
 }: ButtonProps) => {
   return (
     <button
@@ -26,7 +28,8 @@ export const Button = ({
         disabled ? variants.disabled : variants[variant]
       } ${sizes[size]}`}
     >
-      {label}
+      {Icon && <Icon />}
+      {Icon ? <span className="ml-2">{label}</span> : label}
     </button>
   );
 };

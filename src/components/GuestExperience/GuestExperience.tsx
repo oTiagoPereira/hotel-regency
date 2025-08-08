@@ -1,5 +1,5 @@
 import { Rating } from "@mui/material";
-import Carousel from "../Carousel";
+import Carousel from "../CarouselHome";
 import { GuestExperienceStyles as styles } from "./GuestExperience.style";
 import { motion } from "framer-motion";
 import { useIsVisible } from "../../hooks/useIsVisible";

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, type ReactNode } from "react";
-import { CarouselStyles as styles } from "./Carousel.style";
+import { CarouselStyles as styles } from "./CarouselHome.style";
 
 type CarouselProps = {
   items: ReactNode[];
