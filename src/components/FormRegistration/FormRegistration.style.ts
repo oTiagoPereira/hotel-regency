@@ -2,7 +2,7 @@ export const FormRegistrationStyles = {
   section:
     "bg-background w-full max-w-7xl mx-auto flex flex-col py-10 md:py-0 px-4 sm:px-6 lg:px-8 md:gap-4 md:flex-row items-start justify-between",
   formContainer:
-    "flex flex-col gap-6 p-6 md:pl-0 md:ml-0 bg-neutral md:bg-transparent md:shadow-none md:gap-4 rounded-lg shadow-md max-w-md mx-auto text-text-color font-body md:py-20",
+    "flex flex-col gap-6 p-6 md:pl-0 md:ml-0 bg-neutral md:bg-transparent md:shadow-none md:gap-4 rounded-lg shadow-md max-w-md mx-auto text-text-color font-body md:py-20 w-full",
   header:
     "text-center md:text-start flex flex-col gap-2",
   heading: "font-heading text-2xl font-bold",

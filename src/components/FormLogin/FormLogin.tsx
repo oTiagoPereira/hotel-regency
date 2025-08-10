@@ -18,7 +18,7 @@ function FormLogin() {
 
     if (sucesso == true) {
       return navigate("/verify-email", {
-        state: {email},
+        state: {email, type: "login"},
         replace: true
       })
     }
@@ -55,7 +55,7 @@ function FormLogin() {
               <label htmlFor="password" className={styles.label}>
                 Digite sua senha
               </label>
-              <Link to="/forget-password" className={styles.forgetPasswordLink}>
+              <Link to="/forgot-password" className={styles.forgetPasswordLink}>
                 Esqueci a senha
               </Link>
             </span>
