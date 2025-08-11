@@ -1,14 +1,16 @@
 import { useLocation } from "react-router-dom";
-import { LoginVerifyEmail } from "../components";
+import { FormLoginVerifyEmail } from "../components";
 import { MainLayout } from "../layouts/mainLayout";
+import { useHead } from "../hooks/useHead";
 
 function VerifyEmail() {
+  useHead({title: "Verificar Email - Hotel Regency" })
   const location = useLocation();
   const { type: typeEmail } = location.state || {};
 
   return (
     <MainLayout>
-      <LoginVerifyEmail typeEmail={typeEmail} />
+      <FormLoginVerifyEmail typeEmail={typeEmail} />
     </MainLayout>
   );
 }

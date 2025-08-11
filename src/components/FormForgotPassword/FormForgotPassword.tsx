@@ -1,10 +1,10 @@
 import CarouselRegister from "../CarouselRegister";
 import Button from "../Button";
-import { ForgotPasswordStyles as styles } from "./ForgotPassword.style"
+import { FormForgotPasswordStyles as styles } from "./FormForgotPassword.style"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function ForgotPassword() {
+function FormForgotPassword() {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
 
@@ -63,4 +63,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword
+export default FormForgotPassword

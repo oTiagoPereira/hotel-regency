@@ -1,10 +1,10 @@
 import CarouselRegister from "../CarouselRegister";
 import Button from "../Button";
-import { ResetPasswordStyles as styles } from "./ResetPassword.style";
+import { FormResetPasswordStyles as styles } from "./FormResetPassword.style";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-function ResetPassword() {
+function FormResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
@@ -20,13 +20,13 @@ function ResetPassword() {
 
         <form className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>
+            <label htmlFor="reset-password" className={styles.label}>
               Digite sua nova senha
             </label>
             <span className={styles.passwordInputWrapper}>
               <input
                 type={showPassword ? "text" : "password"}
-                id="login-password"
+                id="reset-password"
                 name="password"
 
                 placeholder={
@@ -48,14 +48,14 @@ function ResetPassword() {
             </span>
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>
+            <label htmlFor="confirm-reset-password" className={styles.label}>
               Confirme sua nova senha
             </label>
             <span className={styles.passwordInputWrapper}>
               <input
                 type={showPasswordConfirm ? "text" : "password"}
-                id="login-password"
-                name="password"
+                id="confirm-reset-password"
+                name="confirm-password"
                 placeholder={
                   showPasswordConfirm ? "Confirme sua nova senha" : "********"
                 }
@@ -90,4 +90,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default FormResetPassword;

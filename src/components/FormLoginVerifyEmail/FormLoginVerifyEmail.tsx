@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import CarouselRegister from "../CarouselRegister";
-import { LoginVerifyEmailStyles as styles } from "./LoginVerifyEmail.style"
+import { FormLoginVerifyEmailStyles as styles } from "./FormLoginVerifyEmail.style"
 
-type LoginVerifyEmailProps = {
+type FormLoginVerifyEmailProps = {
   typeEmail: "login" | "reset";
 };
 
-function LoginVerifyEmail({ typeEmail }: LoginVerifyEmailProps) {
+function FormLoginVerifyEmail({ typeEmail }: FormLoginVerifyEmailProps) {
   const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,4 +65,4 @@ function LoginVerifyEmail({ typeEmail }: LoginVerifyEmailProps) {
   );
 }
 
-export default LoginVerifyEmail;
+export default FormLoginVerifyEmail;

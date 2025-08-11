@@ -1,4 +1,4 @@
-export const ForgotPasswordStyles = {
+export const FormForgotPasswordStyles = {
   section:
     "bg-background w-full max-w-7xl mx-auto flex flex-col py-10 md:py-2.5 px-4 sm:px-6 lg:px-8 md:gap-4 md:flex-row items-center justify-between",
   formContainer:

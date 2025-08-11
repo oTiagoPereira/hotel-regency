@@ -11,6 +11,6 @@ export { default as GuestExperience } from "./GuestExperience";
 export { default as FormLogin } from "./FormLogin";
 export { default as FormRegistration } from "./FormRegistration"
 export { default as CarouselRegister } from "./CarouselRegister";
-export { default as LoginVerifyEmail } from "./LoginVerifyEmail"
-export { default as ForgotPassword } from "./ForgotPassword"
-export { default as ResetPassword } from "./ResetPassword"
+export { default as FormLoginVerifyEmail } from "./FormLoginVerifyEmail"
+export { default as FormForgotPassword } from "./FormForgotPassword"
+export { default as FormResetPassword } from "./FormResetPassword"
