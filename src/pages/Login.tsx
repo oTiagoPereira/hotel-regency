@@ -4,20 +4,20 @@ import { MainLayout } from "../layouts/mainLayout";
 
 function Login() {
   useHead({
-    title: "Entrar - Hotel Regency",
+    title: "Entrar - Regency Hotel",
     metaTags: [
       {
         name: "description",
-        content: "Faça login para acessar sua conta no Hotel Regency",
+        content: "Faça login para acessar sua conta no Regency Hotel",
       },
         {
             name: "keywords",
             content: "login, hotel, acesso, conta, Regency",
         },
-        { property: "og:title", content: "Login - Hotel Regency" },
+        { property: "og:title", content: "Login - Regency Hotel" },
         {
             property: "og:description",
-            content: "Faça login para acessar sua conta no Hotel Regency",
+            content: "Faça login para acessar sua conta no Regency Hotel",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://regencyheights.vercel.app/login" },
@@ -26,10 +26,10 @@ function Login() {
             content: "https://regencyheights.vercel.app/logo.svg",
         },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "Login - Hotel Regency" },
+        { name: "twitter:title", content: "Login - Regency Hotel" },
         {
             name: "twitter:description",
-            content: "Faça login para acessar sua conta no Hotel Regency",
+            content: "Faça login para acessar sua conta no Regency Hotel",
         },
         {
             name: "twitter:image",

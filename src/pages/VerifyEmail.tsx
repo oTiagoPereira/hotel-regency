@@ -4,7 +4,7 @@ import { MainLayout } from "../layouts/mainLayout";
 import { useHead } from "../hooks/useHead";
 
 function VerifyEmail() {
-  useHead({title: "Verificar Email - Hotel Regency" })
+  useHead({title: "Verificar Email - Regency Hotel" })
   const location = useLocation();
   const { type: typeEmail } = location.state || {};
 
