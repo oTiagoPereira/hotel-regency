@@ -8,10 +8,10 @@ import { navbarStyles as styles } from "./NavBar.style.ts";
 
 const navLinks = [
   { path: "/", label: "Início" },
-  { path: "/hospedagem", label: "Hospedagem" },
-  { path: "/eventos", label: "Eventos" },
-  { path: "/contato", label: "Contato" },
-  { path: "/sobre", label: "Saiba Mais" },
+  { path: "/accommodation", label: "Hospedagem" },
+  { path: "/events", label: "Eventos" },
+  { path: "/contact", label: "Contato" },
+  { path: "/about", label: "Saiba Mais" },
   { path: "/login", label: "Entrar" },
 ];
 

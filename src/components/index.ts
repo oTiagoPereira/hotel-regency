@@ -14,3 +14,4 @@ export { default as CarouselRegister } from "./CarouselRegister";
 export { default as FormLoginVerifyEmail } from "./FormLoginVerifyEmail"
 export { default as FormForgotPassword } from "./FormForgotPassword"
 export { default as FormResetPassword } from "./FormResetPassword"
+export { default as FilterRooms } from "./FilterRooms"
