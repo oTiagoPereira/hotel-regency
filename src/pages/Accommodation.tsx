@@ -1,10 +1,10 @@
-import { FilterRooms } from "../components";
+import { RoomsSection } from "../components";
 import { MainLayout } from "../layouts/mainLayout";
 
 function Accommodation() {
     return(
         <MainLayout>
-            <FilterRooms/>
+            <RoomsSection/>
         </MainLayout>
     )
 }

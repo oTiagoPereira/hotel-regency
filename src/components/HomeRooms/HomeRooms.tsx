@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import Button from "../Button";
@@ -39,6 +40,7 @@ const TextCards = [
 function HomeRooms() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
+  const navigate = useNavigate()
 
   const cardElements = useMemo(
     () =>
@@ -90,6 +92,7 @@ function HomeRooms() {
           label="Ver todos os quartos"
           variant="secondary"
           size="default"
+          onClick={() => navigate("/accommodation")}
         />
       </div>
     </section>

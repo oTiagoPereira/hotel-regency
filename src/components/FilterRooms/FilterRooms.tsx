@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Range, getTrackBackground } from "react-range";
 import Button from "../Button";
 import { Close, FilterAlt, RestartAlt } from "@mui/icons-material";
+import { FilterRoomsStyles } from "./FilterRooms.style";
 
 type RoomType = "Standard" | "Deluxe" | "Suite" | "Familiar";
 
@@ -52,7 +53,6 @@ function FilterRooms() {
     };
   }, [open]);
 
-
   const handleReset = () => {
     setRoomTypes(DEFAULT_ROOM_TYPES);
     setCapacities(DEFAULT_CAPACITIES);
@@ -77,9 +77,9 @@ function FilterRooms() {
 
   return (
     <>
-      <div className="md:hidden p-4 text-end">
+      <div className={FilterRoomsStyles.filterOpenButtonWrapper}>
         <button
-          className="bg-primary text-text-neutral px-3 py-1 rounded-md hover:bg-primary-hover cursor-pointer font-semibold"
+          className={FilterRoomsStyles.buttonPrimary}
           onClick={() => setOpen(true)}
         >
           Filtros{"  "}
@@ -88,16 +88,12 @@ function FilterRooms() {
       </div>
 
       {/* Container do filtro mobile */}
-      <div
-        className={`fixed inset-0 bg-transparent bg-opacity-50 z-10 transform transition-transform duration-300 ease-out md:static md:bg-transparent md:z-auto ${
-          open ? "translate-y-0" : "translate-y-full"
-        } md:translate-y-0`}
-      >
-        <aside className="bg-white w-full h-full md:h-auto md:max-w-xl md:w-full md:rounded-md shadow-md mx-auto py-5 px-5 text-gray-800 overflow-y-auto">
-          <div className="flex justify-start items-center mb-4 md:hidden relative">
+      <div className={FilterRoomsStyles.mobileFilterContainer(open)}>
+        <aside className={FilterRoomsStyles.asideContainer}>
+          <div className={FilterRoomsStyles.headerMobile}>
             {hasChanges && (
               <button
-                className="bg-primary text-text-neutral px-3 py-1 rounded-md hover:bg-primary-hover cursor-pointer font-semibold fixed top-4 left-4 z-50 min-w-[80px] text-center"
+                className={`${FilterRoomsStyles.fixedButton} top-4 left-4`}
                 onClick={handleReset}
               >
                 Resetar{"  "}
@@ -106,18 +102,18 @@ function FilterRooms() {
             )}
             <button
               onClick={() => setOpen(false)}
-              className="bg-primary text-text-neutral px-3 py-1 rounded-md hover:bg-primary-hover cursor-pointer font-semibold fixed top-4 right-4 z-50 min-w-[80px] text-center"
+              className={`${FilterRoomsStyles.fixedButton} top-4 right-4`}
             >
               Fechar{"  "}
               <Close />
             </button>
           </div>
 
-          <div className="hidden md:flex justify-between items-center mb-4">
+          <div className={FilterRoomsStyles.headerDesktop}>
             <h1 className="text-2xl font-semibold">Filtros</h1>
             {hasChanges && (
               <button
-                className="bg-primary text-text-neutral px-3 py-1 rounded-md hover:bg-primary-hover cursor-pointer font-semibold"
+                className={FilterRoomsStyles.buttonPrimary}
                 onClick={handleReset}
               >
                 Resetar{"  "}
@@ -126,10 +122,10 @@ function FilterRooms() {
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 mt-12">
+          <form onSubmit={handleSubmit} className={FilterRoomsStyles.form}>
             <div>
-              <label className="font-medium block mb-2">Tipos de Quarto</label>
-              <div className="flex flex-col gap-1">
+              <label className={FilterRoomsStyles.label}>Tipos de Quarto</label>
+              <div className={FilterRoomsStyles.checkboxContainer}>
                 {(
                   ["Standard", "Deluxe", "Suite", "Familiar"] as RoomType[]
                 ).map((type) => (
@@ -147,10 +143,10 @@ function FilterRooms() {
             </div>
 
             <div>
-              <label className="font-medium block mb-2">
+              <label className={FilterRoomsStyles.label}>
                 Capacidade de Hóspedes
               </label>
-              <div className="flex flex-col gap-1">
+              <div className={FilterRoomsStyles.checkboxContainer}>
                 {[1, 2, 3, 4].map((cap) => (
                   <label key={cap} className="flex items-center gap-2">
                     <input
@@ -166,8 +162,10 @@ function FilterRooms() {
             </div>
 
             <div>
-              <label className="font-medium block mb-4">Faixa de Preço</label>
-              <div className="px-2">
+              <label className={FilterRoomsStyles.priceRangeLabel}>
+                Faixa de Preço
+              </label>
+              <div>
                 <Range
                   values={priceRange}
                   step={STEP}
@@ -206,14 +204,18 @@ function FilterRooms() {
                     />
                   )}
                 />
-                <div className="flex justify-between mt-3">
-                  <div>
-                    <p className="text-sm text-gray-500">Mínimo</p>
-                    <span className="font-medium">R$ {priceRange[0]},00</span>
+                <div className={FilterRoomsStyles.priceRangeValues}>
+                  <div className={FilterRoomsStyles.priceBox}>
+                    <p className={FilterRoomsStyles.priceLabelText}>Mínimo</p>
+                    <span className={FilterRoomsStyles.priceValueText}>
+                      R$ {priceRange[0]},00
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Máximo</p>
-                    <span className="font-medium">R$ {priceRange[1]},00</span>
+                  <div className={FilterRoomsStyles.priceBox}>
+                    <p className={FilterRoomsStyles.priceLabelText}>Máximo</p>
+                    <span className={FilterRoomsStyles.priceValueText}>
+                      R$ {priceRange[1]},00
+                    </span>
                   </div>
                 </div>
               </div>
