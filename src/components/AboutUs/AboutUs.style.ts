@@ -2,7 +2,7 @@ export const aboutUsStyles = {
   aboutUsSection: "mt-10 flex-col",
 
   container: `
-      max-w-7xl mx-auto flex flex-col md:flex-row
+      max-w-screen-2xl mx-auto flex flex-col md:flex-row
       items-stretch justify-between
       px-4 sm:px-6 lg:px-8 md:gap-4
     `,

@@ -1,7 +1,7 @@
 export const navbarStyles = {
     nav: "bg-primary",
 
-    container: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    container: "max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8",
     innerContainer: "flex justify-between h-16",
 
     logoContainer: "flex-shrink-0 flex items-center",
