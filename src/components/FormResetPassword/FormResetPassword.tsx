@@ -3,6 +3,24 @@ import Button from "../Button";
 import { FormResetPasswordStyles as styles } from "./FormResetPassword.style";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import HotelFront from "../../assets/images/img-hotel-front.webp";
+import HotelSnack from "../../assets/images/img-snack.webp";
+import HotelParty from "../../assets/images/img-party.webp";
+
+const slides = [
+  {
+    src: HotelFront,
+    text: "Descubra o conforto e a elegância do nosso hotel.",
+  },
+  {
+    src: HotelSnack,
+    text: "Sabores que combinam com o pôr do sol.",
+  },
+  {
+    src: HotelParty,
+    text: "Salão de festas elegante e espaçoso, com decoração sofisticada e iluminação acolhedora.",
+  },
+];
 
 function FormResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
@@ -84,7 +102,7 @@ function FormResetPassword() {
       </div>
 
       <div className={styles.carouselWrapper}>
-        <CarouselRegister />
+        <CarouselRegister slides={slides}/>
       </div>
     </section>
   );

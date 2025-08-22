@@ -2,6 +2,24 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import CarouselRegister from "../CarouselRegister";
 import { FormLoginVerifyEmailStyles as styles } from "./FormLoginVerifyEmail.style"
+import HotelFront from "../../assets/images/img-hotel-front.webp";
+import HotelSnack from "../../assets/images/img-snack.webp";
+import HotelParty from "../../assets/images/img-party.webp";
+
+const slides = [
+  {
+    src: HotelFront,
+    text: "Descubra o conforto e a elegância do nosso hotel.",
+  },
+  {
+    src: HotelSnack,
+    text: "Sabores que combinam com o pôr do sol.",
+  },
+  {
+    src: HotelParty,
+    text: "Salão de festas elegante e espaçoso, com decoração sofisticada e iluminação acolhedora.",
+  },
+];
 
 type FormLoginVerifyEmailProps = {
   typeEmail: "login" | "reset";
@@ -59,7 +77,7 @@ function FormLoginVerifyEmail({ typeEmail }: FormLoginVerifyEmailProps) {
       </div>
 
       <div className={styles.carouselWrapper}>
-        <CarouselRegister />
+        <CarouselRegister slides={slides}/>
       </div>
     </section>
   );

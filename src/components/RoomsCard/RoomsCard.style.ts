@@ -8,8 +8,8 @@ export const RoomsCardStyles = {
   contentWrapper:
     "flex flex-col items-start justify-between px-3 sm:px-4 pb-4 w-full",
   title:
-    "text-lg sm:text-xl md:text-xl font-semibold pt-2 mb-2 w-full font-heading text-primary",
-  ratingWrapper: "text-yellow-500 w-full text-sm sm:text-base",
+    "text-md sm:text-xl md:text-xl font-semibold pt-2 mb-2 w-full font-heading text-primary",
+  ratingWrapper: "text-icons-secondary w-full text-sm sm:text-base",
   featuresWrapper:
     "flex items-center justify-between mt-3 w-full text-text-color font-body mb-3 text-xs sm:text-sm md:text-base",
   featureItem:

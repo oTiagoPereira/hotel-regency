@@ -1,43 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useIsVisible } from "../../hooks/useIsVisible";
-import Button from "../Button";
-import { Carousel, RoomsCard } from "../index";
-import { HomeRoomsStyles as styles } from "./HomeRooms.style";
-import { motion } from "framer-motion";
 import { useMemo } from "react";
-import roomsData from "./../../data/rooms.json"
+import { motion } from "framer-motion";
+import roomsData from "./../../data/rooms.json";
+import RoomsCard from "../RoomsCard";
+import Carousel from "../CarouselHome";
+import { RoomRecommendationStyle as Styles } from "./RoomRecommendation.style";
 
-function HomeRooms() {
+function RoomRecommendation() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const cardElements = useMemo(
     () =>
-      roomsData.slice(0,3).map((card) => (
+      roomsData.slice(0, 3).map((card) => (
         <motion.div key={card.id} variants={fade.item}>
-            <RoomsCard key={card.id} {...card}
-            bed={card.bed.amount} 
-            people={card.people} 
+          <RoomsCard
+            key={card.id}
+            {...card}
+            bed={card.bed.amount}
+            people={card.people}
             thumb={card.thumb}
             ratings={card.ratings.average}
-            labelButton="Ver Detalhes" 
-            onClick={() => {navigate(`/accommodation/${card.id}`)}} />
+            labelButton="Ver Detalhes"
+            onClick={() => {
+              navigate(`/accommodation/${card.id}`);
+            }}
+          />
         </motion.div>
       )),
     [fade.item, navigate]
   );
-
   return (
-    <section className={styles.section} ref={ref}>
-      <div className={styles.headingWrapper}>
-        <h2 className={styles.title}>Quartos em destaque</h2>
-        <p className={styles.description}>
-          Escolha entre nossa seleção de quartos e suítes meticulosamente
-          projetados para uma estadia confortável e luxuosa.
-        </p>
-      </div>
+    <section className={Styles.section} ref={ref}>
+      <h1 className={Styles.title}>
+        Você também pode gostar
+      </h1>
 
       <motion.div
         className="hidden md:grid md:grid-cols-3 gap-6"
@@ -71,17 +71,8 @@ function HomeRooms() {
           desktopGridCols=""
         />
       </motion.div>
-
-      <div className={styles.buttonWrapper}>
-        <Button
-          label="Ver todos os quartos"
-          variant="secondary"
-          size="default"
-          onClick={() => navigate("/accommodation")}
-        />
-      </div>
     </section>
   );
 }
 
-export default HomeRooms;
+export default RoomRecommendation;

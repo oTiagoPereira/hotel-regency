@@ -4,6 +4,24 @@ import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import CarouselRegister from "../CarouselRegister";
 import { FormLoginStyles as styles } from "./FormLogin.style";
+import HotelFront from "../../assets/images/img-hotel-front.webp";
+import HotelSnack from "../../assets/images/img-snack.webp";
+import HotelParty from "../../assets/images/img-party.webp";
+
+const slides = [
+  {
+    src: HotelFront,
+    text: "Descubra o conforto e a elegância do nosso hotel.",
+  },
+  {
+    src: HotelSnack,
+    text: "Sabores que combinam com o pôr do sol.",
+  },
+  {
+    src: HotelParty,
+    text: "Salão de festas elegante e espaçoso, com decoração sofisticada e iluminação acolhedora.",
+  },
+];
 
 function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -112,7 +130,7 @@ function FormLogin() {
       </div>
 
       <div className={styles.carouselWrapper}>
-        <CarouselRegister />
+        <CarouselRegister slides={slides} />
       </div>
     </section>
   );

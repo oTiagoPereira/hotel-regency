@@ -1,8 +1,21 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FilterRooms from "../FilterRooms";
 import RoomsCard from "../RoomsCard";
-import { RoomsSectionStyles as Styles } from "./RoomsSection.style"
+import { RoomsSectionStyles as Styles } from "./RoomsSection.style";
+import roomsData from "./../../data/rooms.json";
 
 function RoomSection() {
+  const startingItems = 8;
+  const itemsLoad = 4;
+
+  const navigate = useNavigate();
+  const [visibleItems, setVisibleItems] = useState<number>(startingItems);
+
+  const loadMoreItems = () => {
+    setVisibleItems((prevVisibleItems) => prevVisibleItems + itemsLoad);
+  };
+
   return (
     <section className={Styles.section}>
       <h1 className={Styles.heading}>Nossos Quartos</h1>
@@ -17,60 +30,25 @@ function RoomSection() {
         </div>
 
         <div className={Styles.gridWrapper}>
-          <RoomsCard
-            title="Quarto Duplo"
-            bed={1}
-            meters={30}
-            people={2}
-            value="500,00"
-            key={1}
-            image="https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg"
-          />
-          <RoomsCard
-            title="Quarto Duplo"
-            bed={2}
-            meters={30}
-            people={4}
-            value="500,00"
-            key={2}
-            image="https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg"
-          />
-          <RoomsCard
-            title="Quarto Duplo"
-            bed={2}
-            meters={30}
-            people={4}
-            value="500,00"
-            key={3}
-            image="https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg"
-          />
-          <RoomsCard
-            title="Quarto Duplo"
-            bed={2}
-            meters={30}
-            people={4}
-            value="500,00"
-            key={4}
-            image="https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg"
-          />
-          <RoomsCard
-            title="Quarto Duplo"
-            bed={2}
-            meters={30}
-            people={4}
-            value="500,00"
-            key={5}
-            image="https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg"
-          />
-          <RoomsCard
-            title="Quarto Duplo"
-            bed={2}
-            meters={30}
-            people={4}
-            value="500,00"
-            key={6}
-            image="https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg"
-          />
+          {roomsData.slice(0, visibleItems).map((card) => (
+            <RoomsCard
+              key={card.id}
+              {...card}
+              bed={card.bed.amount}
+              people={card.people}
+              thumb={card.thumb}
+              ratings={card.ratings.average}
+              labelButton="Ver Detalhes"
+              onClick={() => {
+                navigate(`/accommodation/${card.id}`);
+              }}
+            />
+          ))}
+          {visibleItems < roomsData.length && (
+            <div style={{ textAlign: "center", marginTop: "2rem" }}>
+              <button onClick={loadMoreItems}>Carregar Mais</button>
+            </div>
+          )}
         </div>
       </div>
     </section>
