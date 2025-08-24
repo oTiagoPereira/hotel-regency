@@ -8,6 +8,10 @@ export const RoomsSectionStyles = {
 
     mainWrapper: "flex flex-col md:flex-row gap-4 justify-between w-full",
 
+    boxRooms: "w-full flex flex-col gap-6",
+
+    loadMore: "w-full flex justify-center",
+
     filterWrapper: "w-full md:w-1/3 md:max-w-xs relative z-20",
 
     gridWrapper:

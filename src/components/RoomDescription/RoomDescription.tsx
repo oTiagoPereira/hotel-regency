@@ -2,16 +2,20 @@ import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { AspectRatio, Bed, People } from "@mui/icons-material";
 import roomsData from "./../../data/rooms.json";
-
+import { motion } from "framer-motion";
 import CarouselRegister from "../CarouselRegister";
 import { AmenityIcon } from "../Icons/AmenityIcon";
 import ReservationSummary from "../ReservationSummary";
 import RoomRecommendation from "../RoomRecommendation";
 import { RoomDescriptionStyle as Styles } from "./RoomDescription.style"
 import RoomNotFound from "../RoomNotFound";
+import { useIsVisible } from "../../hooks/useIsVisible";
+import { fadeInStagger } from "../../animations/fadeInStagger";
 
 
 function RoomDescription() {
+  const fade = fadeInStagger();
+  const { ref, inView } = useIsVisible();
   const { id } = useParams<{ id: string }>();
   const room = roomsData.find((q) => q.id === Number(id));
 
@@ -28,15 +32,23 @@ function RoomDescription() {
   }));
 
   return (
-    <section className={Styles.mainSection}>
-      <div className={Styles.carouselWrapper}>
+    <section ref={ref} className={Styles.mainSection}>
+      <motion.div
+        variants={fade.container}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className={Styles.carouselWrapper}>
         <CarouselRegister
           slides={carouselSlidesFromGallery}
           showOnMobile={true}
         />
-      </div>
+      </motion.div>
 
-      <div className={Styles.contentWrapper}>
+      <motion.div
+        variants={fade.item}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className={Styles.contentWrapper}>
         <div className={Styles.detailsColumn}>
           <div className={Styles.titleSection}>
             <h1 className={Styles.mainHeading}>{room.title}</h1>
@@ -102,7 +114,7 @@ function RoomDescription() {
         <ReservationSummary
           room={{ id: room.id, title: room.title, value: room.value, Offer: room.Offer }}
         />
-      </div>
+      </motion.div>
       <RoomRecommendation />
     </section>
   );
