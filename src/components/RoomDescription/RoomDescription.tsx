@@ -115,7 +115,7 @@ function RoomDescription() {
           room={{ id: room.id, title: room.title, value: room.value, Offer: room.Offer }}
         />
       </motion.div>
-      <RoomRecommendation />
+      <RoomRecommendation currentRoomId={room.id} />
     </section>
   );
 }

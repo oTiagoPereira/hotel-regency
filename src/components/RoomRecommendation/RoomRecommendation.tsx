@@ -8,14 +8,22 @@ import RoomsCard from "../RoomsCard";
 import Carousel from "../CarouselHome";
 import { RoomRecommendationStyle as Styles } from "./RoomRecommendation.style";
 
-function RoomRecommendation() {
+interface RoomRecommendationProps {
+  currentRoomId: number;
+}
+
+function RoomRecommendation({ currentRoomId }: RoomRecommendationProps) {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
   const navigate = useNavigate();
 
+  const filteredRooms = useMemo(() => {
+    return roomsData.filter((room) => room.id !== currentRoomId);
+  }, [currentRoomId]);
+
   const cardElements = useMemo(
     () =>
-      roomsData.slice(0, 3).map((card) => (
+      filteredRooms.slice(0, 3).map((card) => (
         <motion.div key={card.id} variants={fade.item}>
           <RoomsCard
             key={card.id}
@@ -31,7 +39,7 @@ function RoomRecommendation() {
           />
         </motion.div>
       )),
-    [fade.item, navigate]
+    [fade.item, navigate, filteredRooms]
   );
   return (
     <section className={Styles.section} ref={ref}>
@@ -56,7 +64,7 @@ function RoomRecommendation() {
         className="md:hidden"
       >
         <Carousel
-          items={roomsData.slice(0, 6).map((card) => (
+          items={filteredRooms.slice(0, 6).map((card) => (
               <RoomsCard 
               key={card.id} {...card}
               bed={card.bed.amount} 
