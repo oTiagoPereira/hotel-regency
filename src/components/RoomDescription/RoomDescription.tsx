@@ -1,31 +1,23 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { AspectRatio, Bed, People } from "@mui/icons-material";
 import roomsData from "./../../data/rooms.json";
 
 import CarouselRegister from "../CarouselRegister";
-import Button from "../Button";
 import { AmenityIcon } from "../Icons/AmenityIcon";
 import ReservationSummary from "../ReservationSummary";
 import RoomRecommendation from "../RoomRecommendation";
 import { RoomDescriptionStyle as Styles } from "./RoomDescription.style"
+import RoomNotFound from "../RoomNotFound";
 
 
 function RoomDescription() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const room = roomsData.find((q) => q.id === Number(id));
 
-  // Tela para quarto não encontrado, ainda precisa fazer a UI
   if (!room) {
     return (
-      <div>
-        <h1>Quarto não encontrado!</h1>
-        <Button
-          onClick={() => navigate("/accommodation")}
-          label="Voltar para a lista de quartos"
-        />
-      </div>
+      <RoomNotFound />
     );
   }
 
