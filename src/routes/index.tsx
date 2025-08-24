@@ -8,6 +8,7 @@ import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
 import Accommodation from "../pages/Accommodation";
 import RoomDetails from "../pages/RoomDetails";
+import FinalizeReservation from "../pages/FinalizeReservation";
 
 function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ function AppRoutes() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/accommodation" element={<Accommodation />} />
         <Route path="/accommodation/:id" element={<RoomDetails />}/>
+        <Route path="/payment" element={<FinalizeReservation />} />"
       </Routes>
   )
 }
