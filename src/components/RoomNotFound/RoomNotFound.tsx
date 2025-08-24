@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { WarningAmberRounded } from "@mui/icons-material";
-import { RoomNotFoundstyles as Styles } from "./RoomNotFound";
+import { RoomNotFoundstyles as Styles } from "./RoomNotFound.style";
 
 function RoomNotFound() {
   const navigate = useNavigate();
