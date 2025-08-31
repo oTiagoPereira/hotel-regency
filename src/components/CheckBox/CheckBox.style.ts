@@ -1,6 +1,6 @@
 export const checkBoxStyles = {
   sectionWrapper : `
-    w-full h-auto bg-background max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 relative
+    w-full h-auto bg-background max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 relative
   `,
 
   container : `

@@ -90,32 +90,53 @@ function CheckBox() {
   };
 
   const handleDateSelect = (range: DateRange | undefined) => {
-    if (!range) return;
-
-    if (openPicker === "checkin" && range.from && range.from < new Date(new Date().setHours(0, 0, 0, 0))) {
+    if (!range) {
+      setSelectedRange(undefined);
       return;
     }
-
-    if (openPicker === "checkout" && range.to && selectedRange?.from && range.to <= selectedRange.from) {
-      return;
-    }
-
-    setSelectedRange(range);
-
-    if (range.from && !range.to && openPicker === "checkin") {
-      setOpenPicker("checkout");
+  
+    if (openPicker === 'checkin') {
+      if (range.from && range.from < new Date(new Date().setHours(0, 0, 0, 0))) {
+        return;
+      }
+  
+      if (range.from) {
+        let newToDate = selectedRange?.to;
+  
+        if (!newToDate || newToDate <= range.from) {
+          newToDate = new Date(range.from);
+          newToDate.setDate(newToDate.getDate() + 1);
+        }
+        
+        setSelectedRange({ from: range.from, to: newToDate });
+        setOpenPicker('checkout');
+      } else {
+        setSelectedRange(undefined);
+      }
+    } else if (openPicker === 'checkout') {
+      if (range.to && selectedRange?.from && range.to <= selectedRange.from) {
+        return;
+      }
+      
+      setSelectedRange(range);
+      
+      if (range.to) {
+        setOpenPicker(null);
+      }
     }
   };
 
   const handleOpenPicker = (field: "checkin" | "checkout") => {
-    if (field === "checkin") {
-      setSelectedRange(undefined);
-    }
-
-    if (field === "checkout" && !selectedRange?.from) {
+    if (openPicker === field) {
+      setOpenPicker(null);
       return;
     }
-
+    
+    if (field === "checkout" && !selectedRange?.from) {
+      setOpenPicker("checkin");
+      return;
+    }
+  
     setOpenPicker(field);
     setShowPeopleBox(false);
     setShowBedsBox(false);
@@ -126,7 +147,7 @@ function CheckBox() {
   };
 
   const disabledCheckoutDates = selectedRange?.from
-    ? { before: new Date(selectedRange.from.getTime() + 24 * 60 * 60 * 1000) }
+    ? { before: new Date(new Date(selectedRange.from).setDate(selectedRange.from.getDate() + 1)) }
     : { before: new Date(new Date().setHours(0, 0, 0, 0)) };
 
   return (

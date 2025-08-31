@@ -10,19 +10,16 @@ function Footer() {
             <p className={styles.sectionTitle}>Navegação rápida</p>
             <ul className={styles.list}>
               <li>
-                <Link to="/home">Home</Link>
+                <Link to="/">Início</Link>
               </li>
               <li>
-                <Link to="/about">Hospedagem</Link>
+                <Link to="/accommodation">Hospedagem</Link>
               </li>
               <li>
-                <Link to="/amenities">Eventos</Link>
+                <Link to="/events">Eventos</Link>
               </li>
               <li>
                 <Link to="/contact">Contato</Link>
-              </li>
-              <li>
-                <Link to="/learn-more">Saiba mais</Link>
               </li>
             </ul>
           </div>

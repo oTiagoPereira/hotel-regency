@@ -1,7 +1,7 @@
 export const amenitiesStyle = {
   section: "bg-secondary w-full min-h-[600px] py-10 md:py-0 flex items-center",
   container:
-    "max-w-7xl mx-auto flex flex-col items-stretch justify-between px-4 sm:px-6 lg:px-8 md:gap-4",
+    "max-w-screen-2xl w-full mx-auto flex flex-col items-stretch justify-between px-4 sm:px-6 lg:px-8 md:gap-4",
   header: "text-center md:text-start mt-6 mb-12 md:w-1/2",
   heading:
     "text-3xl font-bold text-text-color mb-2 font-heading",

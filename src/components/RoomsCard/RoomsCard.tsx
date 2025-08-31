@@ -4,27 +4,34 @@ import { Button } from "../index";
 import { RoomsCardStyles as styles } from "./RoomsCard.style";
 
 type RoomsCardProps = {
+  id: number;
   title: string;
-  image: string;
-  value: string;
+  thumb: string | undefined;
+  value: number;
   bed: number;
   people: number;
   meters: number;
+  labelButton: string;
+  ratings: number;
+  onClick?: () => void;
 };
 
 function RoomsCard({
   title,
-  image,
+  thumb,
   value,
   bed,
   people,
   meters,
+  labelButton,
+  ratings,
+  onClick
 }: RoomsCardProps) {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageWrapper}>
         <img
-          src={image}
+          src={thumb}
           alt={title}
           className={styles.image}
           width={400}
@@ -45,7 +52,7 @@ function RoomsCard({
         <h3 className={styles.title}>{title}</h3>
 
         <span className={styles.ratingWrapper}>
-          <Rating name="rating" value={4.3} precision={0.5} readOnly />
+          <Rating name="rating" value={ratings} precision={0.5} readOnly size="small"/>
         </span>
 
         <div className={styles.featuresWrapper}>
@@ -65,9 +72,9 @@ function RoomsCard({
 
         <span className={styles.buttonWrapper}>
           <Button
-            label="Reservar"
+            label={labelButton}
             variant="primary"
-            onClick={() => alert(`Reservando ${title}`)}
+            onClick={onClick}
             size="width_full"
           />
         </span>

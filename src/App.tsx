@@ -1,14 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <AppRoutes/>
     </BrowserRouter>
   )
 }

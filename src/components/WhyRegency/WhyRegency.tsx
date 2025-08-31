@@ -1,7 +1,7 @@
 import { Star, Restaurant, Spa } from "@mui/icons-material";
 import { whyRegencyStyles as styles } from "./WhyRegency.style";
 import type { JSX } from "@emotion/react/jsx-runtime";
-import Carousel from "../Carousel";
+import Carousel from "../CarouselHome";
 import { motion } from "framer-motion";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useIsVisible } from "../../hooks/useIsVisible";

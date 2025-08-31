@@ -1,6 +1,6 @@
 export const GuestExperienceStyles = {
   sectionWrapper:
-    "max-w-7xl mx-auto flex flex-col items-stretch justify-center py-10 px-4 sm:px-6 lg:px-8 min-h-[500px]",
+    "max-w-screen-2xl mx-auto flex flex-col items-stretch justify-center py-10 px-4 sm:px-6 lg:px-8 min-h-[500px]",
   titleWrapper: "text-center md:text-start mt-6 mb-12 md:w-1/2",
   sectionTitle: "text-3xl font-bold text-text-color mb-2 font-heading",
   sectionDescription: "text-text-color font-body",

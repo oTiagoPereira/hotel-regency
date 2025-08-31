@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import Button from "../Button";
@@ -5,49 +6,27 @@ import { Carousel, RoomsCard } from "../index";
 import { HomeRoomsStyles as styles } from "./HomeRooms.style";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
-
-const TextCards = [
-  {
-    title: "Suíte Luxo",
-    bed: 1,
-    people: 2,
-    meters: 30,
-    value: "500,00",
-    image:
-      "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-  },
-  {
-    title: "Suíte Luxo",
-    bed: 1,
-    people: 2,
-    meters: 30,
-    value: "500,00",
-    image:
-      "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-  },
-  {
-    title: "Suíte Luxo",
-    bed: 1,
-    people: 2,
-    meters: 30,
-    value: "500,00",
-    image:
-      "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-  },
-];
+import roomsData from "./../../data/rooms.json"
 
 function HomeRooms() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
+  const navigate = useNavigate()
 
   const cardElements = useMemo(
     () =>
-      TextCards.map((card, idx) => (
-        <motion.div key={idx} variants={fade.item}>
-          <RoomsCard {...card} />
+      roomsData.slice(0,3).map((card) => (
+        <motion.div key={card.id} variants={fade.item}>
+            <RoomsCard key={card.id} {...card}
+            bed={card.bed.amount} 
+            people={card.people} 
+            thumb={card.thumb}
+            ratings={card.ratings.average}
+            labelButton="Ver Detalhes" 
+            onClick={() => {navigate(`/accommodation/${card.id}`)}} />
         </motion.div>
       )),
-    [fade.item]
+    [fade.item, navigate]
   );
 
   return (
@@ -77,8 +56,16 @@ function HomeRooms() {
         className="md:hidden"
       >
         <Carousel
-          items={TextCards.map((card, idx) => (
-            <RoomsCard key={idx} {...card} />
+          items={roomsData.slice(0, 6).map((card) => (
+              <RoomsCard 
+              key={card.id} {...card}
+              bed={card.bed.amount} 
+              people={card.people} 
+              thumb={card.thumb}
+              ratings={card.ratings.average}
+              labelButton="Ver Detalhes" 
+              onClick={() => {navigate(`/accommodation/${card.id}`)}}
+              />
           ))}
           showDots
           desktopGridCols=""
@@ -90,6 +77,7 @@ function HomeRooms() {
           label="Ver todos os quartos"
           variant="secondary"
           size="default"
+          onClick={() => navigate("/accommodation")}
         />
       </div>
     </section>

@@ -7,12 +7,11 @@ import { Menu, Close } from "@mui/icons-material";
 import { navbarStyles as styles } from "./NavBar.style.ts";
 
 const navLinks = [
-  { path: "/", label: "Home" },
-  { path: "/hospedagem", label: "Hospedagem" },
-  { path: "/eventos", label: "Eventos" },
-  { path: "/contato", label: "Contato" },
-  { path: "/sobre", label: "Saiba Mais" },
-  { path: "/login", label: "Login" },
+  { path: "/", label: "Início" },
+  { path: "/accommodation", label: "Hospedagem" },
+  { path: "/events", label: "Eventos" },
+  { path: "/contact", label: "Contato" },
+  { path: "/login", label: "Entrar" },
 ];
 
 export default function Navbar() {
