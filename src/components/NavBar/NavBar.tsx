@@ -11,7 +11,6 @@ const navLinks = [
   { path: "/accommodation", label: "Hospedagem" },
   { path: "/events", label: "Eventos" },
   { path: "/contact", label: "Contato" },
-  { path: "/about", label: "Saiba Mais" },
   { path: "/login", label: "Entrar" },
 ];
 

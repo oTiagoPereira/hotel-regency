@@ -21,9 +21,6 @@ function Footer() {
               <li>
                 <Link to="/contact">Contato</Link>
               </li>
-              <li>
-                <Link to="/about">Saiba mais</Link>
-              </li>
             </ul>
           </div>
 
