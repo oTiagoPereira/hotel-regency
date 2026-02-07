@@ -9,7 +9,8 @@ import {
 } from "@mui/icons-material";
 import Button from "../Button";
 import DatePicker from "../CheckBox/dayPicker";
-import { ReservationSummaryStyle as Styles } from "./ReservationSummary.style"
+import { ReservationSummaryStyle as Styles } from "./ReservationSummary.style";
+import { useTranslation } from "react-i18next";
 
 interface ReservationCardProps {
   room: {
@@ -24,8 +25,11 @@ interface ReservationCardProps {
 }
 
 const ReservationCard: React.FC<ReservationCardProps> = ({ room }) => {
+  const { t } = useTranslation();
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
-  const [openPicker, setOpenPicker] = useState<"checkin" | "checkout" | null>(null);
+  const [openPicker, setOpenPicker] = useState<"checkin" | "checkout" | null>(
+    null,
+  );
   const checkinRef = useRef<HTMLDivElement>(null);
   const checkoutRef = useRef<HTMLDivElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
@@ -45,7 +49,8 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ room }) => {
   const handleDateSelect = (range: DateRange | undefined) => {
     if (!range) return;
     if (openPicker === "checkin") {
-      if (range.from && range.from < new Date(new Date().setHours(0, 0, 0, 0))) return;
+      if (range.from && range.from < new Date(new Date().setHours(0, 0, 0, 0)))
+        return;
       if (range.from) {
         let newToDate = dateRange?.to;
         if (!newToDate || newToDate <= range.from) {
@@ -78,11 +83,19 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ room }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openPicker]);
 
-  const numberOfDays = dateRange?.from && dateRange?.to ? differenceInDays(dateRange.to, dateRange.from) : 0;
-  const cancellationDate = dateRange?.from ? format(subDays(dateRange.from, 1), "dd/MM") : "";
-  const isOfferValid = room.Offer?.hasOffer && room.Offer?.discountPercentage > 0;
+  const numberOfDays =
+    dateRange?.from && dateRange?.to
+      ? differenceInDays(dateRange.to, dateRange.from)
+      : 0;
+  const cancellationDate = dateRange?.from
+    ? format(subDays(dateRange.from, 1), "dd/MM")
+    : "";
+  const isOfferValid =
+    room.Offer?.hasOffer && room.Offer?.discountPercentage > 0;
   const originalSubtotal = room.value * numberOfDays;
-  const discountValue = isOfferValid ? originalSubtotal * (room.Offer!.discountPercentage / 100) : 0;
+  const discountValue = isOfferValid
+    ? originalSubtotal * (room.Offer!.discountPercentage / 100)
+    : 0;
   const subtotal = originalSubtotal - discountValue;
   const serviceFee = 89.9;
   const taxes = 119.99;
@@ -95,11 +108,15 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ room }) => {
           <div className={Styles.priceHeader}>
             <h1 className={Styles.priceWithOffer}>
               R$ {room.value.toFixed(2)}
-              <span className={Styles.perNightText}>/noite</span>
+              <span className={Styles.perNightText}>
+                {t("reservation.night")}
+              </span>
             </h1>
             <span className={Styles.offerBadge}>
               <LocalOffer fontSize="small" />
-              <p>{room.Offer?.discountPercentage}% OFF</p>
+              <p>
+                {room.Offer?.discountPercentage}% {t("reservation.off")}
+              </p>
             </span>
           </div>
         ) : (
@@ -108,18 +125,30 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ room }) => {
       </div>
 
       <div className={Styles.datePickerWrapper}>
-        <div ref={checkinRef} onClick={() => handleOpenPicker("checkin")} className={Styles.dateInputBox}>
-          <p className={Styles.dateInputLabel}>Check-in</p>
+        <div
+          ref={checkinRef}
+          onClick={() => handleOpenPicker("checkin")}
+          className={Styles.dateInputBox}
+        >
+          <p className={Styles.dateInputLabel}>{t("reservation.checkin")}</p>
           {dateRange?.from ? format(dateRange.from, "dd/MM/yy") : ""}
         </div>
-        <div ref={checkoutRef} onClick={() => handleOpenPicker("checkout")} className={Styles.dateInputBox}>
-          <p className={Styles.dateInputLabel}>Check-out</p>
+        <div
+          ref={checkoutRef}
+          onClick={() => handleOpenPicker("checkout")}
+          className={Styles.dateInputBox}
+        >
+          <p className={Styles.dateInputLabel}>{t("reservation.checkout")}</p>
           {dateRange?.to ? format(dateRange.to, "dd/MM/yy") : ""}
         </div>
       </div>
       {openPicker && (
         <div ref={calendarRef} className={Styles.calendarContainer}>
-          <DatePicker mode="range" selected={dateRange} onSelect={handleDateSelect} />
+          <DatePicker
+            mode="range"
+            selected={dateRange}
+            onSelect={handleDateSelect}
+          />
         </div>
       )}
 
@@ -128,52 +157,73 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ room }) => {
         <div className={Styles.summaryContainer}>
           <span className={Styles.summaryRow}>
             <p className={Styles.summaryLabel}>
-              R$ {room.value.toFixed(2)} x {numberOfDays} {numberOfDays !== 1 ? "noites" : "noite"}
+              R$ {room.value.toFixed(2)} x {numberOfDays}{" "}
+              {numberOfDays !== 1
+                ? t("reservation.summary.nights_plural")
+                : t("reservation.summary.nights")}
             </p>
-            <p className={Styles.summaryValue}>R$ {originalSubtotal.toFixed(2)}</p>
+            <p className={Styles.summaryValue}>
+              R$ {originalSubtotal.toFixed(2)}
+            </p>
           </span>
           {isOfferValid && (
             <span className={Styles.summaryRowDiscount}>
-              <p className={Styles.summaryValue}>Desconto ({room.Offer?.discountPercentage}%)</p>
-              <p className={Styles.summaryValue}>- R$ {discountValue.toFixed(2)}</p>
+              <p className={Styles.summaryValue}>
+                {t("reservation.summary.discount")} (
+                {room.Offer?.discountPercentage}%)
+              </p>
+              <p className={Styles.summaryValue}>
+                - R$ {discountValue.toFixed(2)}
+              </p>
             </span>
           )}
           <span className={Styles.summaryRow}>
-            <p className={Styles.summaryLabel}>Taxa de serviço</p>
+            <p className={Styles.summaryLabel}>
+              {t("reservation.summary.serviceFee")}
+            </p>
             <p className={Styles.summaryValue}>R$ {serviceFee.toFixed(2)}</p>
           </span>
           <span className={Styles.summaryRow}>
-            <p className={Styles.summaryLabel}>Impostos</p>
+            <p className={Styles.summaryLabel}>
+              {t("reservation.summary.taxes")}
+            </p>
             <p className={Styles.summaryValue}>R$ {taxes.toFixed(2)}</p>
           </span>
           <span className={Styles.dividerShort}></span>
           <span className={Styles.summaryRow}>
-            <p className={Styles.summaryValue}>Total</p>
+            <p className={Styles.summaryValue}>
+              {t("reservation.summary.total")}
+            </p>
             <p className={Styles.summaryValue}>R$ {total.toFixed(2)}</p>
           </span>
 
           <span className={Styles.buttonWrapper}>
-            <Button label="Reservar agora" onClick={() => console.log("Reservar!")} />
+            <Button
+              label={t("reservation.summary.submit")}
+              onClick={() => console.log("Reservar!")}
+            />
           </span>
           <div className={Styles.disclaimer}>
-            <p>Você não será cobrado ainda</p>
+            <p>{t("reservation.summary.disclaimer")}</p>
           </div>
 
           <div className={Styles.featuresContainer}>
             {dateRange?.from && (
               <span className={Styles.featureItem}>
                 <EventAvailable className={Styles.featureIcon} />
-                <p>Cancelamento gratuito até {cancellationDate}</p>
+                <p>
+                  {t("reservation.features.cancellation")} {cancellationDate}
+                </p>
               </span>
             )}
 
             <span className={Styles.featureItem}>
               <CreditCard className={Styles.featureIcon} />
-              <p>Pague apenas na chegada</p>
+              <p>{t("reservation.features.payLater")}</p>
             </span>
             <span className={Styles.featureItem}>
               <Security className={Styles.featureIcon} />
-              <p>Reserva 100% segura</p>
+              <p>{t("reservation.features.secure")}</p>
             </span>
           </div>
         </div>

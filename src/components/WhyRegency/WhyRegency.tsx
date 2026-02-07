@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 type CardProps = {
   title: string;
@@ -24,34 +25,35 @@ const Card = ({ title, description, icon }: CardProps) => {
   );
 };
 
-const cards = [
-  {
-    title: "Localização Premium",
-    description:
-      "Situado com vistas deslumbrantes e fácil acesso às atrações locais e pontos de referência.",
-    icon: <Star />,
-  },
-  {
-    title: "Jantar gourmet",
-    description:
-      "Experiências culinárias requintadas com ingredientes locais preparados por chefs premiados",
-    icon: <Restaurant />,
-  },
-  {
-    title: "Spa de bem-estar",
-    description:
-      "Tratamentos de spa completos e programas de bem-estar que renovam corpo e mente",
-    icon: <Spa />,
-  },
-];
-
 export default function WhyRegency() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
+  const { t } = useTranslation();
+
+  const cards = useMemo(
+    () => [
+      {
+        title: t("whyRegency.location.title"),
+        description: t("whyRegency.location.desc"),
+        icon: <Star />,
+      },
+      {
+        title: t("whyRegency.dining.title"),
+        description: t("whyRegency.dining.desc"),
+        icon: <Restaurant />,
+      },
+      {
+        title: t("whyRegency.wellness.title"),
+        description: t("whyRegency.wellness.desc"),
+        icon: <Spa />,
+      },
+    ],
+    [t],
+  );
 
   const cardElements = useMemo(
     () => cards.map((card, idx) => <Card key={idx} {...card} />),
-    []
+    [cards],
   );
 
   return (
@@ -64,12 +66,9 @@ export default function WhyRegency() {
             animate={inView ? "show" : "hidden"}
             className={styles.title}
           >
-            Por que escolher o Regency?
+            {t("whyRegency.title")}
           </motion.h2>
-          <p className={styles.subtitle}>
-            Experimente a combinação perfeita de luxo, conforto e serviço
-            excepcional que nos diferencia.
-          </p>
+          <p className={styles.subtitle}>{t("whyRegency.subtitle")}</p>
         </div>
 
         <motion.div
@@ -89,7 +88,9 @@ export default function WhyRegency() {
           className="md:hidden"
         >
           <Carousel
-            items={cards.map((card, idx) => <Card key={idx} {...card} />)}
+            items={cards.map((card, idx) => (
+              <Card key={idx} {...card} />
+            ))}
             showDots
             desktopGridCols=""
           />

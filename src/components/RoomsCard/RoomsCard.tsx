@@ -1,32 +1,24 @@
-import { AspectRatio, Bed, People } from "@mui/icons-material";
+import {
+  AspectRatio as AspectRatioIcon,
+  Bed as BedIcon,
+  People as PeopleIcon,
+} from "@mui/icons-material";
 import { Rating } from "@mui/material";
 import { Button } from "../index";
 import { RoomsCardStyles as styles } from "./RoomsCard.style";
+import type { Room } from "../../types";
+import { useTranslation } from "react-i18next";
 
 type RoomsCardProps = {
-  id: number;
-  title: string;
-  thumb: string | undefined;
-  value: number;
-  bed: number;
-  people: number;
-  meters: number;
+  room: Room;
   labelButton: string;
-  ratings: number;
   onClick?: () => void;
 };
 
-function RoomsCard({
-  title,
-  thumb,
-  value,
-  bed,
-  people,
-  meters,
-  labelButton,
-  ratings,
-  onClick
-}: RoomsCardProps) {
+function RoomsCard({ room, labelButton, onClick }: RoomsCardProps) {
+  const { title, thumb, value, bed, people, meters, ratings } = room;
+  const { t } = useTranslation();
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageWrapper}>
@@ -43,7 +35,7 @@ function RoomsCard({
         <span className={styles.priceTag}>
           <p>
             R${value}
-            <span className="font-normal">/Noite</span>
+            <span className="font-normal">{t("roomCard.night")}</span>
           </p>
         </span>
       </div>
@@ -52,20 +44,28 @@ function RoomsCard({
         <h3 className={styles.title}>{title}</h3>
 
         <span className={styles.ratingWrapper}>
-          <Rating name="rating" value={ratings} precision={0.5} readOnly size="small"/>
+          <Rating
+            name="rating"
+            value={ratings.average}
+            precision={0.5}
+            readOnly
+            size="small"
+          />
         </span>
 
         <div className={styles.featuresWrapper}>
           <span className={styles.featureItem}>
-            <Bed />
-            <p>{bed}</p>
+            <BedIcon />
+            <p>
+              {bed.amount} {bed.type}
+            </p>
           </span>
           <span className={styles.featureItem}>
-            <People />
+            <PeopleIcon />
             <p>{people}</p>
           </span>
           <span className={styles.featureItem}>
-            <AspectRatio />
+            <AspectRatioIcon />
             <p>{meters} m²</p>
           </span>
         </div>

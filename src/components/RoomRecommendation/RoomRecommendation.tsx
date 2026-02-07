@@ -7,6 +7,7 @@ import roomsData from "./../../data/rooms.json";
 import RoomsCard from "../RoomsCard";
 import Carousel from "../CarouselHome";
 import { RoomRecommendationStyle as Styles } from "./RoomRecommendation.style";
+import { useTranslation } from "react-i18next";
 
 interface RoomRecommendationProps {
   currentRoomId: number;
@@ -16,6 +17,7 @@ function RoomRecommendation({ currentRoomId }: RoomRecommendationProps) {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const filteredRooms = useMemo(() => {
     return roomsData.filter((room) => room.id !== currentRoomId);
@@ -27,25 +29,19 @@ function RoomRecommendation({ currentRoomId }: RoomRecommendationProps) {
         <motion.div key={card.id} variants={fade.item}>
           <RoomsCard
             key={card.id}
-            {...card}
-            bed={card.bed.amount}
-            people={card.people}
-            thumb={card.thumb}
-            ratings={card.ratings.average}
-            labelButton="Ver Detalhes"
+            room={card}
+            labelButton={t("accommodation.detailsButton")}
             onClick={() => {
               navigate(`/accommodation/${card.id}`);
             }}
           />
         </motion.div>
       )),
-    [fade.item, navigate, filteredRooms]
+    [fade.item, navigate, filteredRooms, t],
   );
   return (
     <section className={Styles.section} ref={ref}>
-      <h1 className={Styles.title}>
-        Você também pode gostar
-      </h1>
+      <h1 className={Styles.title}>{t("recommendation.title")}</h1>
 
       <motion.div
         className="hidden md:grid md:grid-cols-3 gap-6"
@@ -65,15 +61,14 @@ function RoomRecommendation({ currentRoomId }: RoomRecommendationProps) {
       >
         <Carousel
           items={filteredRooms.slice(0, 6).map((card) => (
-              <RoomsCard 
-              key={card.id} {...card}
-              bed={card.bed.amount} 
-              people={card.people} 
-              thumb={card.thumb}
-              ratings={card.ratings.average}
-              labelButton="Ver Detalhes" 
-              onClick={() => {navigate(`/accommodation/${card.id}`)}}
-              />
+            <RoomsCard
+              key={card.id}
+              room={card}
+              labelButton={t("accommodation.detailsButton")}
+              onClick={() => {
+                navigate(`/accommodation/${card.id}`);
+              }}
+            />
           ))}
           showDots
           desktopGridCols=""

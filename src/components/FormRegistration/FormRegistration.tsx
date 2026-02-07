@@ -1,52 +1,55 @@
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import CarouselRegister from "../CarouselRegister";
 import { FormRegistrationStyles as styles } from "./FormRegistration.style";
 import HotelFront from "../../assets/images/img-hotel-front.webp";
 import HotelSnack from "../../assets/images/img-snack.webp";
 import HotelParty from "../../assets/images/img-party.webp";
-
-const slides = [
-  {
-    src: HotelFront,
-    text: "Descubra o conforto e a elegância do nosso hotel.",
-  },
-  {
-    src: HotelSnack,
-    text: "Sabores que combinam com o pôr do sol.",
-  },
-  {
-    src: HotelParty,
-    text: "Salão de festas elegante e espaçoso, com decoração sofisticada e iluminação acolhedora.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function FormRegistration() {
   const [showPasswordPrimary, setShowPasswordPrimary] = useState(false);
   const [showPasswordSecondary, setShowPasswordSecondary] = useState(false);
+  const { t } = useTranslation();
+
+  const slides = useMemo(
+    () => [
+      {
+        src: HotelFront,
+        text: t("auth.carousel.slide1"),
+      },
+      {
+        src: HotelSnack,
+        text: t("auth.carousel.slide2"),
+      },
+      {
+        src: HotelParty,
+        text: t("auth.carousel.slide3"),
+      },
+    ],
+    [t],
+  );
 
   return (
     <section className={styles.section}>
       <div className={styles.formContainer}>
         <div className={styles.header}>
-          <h1 className={styles.heading}>Faça parte da nossa experiência</h1>
-          <p className={styles.paragraph}>
-            Cadastre-se para reservar quartos e acompanhar suas estadias.
-          </p>
+          <h1 className={styles.heading}>{t("auth.register.title")}</h1>
+          <p className={styles.paragraph}>{t("auth.register.subtitle")}</p>
         </div>
 
         <form action="" className={styles.form}>
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>
-              Digite seu e-mail *
+              {t("auth.fields.email")} *
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="exemplo@regency.com"
+              placeholder={t("auth.placeholders.email")}
               required
               className={styles.input}
             />
@@ -54,13 +57,13 @@ function FormRegistration() {
 
           <div className={styles.formGroup}>
             <label htmlFor="name" className={styles.label}>
-              Digite seu nome completo *
+              {t("auth.fields.name")} *
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Nome Completo"
+              placeholder={t("auth.placeholders.name")}
               required
               className={styles.input}
             />
@@ -68,7 +71,7 @@ function FormRegistration() {
 
           <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.label}>
-              Digite sua senha *
+              {t("auth.fields.password")} *
             </label>
             <span className={styles.passwordInputWrapper}>
               <input
@@ -76,7 +79,9 @@ function FormRegistration() {
                 id="login-password"
                 name="password"
                 placeholder={
-                  showPasswordPrimary ? "Insira sua senha" : "********"
+                  showPasswordPrimary
+                    ? t("auth.placeholders.password")
+                    : "********"
                 }
                 required
                 className={styles.input}
@@ -96,7 +101,7 @@ function FormRegistration() {
 
           <div className={styles.formGroup}>
             <label htmlFor="confirm-password" className={styles.label}>
-              Confirmar senha *
+              {t("auth.fields.confirmPassword")} *
             </label>
             <span className={styles.passwordInputWrapper}>
               <input
@@ -104,7 +109,9 @@ function FormRegistration() {
                 id="confirm-password"
                 name="confirm-password"
                 placeholder={
-                  showPasswordSecondary ? "Insira sua senha" : "********"
+                  showPasswordSecondary
+                    ? t("auth.placeholders.password")
+                    : "********"
                 }
                 required
                 className={styles.input}
@@ -124,19 +131,19 @@ function FormRegistration() {
 
           <div className={styles.formGroup}>
             <label htmlFor="phone" className={styles.label}>
-              Telefone (Opcional)
+              {t("auth.fields.phone")} (Opcional)
             </label>
             <input
               type="tel"
               id="phone"
               name="phone"
-              placeholder="+55 (00) 12345-6789"
+              placeholder={t("auth.placeholders.phone")}
               className={styles.input}
             />
           </div>
 
           <Button
-            label="Cadastrar"
+            label={t("auth.register.submit")}
             variant="primary"
             size="width_full"
             type="submit"
@@ -150,22 +157,22 @@ function FormRegistration() {
         </div>
 
         <Button
-          label="Continuar com Google"
+          label={t("auth.register.google")}
           variant="secondary"
           size="width_full"
           Icon={Google}
         />
 
         <p className={styles.textCenter}>
-          Possui uma conta?{" "}
+          {t("auth.register.alreadyAccount")}{" "}
           <Link to="/login" className={styles.linkPrimary}>
-            Entrar
+            {t("auth.register.login")}
           </Link>
         </p>
       </div>
 
       <div className={styles.carouselWrapper}>
-        <CarouselRegister slides={slides}/>
+        <CarouselRegister slides={slides} />
       </div>
     </section>
   );

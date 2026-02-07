@@ -1,79 +1,96 @@
-import { Mail, Map, Phone, Send } from '@mui/icons-material';
-import React, { useState } from 'react';
-import Button from '../Button';
-import { Contactstyles as Style } from './Contact.style';
+import { Mail, Map, Phone, Send } from "@mui/icons-material";
+import React, { useState } from "react";
+import Button from "../Button";
+import { Contactstyles as Style } from "./Contact.style";
+import { useTranslation } from "react-i18next";
 
 const Contact: React.FC = () => {
+  const { t } = useTranslation();
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormState(prevState => ({ ...prevState, [name]: value }));
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage('');
+    setSubmitMessage("");
 
-    console.log('Dados do formulário:', formState);
+    console.log("Dados do formulário:", formState);
 
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitMessage('Obrigado pelo seu contato! Responderemos em breve.');
-      setFormState({ name: '', email: '', subject: '', message: '' });
+      setSubmitMessage(t("contact.form.success"));
+      setFormState({ name: "", email: "", subject: "", message: "" });
 
-      setTimeout(() => setSubmitMessage(''), 5000);
+      setTimeout(() => setSubmitMessage(""), 5000);
     }, 2000);
   };
 
   return (
     <div className={Style.container}>
       <div className={Style.content}>
-
         <header className={Style.header}>
-          <h1 className={Style.title}>
-            Entre em Contato Conosco
-          </h1>
-          <p className={Style.subtitle}>
-            Estamos ansiosos para ouvir de você. Seja para reservas, perguntas ou feedback, nossa equipe está pronta para ajudar.
-          </p>
+          <h1 className={Style.title}>{t("contact.title")}</h1>
+          <p className={Style.subtitle}>{t("contact.subtitle")}</p>
         </header>
 
         <main className={Style.main}>
           <div className={Style.infoContainer}>
             <div className={Style.infoCard}>
-              <h2 className={Style.infoCardTitle}>Nossas Informações</h2>
+              <h2 className={Style.infoCardTitle}>{t("contact.info.title")}</h2>
               <ul className={Style.infoList}>
                 <li className={Style.infoListItem}>
                   <Map />
                   <div className={Style.infoListItemContent}>
-                    <h3 className={Style.infoListItemTitle}>Endereço</h3>
-                    <p className={Style.infoListItemText}>Av. Regency, 0001, Atalaia</p>
-                    <p className={Style.infoListItemText}>Cidade Paradisíaca, CEP 00001-000</p>
+                    <h3 className={Style.infoListItemTitle}>
+                      {t("contact.info.address.title")}
+                    </h3>
+                    <p className={Style.infoListItemText}>
+                      {t("contact.info.address.line1")}
+                    </p>
+                    <p className={Style.infoListItemText}>
+                      {t("contact.info.address.line2")}
+                    </p>
                   </div>
                 </li>
                 <li className={Style.infoListItem}>
                   <Phone />
                   <div className={Style.infoListItemContent}>
-                    <h3 className={Style.infoListItemTitle}>Telefone</h3>
-                    <p className={Style.infoListItemText}>Reservas: (11) 98765-4321</p>
-                    <p className={Style.infoListItemText}>Recepção: (11) 12345-6789</p>
+                    <h3 className={Style.infoListItemTitle}>
+                      {t("contact.info.phone.title")}
+                    </h3>
+                    <p className={Style.infoListItemText}>
+                      {t("contact.info.phone.reservations")}: (11) 98765-4321
+                    </p>
+                    <p className={Style.infoListItemText}>
+                      {t("contact.info.phone.reception")}: (11) 12345-6789
+                    </p>
                   </div>
                 </li>
                 <li className={Style.infoListItem}>
                   <Mail />
                   <div className={Style.infoListItemContent}>
-                    <h3 className={Style.infoListItemTitle}>Email</h3>
-                    <p className={Style.infoListItemText}>regencyheights@reservas.com</p>
-                    <p className={Style.infoListItemText}>regencyheights@contato.com</p>
+                    <h3 className={Style.infoListItemTitle}>
+                      {t("contact.info.email.title")}
+                    </h3>
+                    <p className={Style.infoListItemText}>
+                      regencyheights@reservas.com
+                    </p>
+                    <p className={Style.infoListItemText}>
+                      regencyheights@contato.com
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -94,11 +111,13 @@ const Contact: React.FC = () => {
           </div>
 
           <div className={Style.formContainer}>
-            <h2 className={Style.infoCardTitle}>Envie uma Mensagem</h2>
+            <h2 className={Style.infoCardTitle}>{t("contact.form.title")}</h2>
             <form onSubmit={handleSubmit} noValidate>
               <div className={Style.form}>
                 <div>
-                  <label htmlFor="name" className={Style.formLabel}>Nome Completo</label>
+                  <label htmlFor="name" className={Style.formLabel}>
+                    {t("contact.form.name")}
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -106,12 +125,14 @@ const Contact: React.FC = () => {
                     value={formState.name}
                     onChange={handleInputChange}
                     className={Style.formInput}
-                    placeholder="Seu nome"
+                    placeholder={t("contact.form.placeholder.name")}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className={Style.formLabel}>E-mail</label>
+                  <label htmlFor="email" className={Style.formLabel}>
+                    {t("contact.form.email")}
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -119,12 +140,14 @@ const Contact: React.FC = () => {
                     value={formState.email}
                     onChange={handleInputChange}
                     className={Style.formInput}
-                    placeholder="seu.email@exemplo.com"
+                    placeholder={t("contact.form.placeholder.email")}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className={Style.formLabel}>Assunto</label>
+                  <label htmlFor="subject" className={Style.formLabel}>
+                    {t("contact.form.subject")}
+                  </label>
                   <input
                     type="text"
                     id="subject"
@@ -132,12 +155,14 @@ const Contact: React.FC = () => {
                     value={formState.subject}
                     onChange={handleInputChange}
                     className={Style.formInput}
-                    placeholder="Ex: Informações sobre reserva"
+                    placeholder={t("contact.form.placeholder.subject")}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className={Style.formLabel}>Mensagem</label>
+                  <label htmlFor="message" className={Style.formLabel}>
+                    {t("contact.form.message")}
+                  </label>
                   <textarea
                     id="message"
                     name="message"
@@ -145,13 +170,23 @@ const Contact: React.FC = () => {
                     value={formState.message}
                     onChange={handleInputChange}
                     className={Style.formTextarea}
-                    placeholder="Escreva sua mensagem aqui..."
+                    placeholder={t("contact.form.placeholder.message")}
                     required
                   ></textarea>
                 </div>
               </div>
               <div className={Style.buttonContainer}>
-                <Button type="submit" variant="primary" size="width_full" label={isSubmitting ? 'Enviando...' : 'Enviar Mensagem'} Icon={Send} />
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="width_full"
+                  label={
+                    isSubmitting
+                      ? t("contact.form.sending")
+                      : t("contact.form.submit")
+                  }
+                  Icon={Send}
+                />
               </div>
               {submitMessage && (
                 <p className={Style.submitMessage}>{submitMessage}</p>

@@ -1,0 +1,246 @@
+{
+    "navbar": {
+      "home": "Home",
+      "about": "About Us",
+      "rooms": "Accommodations",
+      "contact": "Contact",
+      "login": "Login",
+      "register": "Register"
+    },
+    "hero": {
+        "title": "Luxury and Comfort Experience",
+        "subtitle": "Stay at Hotel Regency Heights and live unforgettable moments.",
+        "cta": "Book Now",
+        "welcome": "Welcome to",
+        "hotelName": "Regency Heights",
+        "hotel": "Hotel",
+        "description": "Where luxury meets comfort. Our team is prepared to provide an unforgettable experience, with personalized service and attention to the smallest details.",
+        "explore": "Explore Our Suites"
+      },
+      "accommodation": {
+          "title": "Our Rooms",
+          "subtitle": "Discover the comfort and elegance of our carefully designed rooms",
+          "filter": {
+              "button": "Filters",
+              "reset": "Reset",
+              "close": "Close",
+              "apply": "Apply Filters",
+              "dates": "Stay Dates",
+              "roomTypes": "Room Types",
+              "guests": "Guests per Room",
+              "beds": "Number of Beds",
+              "priceRange": {
+                  "label": "Price Range",
+                  "min": "Min",
+                  "max": "Max"
+              },
+              "placeholders": {
+                  "checkin": "Check-in",
+                  "checkout": "Check-out"
+              },
+              "options": {
+                  "people": "Person",
+                  "people_plural": "People",
+                  "beds": "Bed",
+                  "beds_plural": "Beds"
+              }
+          },
+          "detailsButton": "View Details",
+          "loadMore": "Load More"
+      },
+      "roomDetails": {
+          "reviews": "Reviews",
+          "guests": "Guests",
+          "beds": "Bed",
+          "beds_plural": "Beds",
+          "description": "Room Description",
+          "amenities": "Room Amenities",
+          "rules": {
+              "title": "House Rules",
+              "schedules": "Schedules",
+              "checkin": "Check-in",
+              "checkout": "Check-out",
+              "childrenPolicy": {
+                  "title": "Children Policy",
+                  "text": "Children are welcome. One child up to 6 years old stays free of charge when using existing bedding."
+              }
+          }
+      },
+      "roomNotFound": {
+          "title": "Room Not Found",
+          "message": "Oops! It seems the room you are looking for does not exist or has been removed. How about looking for other options?",
+          "button": "Back to Room List"
+      },
+      "recommendation": {
+          "title": "You Might Also Like"
+      },
+      "reservation": {
+          "night": "/night",
+          "off": "OFF",
+          "checkin": "Check-in",
+          "checkout": "Check-out",
+          "summary": {
+              "nights": "night",
+              "nights_plural": "nights",
+              "discount": "Discount",
+              "serviceFee": "Service Fee",
+              "taxes": "Taxes",
+              "total": "Total",
+              "submit": "Book Now",
+              "disclaimer": "You won't be charged yet"
+          },
+          "features": {
+              "cancellation": "Free cancellation until",
+              "payLater": "Pay only on arrival",
+              "secure": "100% secure booking"
+          }
+      },
+      "contact": {
+          "title": "Contact Us",
+          "subtitle": "We look forward to hearing from you. Whether for reservations, questions, or feedback, our team is ready to help.",
+          "info": {
+              "title": "Our Information",
+              "address": { "title": "Address", "line1": "Regency Ave, 0001, Atalaia", "line2": "Paradise City, ZIP 00001-000" },
+              "phone": { "title": "Phone", "reservations": "Reservations", "reception": "Reception" },
+              "email": { "title": "Email" }
+          },
+          "form": {
+              "title": "Send a Message",
+              "name": "Full Name",
+              "email": "E-mail",
+              "subject": "Subject",
+              "message": "Message",
+              "submit": "Send Message",
+              "sending": "Sending...",
+              "success": "Thank you for contacting us! We will respond shortly.",
+              "placeholder": { "name": "Your name", "email": "your.email@example.com", "subject": "Ex: Reservation information", "message": "Write your message here..." }
+          }
+      },
+      "auth": {
+          "login": {
+              "title": "Welcome Back!",
+              "subtitle": "Enter your details to continue with your reservation.",
+              "submit": "Login",
+              "google": "Login with Google",
+              "noAccount": "Don't have an account?",
+              "register": "Register",
+              "forgotPassword": "Forgot password"
+          },
+          "register": {
+              "title": "Create your Regency account",
+              "subtitle": "Fill in your details to start booking your stays.",
+              "submit": "Create Account",
+              "google": "Register with Google",
+              "alreadyAccount": "Already have an account?",
+              "login": "Login"
+          },
+          "fields": {
+              "name": "Full Name",
+              "email": "Enter your email",
+              "password": "Enter your password",
+              "confirmPassword": "Confirm your password",
+              "phone": "Phone"
+          },
+          "placeholders": {
+              "name": "Your full name",
+              "email": "example@regency.com",
+              "password": "Create a strong password",
+              "confirmPassword": "Confirm your password",
+              "phone": "(00) 00000-0000"
+          },
+          "carousel": {
+              "slide1": "Discover the comfort and elegance of our hotel.",
+              "slide2": "Flavors that match the sunset.",
+              "slide3": "Elegant and spacious ballroom, with sophisticated decoration and cozy lighting."
+          }
+      },
+      "about": {
+          "title": "About Us",
+          "p1": "Nestled between majestic mountains and the infinite blue of the sea, Regency is not just a hotel – it is a refuge where time slows down and every detail was thought to enchant.",
+          "p2": "From rooms bathed in natural light to gastronomic experiences that celebrate local and international flavors, every moment here is a celebration of well-being.",
+          "p3": "Whether for business or leisure, our team is ready to transform your stay into an unforgettable memory – with the sophistication and care you deserve.",
+          "cta": "Learn more about us"
+      },
+      "whyRegency": {
+          "title": "Why Choose Regency?",
+          "subtitle": "Experience the perfect combination of luxury, comfort, and exceptional service that sets us apart.",
+          "location": { "title": "Premium Location", "desc": "Situated with stunning views and easy access to local attractions and landmarks." },
+          "dining": { "title": "Gourmet Dining", "desc": "Exquisite culinary experiences with local ingredients prepared by award-winning chefs" },
+          "wellness": { "title": "Wellness Spa", "desc": "Complete spa treatments and wellness programs that renew body and mind" }
+      },
+      "homeRooms": {
+          "title": "Featured Rooms",
+          "subtitle": "Choose from our selection of meticulously designed rooms and suites for a comfortable and luxurious stay.",
+          "viewAll": "View all rooms",
+          "details": "View Details"
+      },
+      "roomCard": {
+          "night": "/Night",
+          "people": "People"
+      },
+      "amenities": {
+          "title": "Hotel Amenities",
+          "subtitle": "Enjoy our premium facilities designed to enhance your stay and provide maximum comfort.",
+          "viewMore": "View more",
+          "viewLess": "View less",
+          "items": {
+              "wifi": { "title": "High-Speed Wi-Fi", "desc": "Free throughout the property." },
+              "pool": { "title": "Infinity Pool", "desc": "With panoramic sea views." },
+              "dining": { "title": "Fine Dining", "desc": "Award-winning restaurants." },
+              "spa": { "title": "Luxury Spa", "desc": "Full-service wellness treatments." },
+              "fitness": { "title": "Fitness Center", "desc": "State-of-the-art equipment." },
+              "bar": { "title": "Rooftop Bar", "desc": "Craft cocktails with a view." },
+              "parking": { "title": "Valet Parking", "desc": "Free for guests." },
+              "concierge": { "title": "Concierge", "desc": "24/7 personalized service." }
+          }
+      },
+      "reviews": {
+          "title": "Guest Experiences",
+          "subtitle": "Discover what our guests have to say about their memorable stays at Regency.",
+          "item1": "An incredible experience! The hotel is wonderful and the service is exceptional.",
+          "item2": "Loved my stay! Comfortable rooms and a stunning view.",
+          "item3": "Excellent location and quality services. Highly recommended!"
+      },
+      "checkBox": {
+      "checkin": "Check-In",
+      "checkout": "Check-Out",
+      "select": "Select",
+      "beds": "Bed",
+      "beds_plural": "Beds",
+      "adults": "Adult",
+      "adults_plural": "Adults",
+      "children": "Child",
+      "children_plural": "Children",
+      "checkAvailability": "Check Availability",
+      "popup": {
+        "beds": "Beds",
+        "adults": "Adults",
+        "children": "Children"
+      }
+    },
+    "footer": {
+          "quickLinks": {
+              "title": "Quick Links",
+              "home": "Home",
+              "accommodation": "Accommodations",
+              "events": "Events",
+              "contact": "Contact"
+          },
+          "contactInfo": {
+              "title": "Contact Info"
+          },
+          "policies": {
+              "title": "Policies",
+              "cancellation": "Cancellation and reservation policies",
+              "privacy": "Privacy policy",
+              "terms": "Terms and conditions"
+          },
+          "social": {
+              "title": "Social Media"
+          },
+          "languages": {
+              "title": "Languages"
+          },
+          "copyright": "© 2025 Hotel Regency Heights. All rights reserved."
+      }
+  }

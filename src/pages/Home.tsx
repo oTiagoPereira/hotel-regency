@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useMemo } from "react";
 import { MainLayout } from "../layouts/mainLayout";
 import HeroBanner from "../components/HeroBanner";
 import CheckBox from "../components/CheckBox";
@@ -13,9 +13,8 @@ const GuestExperience = lazy(() => import("../components/GuestExperience"));
 const fallbackElement = <div className="h-[300px] bg-gray-300 animate-pulse" />;
 
 function Home() {
-  useHead({
-    title: "Início - Regency Hotel",
-    metaTags: [
+  const metaTags = useMemo(
+    () => [
       {
         name: "description",
         content:
@@ -50,6 +49,12 @@ function Home() {
         content: "https://regencyheights.vercel.app/logo.svg",
       },
     ],
+    [],
+  );
+
+  useHead({
+    title: "Início - Regency Hotel",
+    metaTags,
   });
   return (
     <MainLayout>

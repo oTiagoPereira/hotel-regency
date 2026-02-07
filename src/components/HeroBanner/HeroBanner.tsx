@@ -4,10 +4,12 @@ import { useIsVisible } from "../../hooks/useIsVisible";
 import Button from "../Button";
 import { HeroBannerStyles as styles } from "./HeroBanner.style";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 function HeroBanner() {
   const fade = fadeInStagger();
   const { ref, inView } = useIsVisible();
+  const { t } = useTranslation();
 
   return (
     <section className={styles.sectionStyle} ref={ref}>
@@ -31,19 +33,17 @@ function HeroBanner() {
             className={styles.contentStyle}
           >
             <h1 className={styles.titleStyle}>
-              Bem-Vindo ao
+              {t("hero.welcome")}
               <br />
-              <span className={styles.highlightStyle}> Regency Heights </span>
+              <span className={styles.highlightStyle}>
+                {t("hero.hotelName")}
+              </span>
               <br />
-              Hotel
+              {t("hero.hotel")}
             </h1>
-            <p className={styles.descriptionStyle}>
-              Onde o luxo encontra o conforto. Nossa equipe está preparada para
-              proporcionar uma experiência inesquecível, com serviço personalizado
-              e atenção aos mínimos detalhes.
-            </p>
+            <p className={styles.descriptionStyle}>{t("hero.description")}</p>
             <Button
-              label="Explore Nossas Suítes"
+              label={t("hero.explore")}
               variant="primary"
               size="default"
             />

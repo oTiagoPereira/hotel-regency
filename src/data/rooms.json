@@ -1,200 +1,203 @@
 [
-    {
-      "id": 1,
-      "title": "Quarto Deluxe",
-      "description": "Suíte Deluxe com vista panorâmica para o mar, espaçosa e elegante, com 45m². Inclui cama king-size premium, lençóis de algodão egípcio 400 fios, área de estar confortável, mesa de trabalho ergonômica e banheiro em mármore com banheira de hidromassagem.",
-      "bed": {
-        "amount": 1,
-        "type": "King"
-      },
-      "meters": 45,
-      "people": 2,
-      "amenities": [
-        { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
-        { "key": "pool", "name": "Piscina com Borda Infinita" },
-        { "key": "air-conditioning", "name": "Ar Condicionado Central" },
-        { "key": "free-parking", "name": "Estacionamento Grátis" },
-        { "key": "pets-allowed", "name": "Aceita Pets" },
-        { "key": "accessible", "name": "Acessibilidade" }
-      ],
-      "value": 500.00,
-      "gallery": [
-        "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-        "https://www.kayak.com.br/rimg/himg/b8/66/97/ice-96200-photo.aspx_did=2692_brochureid=96200_publicid=33578530_instanceid=8-image.jpg?width=1366&height=768&crop=true",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjkKiI5qSsYVY2yWUU3tdje380UrqXA0ONzQ&s"
-      ],
-      "thumb": "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-      "ratings": {
-        "sum": 450,
-        "count": 100,
-        "average": 4.5
-      },
-      "Offer": {
-            "hasOffer": false,
-            "discountPercentage": 0
-        }
+  {
+    "id": 1,
+    "title": "Quarto Deluxe",
+    "description": "Suíte Deluxe com vista panorâmica para o mar, espaçosa e elegante, com 45m². Inclui cama king-size premium, lençóis de algodão egípcio 400 fios, área de estar confortável, mesa de trabalho ergonômica e banheiro em mármore com banheira de hidromassagem.",
+    "bed": {
+      "amount": 1,
+      "type": "King"
     },
-    {
-      "id": 2,
-      "title": "Suíte Master",
-      "description": "Suíte Master de 60m² com duas camas king-size, perfeita para famílias ou grupos. Conta com sala de estar separada, banheiro duplo em mármore, hidromassagem e serviço de quarto 24h.",
-      "bed": {
-        "amount": 2,
-        "type": "King"
-      },
-      "meters": 60,
-      "people": 4,
-      "amenities": [
-        { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
-        { "key": "restaurant", "name": "Restaurante Renomado" },
-        { "key": "bar", "name": "Bar com Bebidas Premium" },
-        { "key": "free-parking", "name": "Estacionamento Grátis" },
-        { "key": "spa", "name": "Tratamento de Spa Incluso (30 min)" },
-        { "key": "accessible", "name": "Acessibilidade" }
-      ],
-      "value": 700.00,
-      "gallery": [
-        "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-        "https://www.kayak.com.br/rimg/himg/b8/66/97/ice-96200-photo.aspx_did=2692_brochureid=96200_publicid=33578530_instanceid=8-image.jpg?width=1366&height=768&crop=true",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjkKiI5qSsYVY2yWUU3tdje380UrqXA0ONzQ&s"
-      ],
-      "thumb": "https://www.kayak.com.br/rimg/himg/b8/66/97/ice-96200-photo.aspx_did=2692_brochureid=96200_publicid=33578530_instanceid=8-image.jpg?width=1366&height=768&crop=true",
-      "ratings": {
-        "sum": 430,
-        "count": 95,
-        "average": 4.53
-      },
-      "Offer": {
-            "hasOffer": true,
-            "discountPercentage": 10
-        }
+    "meters": 45,
+    "people": 2,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
+      { "key": "pool", "name": "Piscina com Borda Infinita" },
+      { "key": "air-conditioning", "name": "Ar Condicionado Central" },
+      { "key": "free-parking", "name": "Estacionamento Grátis" },
+      { "key": "pets-allowed", "name": "Aceita Pets" },
+      { "key": "accessible", "name": "Acessibilidade" }
+    ],
+    "value": 500.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1590490360182-f33cfe13ce86?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop",
+    "ratings": {
+      "sum": 450,
+      "count": 100,
+      "average": 4.5
     },
-    {
-      "id": 3,
-      "title": "Quarto Standard",
-      "description": "Quarto standard de 30m² com cama queen-size, ideal para estadias curtas. Inclui mesa de trabalho, Wi-Fi de alta velocidade e banheiro moderno.",
-      "bed": {
-        "amount": 1,
-        "type": "Queen"
-      },
-      "meters": 30,
-      "people": 2,
-      "amenities": [
-        { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
-        { "key": "free-parking", "name": "Estacionamento Grátis" },
-        { "key": "air-conditioning", "name": "Ar Condicionado" }
-      ],
-      "value": 350.00,
-      "gallery": [
-        "https://coralplaza.com.br/wp-content/uploads/2018/07/194920-tipos-de-quarto-de-hotel-como-escolher-o-melhor-na-sua-hospedagem-1.jpg",
-        "https://www.kayak.com.br/rimg/himg/b8/66/97/ice-96200-photo.aspx_did=2692_brochureid=96200_publicid=33578530_instanceid=8-image.jpg?width=1366&height=768&crop=true",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjkKiI5qSsYVY2yWUU3tdje380UrqXA0ONzQ&s"
-      ],
-      "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjkKiI5qSsYVY2yWUU3tdje380UrqXA0ONzQ&s",
-      "ratings": {
-        "sum": 400,
-        "count": 120,
-        "average": 3.33
-      },
-      "Offer": {
-            "hasOffer": true,
-            "discountPercentage": 10
-        }
+    "Offer": {
+      "hasOffer": false,
+      "discountPercentage": 0
+    }
+  },
+  {
+    "id": 2,
+    "title": "Suíte Master",
+    "description": "Suíte Master de 60m² com duas camas king-size, perfeita para famílias ou grupos. Conta com sala de estar separada, banheiro duplo em mármore, hidromassagem e serviço de quarto 24h.",
+    "bed": {
+      "amount": 2,
+      "type": "King"
     },
-    {
-        "id": 4,
-        "title": "Quarto Econômico",
-        "description": "Opção econômica de 20m² com cama de casal padrão, ideal para viajantes que buscam praticidade e bom custo-benefício. Conta com ar-condicionado, TV a cabo e Wi-Fi gratuito.",
-        "bed": { "amount": 1, "type": "Casal" },
-        "meters": 20,
-        "people": 2,
-        "amenities": [
-          { "key": "wifi", "name": "Wi-Fi Grátis" },
-          { "key": "air-conditioning", "name": "Ar Condicionado" }
-        ],
-        "value": 200.00,
-        "gallery": [
-          "https://www.example.com/economico1.jpg",
-          "https://www.example.com/economico2.jpg"
-        ],
-        "ratings": { "sum": 320, "count": 80, "average": 4.0 },
-        "Offer": {
-            "hasOffer": true,
-            "discountPercentage": 10
-        }
-      },
-      {
-        "id": 5,
-        "title": "Suíte Premium Vista Mar",
-        "description": "Suíte exclusiva de 80m² com vista privilegiada para o oceano. Inclui cama king-size, banheira de hidromassagem com vista panorâmica, varanda privada e serviço VIP.",
-        "bed": { "amount": 1, "type": "King" },
-        "meters": 80,
-        "people": 2,
-        "amenities": [
-          { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
-          { "key": "spa", "name": "Acesso ao Spa Ilimitado" },
-          { "key": "pool", "name": "Piscina Privativa" },
-          { "key": "breakfast", "name": "Café da Manhã no Quarto" },
-          { "key": "butler", "name": "Serviço de Mordomo" }
-        ],
-        "value": 1200.00,
-        "gallery": [
-          "https://www.example.com/premium1.jpg",
-          "https://www.example.com/premium2.jpg"
-        ],
-        "ratings": { "sum": 490, "count": 100, "average": 4.9 },
-        "Offer": {
-            "hasOffer": true,
-            "discountPercentage": 10
-        }
-      },
-      {
-        "id": 6,
-        "title": "Quarto Família",
-        "description": "Quarto espaçoso de 50m² projetado para famílias, com uma cama king-size e duas camas de solteiro. Conta com minibar, TV Smart e varanda ampla.",
-        "bed": { "amount": 3, "type": "King + Solteiro" },
-        "meters": 50,
-        "people": 5,
-        "amenities": [
-          { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
-          { "key": "kids-zone", "name": "Área Kids" },
-          { "key": "free-parking", "name": "Estacionamento Grátis" }
-        ],
-        "value": 650.00,
-        "gallery": [
-          "https://www.example.com/familia1.jpg",
-          "https://www.example.com/familia2.jpg"
-        ],
-        "ratings": { "sum": 410, "count": 90, "average": 4.55 },
-        "Offer": {
-            "hasOffer": true,
-            "discountPercentage": 10
-        }
-      },
-      {
-        "id": 7,
-        "title": "Suíte Presidencial",
-        "description": "A experiência máxima de luxo: 150m² de puro conforto, com duas suítes integradas, sala de jantar, home theater, jacuzzi panorâmica e serviço personalizado 24h.",
-        "bed": { "amount": 2, "type": "King" },
-        "meters": 150,
-        "people": 4,
-        "amenities": [
-          { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
-          { "key": "private-chef", "name": "Chef Exclusivo" },
-          { "key": "helicopter", "name": "Traslado de Helicóptero Incluso" },
-          { "key": "spa", "name": "Spa Exclusivo" },
-          { "key": "pool", "name": "Piscina Privativa" }
-        ],
-        "value": 5000.00,
-        "gallery": [
-          "https://www.example.com/presidencial1.jpg",
-          "https://www.example.com/presidencial2.jpg"
-        ],
-        "ratings": { "sum": 495, "count": 100, "average": 4.95 },
-        "Offer": {
-            "hasOffer": true,
-            "discountPercentage": 10
-        }
-      }
-  ]
-  
+    "meters": 60,
+    "people": 4,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
+      { "key": "restaurant", "name": "Restaurante Renomado" },
+      { "key": "bar", "name": "Bar com Bebidas Premium" },
+      { "key": "free-parking", "name": "Estacionamento Grátis" },
+      { "key": "spa", "name": "Tratamento de Spa Incluso (30 min)" },
+      { "key": "accessible", "name": "Acessibilidade" }
+    ],
+    "value": 700.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop",
+    "ratings": {
+      "sum": 430,
+      "count": 95,
+      "average": 4.53
+    },
+    "Offer": {
+      "hasOffer": true,
+      "discountPercentage": 10
+    }
+  },
+  {
+    "id": 3,
+    "title": "Quarto Standard",
+    "description": "Quarto standard de 30m² com cama queen-size, ideal para estadias curtas. Inclui mesa de trabalho, Wi-Fi de alta velocidade e banheiro moderno.",
+    "bed": {
+      "amount": 1,
+      "type": "Queen"
+    },
+    "meters": 30,
+    "people": 2,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
+      { "key": "free-parking", "name": "Estacionamento Grátis" },
+      { "key": "air-conditioning", "name": "Ar Condicionado" }
+    ],
+    "value": 350.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1616594039964-40891a90c745?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+    "ratings": {
+      "sum": 400,
+      "count": 120,
+      "average": 3.33
+    },
+    "Offer": {
+      "hasOffer": true,
+      "discountPercentage": 10
+    }
+  },
+  {
+    "id": 4,
+    "title": "Quarto Econômico",
+    "description": "Opção econômica de 20m² com cama de casal padrão, ideal para viajantes que buscam praticidade e bom custo-benefício. Conta com ar-condicionado, TV a cabo e Wi-Fi gratuito.",
+    "bed": { "amount": 1, "type": "Casal" },
+    "meters": 20,
+    "people": 2,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi Grátis" },
+      { "key": "air-conditioning", "name": "Ar Condicionado" }
+    ],
+    "value": 200.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop",
+    "ratings": { "sum": 320, "count": 80, "average": 4.0 },
+    "Offer": {
+      "hasOffer": true,
+      "discountPercentage": 10
+    }
+  },
+  {
+    "id": 5,
+    "title": "Suíte Premium Vista Mar",
+    "description": "Suíte exclusiva de 80m² com vista privilegiada para o oceano. Inclui cama king-size, banheira de hidromassagem com vista panorâmica, varanda privada e serviço VIP.",
+    "bed": { "amount": 1, "type": "King" },
+    "meters": 80,
+    "people": 2,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
+      { "key": "spa", "name": "Acesso ao Spa Ilimitado" },
+      { "key": "pool", "name": "Piscina Privativa" },
+      { "key": "breakfast", "name": "Café da Manhã no Quarto" },
+      { "key": "butler", "name": "Serviço de Mordomo" }
+    ],
+    "value": 1200.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1495365200479-c4ed1d35e1aa?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop",
+    "ratings": { "sum": 490, "count": 100, "average": 4.9 },
+    "Offer": {
+      "hasOffer": true,
+      "discountPercentage": 10
+    }
+  },
+  {
+    "id": 6,
+    "title": "Quarto Família",
+    "description": "Quarto espaçoso de 50m² projetado para famílias, com uma cama king-size e duas camas de solteiro. Conta com minibar, TV Smart e varanda ampla.",
+    "bed": { "amount": 3, "type": "King + Solteiro" },
+    "meters": 50,
+    "people": 5,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
+      { "key": "kids-zone", "name": "Área Kids" },
+      { "key": "free-parking", "name": "Estacionamento Grátis" }
+    ],
+    "value": 650.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=2070&auto=format&fit=crop",
+    "ratings": { "sum": 410, "count": 90, "average": 4.55 },
+    "Offer": {
+      "hasOffer": true,
+      "discountPercentage": 10
+    }
+  },
+  {
+    "id": 7,
+    "title": "Suíte Presidencial",
+    "description": "A experiência máxima de luxo: 150m² de puro conforto, com duas suítes integradas, sala de jantar, home theater, jacuzzi panorâmica e serviço personalizado 24h.",
+    "bed": { "amount": 2, "type": "King" },
+    "meters": 150,
+    "people": 4,
+    "amenities": [
+      { "key": "wifi", "name": "Wi-Fi de Alta Velocidade" },
+      { "key": "private-chef", "name": "Chef Exclusivo" },
+      { "key": "helicopter", "name": "Traslado de Helicóptero Incluso" },
+      { "key": "spa", "name": "Spa Exclusivo" },
+      { "key": "pool", "name": "Piscina Privativa" }
+    ],
+    "value": 5000.00,
+    "gallery": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1616594039964-40891a90c745?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+    "ratings": { "sum": 495, "count": 100, "average": 4.95 },
+    "Offer": {
+      "hasOffer": true,
+      "discountPercentage": 10
+    }
+  }
+]

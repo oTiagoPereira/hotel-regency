@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import { fadeInStagger } from "../../animations/fadeInStagger";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 type GuestExperienceCardProps = {
   name: string;
@@ -27,46 +28,45 @@ const GuestExperienceCard = ({
   );
 };
 
-const guestExperienceText = [
-  {
-    name: "João Silva",
-    rating: 4.5,
-    review:
-      "Uma experiência incrível! O hotel é maravilhoso e o atendimento é excepcional.",
-  },
-  {
-    name: "Maria Oliveira",
-    rating: 5,
-    review:
-      "Adorei minha estadia! Quartos confortáveis e uma vista deslumbrante.",
-  },
-  {
-    name: "Carlos Pereira",
-    rating: 4,
-    review: "Excelente localização e serviços de qualidade. Recomendo!",
-  },
-];
-
 function GuestExperience() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
+  const { t } = useTranslation();
+
+  const guestExperienceText = useMemo(
+    () => [
+      {
+        name: "João Silva",
+        rating: 4.5,
+        review: t("reviews.item1"),
+      },
+      {
+        name: "Maria Oliveira",
+        rating: 5,
+        review: t("reviews.item2"),
+      },
+      {
+        name: "Carlos Pereira",
+        rating: 4,
+        review: t("reviews.item3"),
+      },
+    ],
+    [t],
+  );
 
   const cardElements = useMemo(
     () =>
       guestExperienceText.map((card) => (
         <GuestExperienceCard key={card.name} {...card} />
       )),
-    []
+    [guestExperienceText],
   );
 
   return (
     <section className={styles.sectionWrapper} ref={ref}>
       <div className={styles.titleWrapper}>
-        <h2 className={styles.sectionTitle}>Experiências dos Hóspedes</h2>
-        <p className={styles.sectionDescription}>
-          Descubra o que nossos hóspedes têm a dizer sobre suas memoráveis
-          estadias no Regency.
-        </p>
+        <h2 className={styles.sectionTitle}>{t("reviews.title")}</h2>
+        <p className={styles.sectionDescription}>{t("reviews.subtitle")}</p>
       </div>
 
       <motion.div

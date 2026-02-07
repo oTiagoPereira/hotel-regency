@@ -7,22 +7,21 @@ import CarouselRegister from "../CarouselRegister";
 import { AmenityIcon } from "../Icons/AmenityIcon";
 import ReservationSummary from "../ReservationSummary";
 import RoomRecommendation from "../RoomRecommendation";
-import { RoomDescriptionStyle as Styles } from "./RoomDescription.style"
+import { RoomDescriptionStyle as Styles } from "./RoomDescription.style";
 import RoomNotFound from "../RoomNotFound";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import { fadeInStagger } from "../../animations/fadeInStagger";
-
+import { useTranslation } from "react-i18next";
 
 function RoomDescription() {
   const fade = fadeInStagger();
   const { ref, inView } = useIsVisible();
   const { id } = useParams<{ id: string }>();
   const room = roomsData.find((q) => q.id === Number(id));
+  const { t } = useTranslation();
 
   if (!room) {
-    return (
-      <RoomNotFound />
-    );
+    return <RoomNotFound />;
   }
 
   const carouselSlidesFromGallery = room.gallery.map((imageUrl) => ({
@@ -37,7 +36,8 @@ function RoomDescription() {
         variants={fade.container}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        className={Styles.carouselWrapper}>
+        className={Styles.carouselWrapper}
+      >
         <CarouselRegister
           slides={carouselSlidesFromGallery}
           showOnMobile={true}
@@ -48,14 +48,22 @@ function RoomDescription() {
         variants={fade.item}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        className={Styles.contentWrapper}>
+        className={Styles.contentWrapper}
+      >
         <div className={Styles.detailsColumn}>
           <div className={Styles.titleSection}>
             <h1 className={Styles.mainHeading}>{room.title}</h1>
             <span className={Styles.ratingWrapper}>
-              <Rating value={room.ratings.average} precision={0.5} readOnly size="small"/>
+              <Rating
+                value={room.ratings.average}
+                precision={0.5}
+                readOnly
+                size="small"
+              />
               <p className={Styles.ratingValue}>{room.ratings.average}/5</p>
-              <p className={Styles.ratingCount}>({room.ratings.count} Avaliações)</p>
+              <p className={Styles.ratingCount}>
+                ({room.ratings.count} {t("roomDetails.reviews")})
+              </p>
             </span>
           </div>
 
@@ -63,12 +71,18 @@ function RoomDescription() {
             <span className={Styles.infoCard}>
               <Bed />
               <p className={Styles.infoCardText}>
-                {room.bed.amount} {room.bed.amount > 1 ? "Camas" : "Cama"} {room.bed.type}
+                {room.bed.amount}{" "}
+                {room.bed.amount > 1
+                  ? t("roomDetails.beds_plural")
+                  : t("roomDetails.beds")}{" "}
+                {room.bed.type}
               </p>
             </span>
             <span className={Styles.infoCard}>
               <People />
-              <p className={Styles.infoCardText}>{room.people} Hóspedes</p>
+              <p className={Styles.infoCardText}>
+                {room.people} {t("roomDetails.guests")}
+              </p>
             </span>
             <span className={Styles.infoCard}>
               <AspectRatio />
@@ -77,16 +91,21 @@ function RoomDescription() {
           </div>
 
           <div className={Styles.subsection}>
-            <h1 className={Styles.subheading}>Descrição do Quarto</h1>
+            <h1 className={Styles.subheading}>
+              {t("roomDetails.description")}
+            </h1>
             <p className={Styles.descriptionText}>{room.description}</p>
           </div>
 
           <div className={Styles.subsection}>
-            <h1 className={Styles.subheading}>Comodidades do quarto</h1>
+            <h1 className={Styles.subheading}>{t("roomDetails.amenities")}</h1>
             <ul className={Styles.amenitiesList}>
               {room.amenities.map((amenity) => (
                 <li key={amenity.key} className={Styles.amenityItem}>
-                  <AmenityIcon iconKey={amenity.key} className={Styles.amenityIcon} />
+                  <AmenityIcon
+                    iconKey={amenity.key}
+                    className={Styles.amenityIcon}
+                  />
                   <span className={Styles.amenityText}>{amenity.name}</span>
                 </li>
               ))}
@@ -94,17 +113,29 @@ function RoomDescription() {
           </div>
 
           <div className={Styles.subsection}>
-            <h1 className={Styles.subheading}>Regras da Hospedagem</h1>
+            <h1 className={Styles.subheading}>
+              {t("roomDetails.rules.title")}
+            </h1>
             <div className={Styles.rulesWrapper}>
               <span className={Styles.rulesColumn}>
-                <h2 className={Styles.rulesTitle}>Horários</h2>
-                <p className={Styles.rulesText}>Check-in: <span className={Styles.rulesHighlight}>14:00</span></p>
-                <p className={Styles.rulesText}>Check-out: <span className={Styles.rulesHighlight}>11:00</span></p>
+                <h2 className={Styles.rulesTitle}>
+                  {t("roomDetails.rules.schedules")}
+                </h2>
+                <p className={Styles.rulesText}>
+                  {t("roomDetails.rules.checkin")}:{" "}
+                  <span className={Styles.rulesHighlight}>14:00</span>
+                </p>
+                <p className={Styles.rulesText}>
+                  {t("roomDetails.rules.checkout")}:{" "}
+                  <span className={Styles.rulesHighlight}>11:00</span>
+                </p>
               </span>
               <span className={Styles.rulesColumn}>
-                <h2 className={Styles.rulesTitle}>Política para Crianças</h2>
+                <h2 className={Styles.rulesTitle}>
+                  {t("roomDetails.rules.childrenPolicy.title")}
+                </h2>
                 <p className={Styles.rulesText}>
-                  Crianças são bem-vindas. Uma criança de até 6 anos pode ficar gratuitamente quando usando a cama existente.
+                  {t("roomDetails.rules.childrenPolicy.text")}
                 </p>
               </span>
             </div>
@@ -112,7 +143,12 @@ function RoomDescription() {
         </div>
 
         <ReservationSummary
-          room={{ id: room.id, title: room.title, value: room.value, Offer: room.Offer }}
+          room={{
+            id: room.id,
+            title: room.title,
+            value: room.value,
+            Offer: room.Offer,
+          }}
         />
       </motion.div>
       <RoomRecommendation currentRoomId={room.id} />

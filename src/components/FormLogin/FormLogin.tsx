@@ -1,44 +1,49 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import CarouselRegister from "../CarouselRegister";
 import { FormLoginStyles as styles } from "./FormLogin.style";
 import HotelFront from "../../assets/images/img-hotel-front.webp";
 import HotelSnack from "../../assets/images/img-snack.webp";
 import HotelParty from "../../assets/images/img-party.webp";
-
-const slides = [
-  {
-    src: HotelFront,
-    text: "Descubra o conforto e a elegância do nosso hotel.",
-  },
-  {
-    src: HotelSnack,
-    text: "Sabores que combinam com o pôr do sol.",
-  },
-  {
-    src: HotelParty,
-    text: "Salão de festas elegante e espaçoso, com decoração sofisticada e iluminação acolhedora.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { t } = useTranslation();
+
+  const slides = useMemo(
+    () => [
+      {
+        src: HotelFront,
+        text: t("auth.carousel.slide1"),
+      },
+      {
+        src: HotelSnack,
+        text: t("auth.carousel.slide2"),
+      },
+      {
+        src: HotelParty,
+        text: t("auth.carousel.slide3"),
+      },
+    ],
+    [t],
+  );
 
   async function VerifyEmail(e: React.FormEvent) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const sucesso = true
+    const sucesso = true;
 
     if (sucesso == true) {
       return navigate("/verify-email", {
-        state: {email, type: "login"},
-        replace: true
-      })
+        state: { email, type: "login" },
+        replace: true,
+      });
     }
   }
 
@@ -46,16 +51,14 @@ function FormLogin() {
     <section className={styles.section}>
       <div className={styles.formContainer}>
         <div className={styles.header}>
-          <h1 className={styles.heading}>Bem-vindo de volta!</h1>
-          <p className={styles.paragraph}>
-            Insira seus dados para continuar com sua reserva.
-          </p>
+          <h1 className={styles.heading}>{t("auth.login.title")}</h1>
+          <p className={styles.paragraph}>{t("auth.login.subtitle")}</p>
         </div>
 
         <form onSubmit={VerifyEmail} className={styles.form}>
           <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>
-              Digite seu e-mail
+              {t("auth.fields.email")}
             </label>
             <input
               type="email"
@@ -63,7 +66,7 @@ function FormLogin() {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="exemplo@regency.com"
+              placeholder={t("auth.placeholders.email")}
               required
               className={styles.input}
             />
@@ -71,10 +74,10 @@ function FormLogin() {
           <div className={styles.formGroup}>
             <span className={styles.passwordLabelContainer}>
               <label htmlFor="password" className={styles.label}>
-                Digite sua senha
+                {t("auth.fields.password")}
               </label>
               <Link to="/forgot-password" className={styles.forgetPasswordLink}>
-                Esqueci a senha
+                {t("auth.login.forgotPassword")}
               </Link>
             </span>
             <span className={styles.passwordInputWrapper}>
@@ -84,7 +87,9 @@ function FormLogin() {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder={showPassword ? "Insira sua senha" : "********"}
+                placeholder={
+                  showPassword ? t("auth.placeholders.password") : "********"
+                }
                 required
                 className={styles.input}
               />
@@ -101,7 +106,7 @@ function FormLogin() {
             </span>
           </div>
           <Button
-            label="Entrar"
+            label={t("auth.login.submit")}
             variant="primary"
             size="width_full"
             type="submit"
@@ -115,16 +120,16 @@ function FormLogin() {
         </div>
 
         <Button
-          label="Entrar com Google"
+          label={t("auth.login.google")}
           variant="secondary"
           size="width_full"
           Icon={Google}
         />
 
         <p className={styles.textCenter}>
-          Não possui uma conta?{" "}
+          {t("auth.login.noAccount")}{" "}
           <Link to="/registration" className={styles.linkRegistration}>
-            Registre-se
+            {t("auth.login.register")}
           </Link>
         </p>
       </div>

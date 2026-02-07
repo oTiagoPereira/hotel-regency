@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import Logo from "../../assets/images/logo.svg";
 import { Menu, Close } from "@mui/icons-material";
 
 import { navbarStyles as styles } from "./NavBar.style.ts";
 
-const navLinks = [
-  { path: "/", label: "Início" },
-  { path: "/accommodation", label: "Hospedagem" },
-  { path: "/events", label: "Eventos" },
-  { path: "/contact", label: "Contato" },
-  { path: "/login", label: "Entrar" },
-];
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { path: "/", label: t("navbar.home") },
+    { path: "/accommodation", label: t("navbar.rooms") },
+    { path: "/contact", label: t("navbar.contact") },
+    { path: "/login", label: t("navbar.login") },
+  ];
 
   return (
     <nav className={styles.nav}>
@@ -82,9 +83,7 @@ export default function Navbar() {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`${styles.mobileLinkBase} ${
-                  isActive
-                    ? styles.mobileLinkActive
-                    : styles.mobileLinkInactive
+                  isActive ? styles.mobileLinkActive : styles.mobileLinkInactive
                 }`}
               >
                 {link.label}

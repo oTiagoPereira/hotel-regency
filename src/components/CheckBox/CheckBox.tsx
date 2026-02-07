@@ -4,10 +4,14 @@ import { checkBoxStyles as styles } from "./CheckBox.style";
 import Button from "../Button";
 import DatePicker from "./dayPicker";
 import type { DateRange } from "react-day-picker";
+import { useTranslation } from "react-i18next";
 
 function CheckBox() {
+  const { t } = useTranslation();
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
-  const [openPicker, setOpenPicker] = useState<"checkin" | "checkout" | null>(null);
+  const [openPicker, setOpenPicker] = useState<"checkin" | "checkout" | null>(
+    null,
+  );
   const [showPeopleBox, setShowPeopleBox] = useState(false);
   const [showBedsBox, setShowBedsBox] = useState(false);
   const [adults, setAdults] = useState(1);
@@ -26,8 +30,14 @@ function CheckBox() {
       if (
         calendarRef.current &&
         !calendarRef.current.contains(event.target as Node) &&
-        !(checkinRef.current && checkinRef.current.contains(event.target as Node)) &&
-        !(checkoutRef.current && checkoutRef.current.contains(event.target as Node))
+        !(
+          checkinRef.current &&
+          checkinRef.current.contains(event.target as Node)
+        ) &&
+        !(
+          checkoutRef.current &&
+          checkoutRef.current.contains(event.target as Node)
+        )
       ) {
         setOpenPicker(null);
       }
@@ -94,32 +104,35 @@ function CheckBox() {
       setSelectedRange(undefined);
       return;
     }
-  
-    if (openPicker === 'checkin') {
-      if (range.from && range.from < new Date(new Date().setHours(0, 0, 0, 0))) {
+
+    if (openPicker === "checkin") {
+      if (
+        range.from &&
+        range.from < new Date(new Date().setHours(0, 0, 0, 0))
+      ) {
         return;
       }
-  
+
       if (range.from) {
         let newToDate = selectedRange?.to;
-  
+
         if (!newToDate || newToDate <= range.from) {
           newToDate = new Date(range.from);
           newToDate.setDate(newToDate.getDate() + 1);
         }
-        
+
         setSelectedRange({ from: range.from, to: newToDate });
-        setOpenPicker('checkout');
+        setOpenPicker("checkout");
       } else {
         setSelectedRange(undefined);
       }
-    } else if (openPicker === 'checkout') {
+    } else if (openPicker === "checkout") {
       if (range.to && selectedRange?.from && range.to <= selectedRange.from) {
         return;
       }
-      
+
       setSelectedRange(range);
-      
+
       if (range.to) {
         setOpenPicker(null);
       }
@@ -131,29 +144,34 @@ function CheckBox() {
       setOpenPicker(null);
       return;
     }
-    
+
     if (field === "checkout" && !selectedRange?.from) {
       setOpenPicker("checkin");
       return;
     }
-  
+
     setOpenPicker(field);
     setShowPeopleBox(false);
     setShowBedsBox(false);
   };
 
   const disabledCheckinDates = {
-    before: new Date(new Date().setHours(0, 0, 0, 0))
+    before: new Date(new Date().setHours(0, 0, 0, 0)),
   };
 
   const disabledCheckoutDates = selectedRange?.from
-    ? { before: new Date(new Date(selectedRange.from).setDate(selectedRange.from.getDate() + 1)) }
+    ? {
+        before: new Date(
+          new Date(selectedRange.from).setDate(
+            selectedRange.from.getDate() + 1,
+          ),
+        ),
+      }
     : { before: new Date(new Date().setHours(0, 0, 0, 0)) };
 
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.container}>
-
         <div className="relative">
           <div
             className={styles.itemWrapper}
@@ -164,19 +182,16 @@ function CheckBox() {
               <CalendarMonth className={styles.iconClass} />
             </span>
             <div className={styles.textWrapper}>
-              <span className="font-semibold">Check-In</span>
+              <span className="font-semibold">{t("checkBox.checkin")}</span>
               <span>
                 {selectedRange?.from
                   ? selectedRange.from.toLocaleDateString()
-                  : "Selecione"}
+                  : t("checkBox.select")}
               </span>
             </div>
           </div>
           {openPicker === "checkin" && (
-            <div
-              ref={calendarRef}
-              className="absolute left-0 mt-2 z-50"
-            >
+            <div ref={calendarRef} className="absolute left-0 mt-2 z-50">
               <DatePicker
                 mode="range"
                 selected={selectedRange}
@@ -199,19 +214,16 @@ function CheckBox() {
               <CalendarMonth className={styles.iconClass} />
             </span>
             <div className={styles.textWrapper}>
-              <span className="font-semibold">Check-Out</span>
+              <span className="font-semibold">{t("checkBox.checkout")}</span>
               <span>
                 {selectedRange?.to
                   ? selectedRange.to.toLocaleDateString()
-                  : "Selecione"}
+                  : t("checkBox.select")}
               </span>
             </div>
           </div>
           {openPicker === "checkout" && (
-            <div
-              ref={calendarRef}
-              className="absolute left-0 mt-2 z-50"
-            >
+            <div ref={calendarRef} className="absolute left-0 mt-2 z-50">
               <DatePicker
                 mode="range"
                 selected={selectedRange}
@@ -225,34 +237,34 @@ function CheckBox() {
         <span className={styles.divider}></span>
 
         <div className="relative">
-          <div
-            className={styles.itemWrapper}
-            onClick={handleOpenBedsBox}
-          >
+          <div className={styles.itemWrapper} onClick={handleOpenBedsBox}>
             <span>
               <Bed className={styles.iconClass} />
             </span>
-            <span className="text-text-neutral ml-2">{beds} Cama{beds > 1 ? "s" : ""}</span>
+            <span className="text-text-neutral ml-2">
+              {beds} {beds > 1 ? t("checkBox.beds_plural") : t("checkBox.beds")}
+            </span>
           </div>
           {showBedsBox && (
-            <div
-              ref={bedsBoxRef}
-              className={styles.boxPopup}
-            >
+            <div ref={bedsBoxRef} className={styles.boxPopup}>
               <div className={styles.boxRow}>
-                <span>Camas</span>
+                <span>{t("checkBox.popup.beds")}</span>
                 <div className={styles.boxCounter}>
                   <button
                     className={styles.boxButton}
                     onClick={() => setBeds((b) => Math.max(1, b - 1))}
                     disabled={beds <= 1}
-                  >-</button>
+                  >
+                    -
+                  </button>
                   <span>{beds}</span>
                   <button
                     className={styles.boxButton}
                     onClick={() => setBeds((b) => Math.min(4, b + 1))}
                     disabled={beds >= 4}
-                  >+</button>
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>
@@ -262,52 +274,63 @@ function CheckBox() {
         <span className={styles.divider}></span>
 
         <div className="relative">
-          <div
-            className={styles.itemWrapper}
-            onClick={handleOpenPeopleBox}
-          >
+          <div className={styles.itemWrapper} onClick={handleOpenPeopleBox}>
             <span>
               <People className={styles.iconClass} />
             </span>
             <span className="text-text-neutral ml-2">
-              {adults} Adulto{adults > 1 ? "s" : ""} e {children} Criança{children !== 1 ? "s" : ""}
+              {adults}{" "}
+              {adults > 1 ? t("checkBox.adults_plural") : t("checkBox.adults")}{" "}
+              {t("checkBox.and", { defaultValue: "e" })} {children}{" "}
+              {children !== 1
+                ? t("checkBox.children_plural")
+                : t("checkBox.children")}
             </span>
           </div>
           {showPeopleBox && (
-            <div
-              ref={peopleBoxRef}
-              className={styles.boxPopup}
-            >
+            <div ref={peopleBoxRef} className={styles.boxPopup}>
               <div className={styles.boxRow}>
-                <span>Adultos</span>
+                <span>{t("checkBox.popup.adults")}</span>
                 <div className={styles.boxCounter}>
                   <button
                     className={styles.boxButton}
                     onClick={() => setAdults((a) => Math.max(1, a - 1))}
                     disabled={!canRemoveAdult()}
-                  >-</button>
+                  >
+                    -
+                  </button>
                   <span>{adults}</span>
                   <button
                     className={styles.boxButton}
-                    onClick={() => setAdults((a) => canAddAdult() ? a + 1 : a)}
+                    onClick={() =>
+                      setAdults((a) => (canAddAdult() ? a + 1 : a))
+                    }
                     disabled={!canAddAdult()}
-                  >+</button>
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className={styles.boxRow}>
-                <span>Crianças</span>
+                <span>{t("checkBox.popup.children")}</span>
                 <div className={styles.boxCounter}>
                   <button
                     className={styles.boxButton}
                     onClick={() => setChildren((c) => Math.max(0, c - 1))}
                     disabled={!canRemoveChild()}
-                  >-</button>
+                  >
+                    -
+                  </button>
                   <span>{children}</span>
                   <button
                     className={styles.boxButton}
-                    onClick={() => setChildren((c) => canAddChild() ? c + 1 : c)}
+                    onClick={() =>
+                      setChildren((c) => (canAddChild() ? c + 1 : c))
+                    }
                     disabled={!canAddChild()}
-                  >+</button>
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>
@@ -316,8 +339,8 @@ function CheckBox() {
 
         <span className={styles.divider}></span>
 
-        <div className={styles.buttonWrapper}>
-          <Button label="Verificar disponibilidade" variant="terciary" />
+        <div className="buttonWrapper">
+          <Button label={t("checkBox.checkAvailability")} variant="terciary" />
         </div>
       </div>
     </section>

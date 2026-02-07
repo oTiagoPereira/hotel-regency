@@ -6,37 +6,37 @@ import { Carousel, RoomsCard } from "../index";
 import { HomeRoomsStyles as styles } from "./HomeRooms.style";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
-import roomsData from "./../../data/rooms.json"
+import roomsData from "./../../data/rooms.json";
+import { useTranslation } from "react-i18next";
 
 function HomeRooms() {
   const { ref, inView } = useIsVisible();
   const fade = fadeInStagger();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const cardElements = useMemo(
     () =>
-      roomsData.slice(0,3).map((card) => (
+      roomsData.slice(0, 3).map((card) => (
         <motion.div key={card.id} variants={fade.item}>
-            <RoomsCard key={card.id} {...card}
-            bed={card.bed.amount} 
-            people={card.people} 
-            thumb={card.thumb}
-            ratings={card.ratings.average}
-            labelButton="Ver Detalhes" 
-            onClick={() => {navigate(`/accommodation/${card.id}`)}} />
+          <RoomsCard
+            key={card.id}
+            room={card}
+            labelButton={t("homeRooms.details")}
+            onClick={() => {
+              navigate(`/accommodation/${card.id}`);
+            }}
+          />
         </motion.div>
       )),
-    [fade.item, navigate]
+    [fade.item, navigate, t],
   );
 
   return (
     <section className={styles.section} ref={ref}>
       <div className={styles.headingWrapper}>
-        <h2 className={styles.title}>Quartos em destaque</h2>
-        <p className={styles.description}>
-          Escolha entre nossa seleção de quartos e suítes meticulosamente
-          projetados para uma estadia confortável e luxuosa.
-        </p>
+        <h2 className={styles.title}>{t("homeRooms.title")}</h2>
+        <p className={styles.description}>{t("homeRooms.subtitle")}</p>
       </div>
 
       <motion.div
@@ -57,15 +57,14 @@ function HomeRooms() {
       >
         <Carousel
           items={roomsData.slice(0, 6).map((card) => (
-              <RoomsCard 
-              key={card.id} {...card}
-              bed={card.bed.amount} 
-              people={card.people} 
-              thumb={card.thumb}
-              ratings={card.ratings.average}
-              labelButton="Ver Detalhes" 
-              onClick={() => {navigate(`/accommodation/${card.id}`)}}
-              />
+            <RoomsCard
+              key={card.id}
+              room={card}
+              labelButton={t("homeRooms.details")}
+              onClick={() => {
+                navigate(`/accommodation/${card.id}`);
+              }}
+            />
           ))}
           showDots
           desktopGridCols=""
@@ -74,7 +73,7 @@ function HomeRooms() {
 
       <div className={styles.buttonWrapper}>
         <Button
-          label="Ver todos os quartos"
+          label={t("homeRooms.viewAll")}
           variant="secondary"
           size="default"
           onClick={() => navigate("/accommodation")}

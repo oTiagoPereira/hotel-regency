@@ -1,0 +1,246 @@
+{
+    "navbar": {
+      "home": "Inicio",
+      "about": "Sobre Nosotros",
+      "rooms": "Alojamiento",
+      "contact": "Contacto",
+      "login": "Entrar",
+      "register": "Registrarse"
+    },
+    "hero": {
+        "title": "Experiencia de Lujo y Confort",
+        "subtitle": "Alójese en el Hotel Regency Heights y viva momentos inolvidables.",
+        "cta": "Reservar Ahora",
+        "welcome": "Bienvenido a",
+        "hotelName": "Regency Heights",
+        "hotel": "Hotel",
+        "description": "Donde el lujo se encuentra con el confort. Nuestro equipo está preparado para brindar una experiencia inolvidable, con servicio personalizado y atención a los más mínimos detalles.",
+        "explore": "Explore Nuestras Suites"
+      },
+      "accommodation": {
+          "title": "Nuestras Habitaciones",
+          "subtitle": "Descubra la comodidad y elegancia de nuestras habitaciones cuidadosamente diseñadas",
+          "filter": {
+              "button": "Filtros",
+              "reset": "Restablecer",
+              "close": "Cerrar",
+              "apply": "Aplicar Filtros",
+              "dates": "Fechas de Estancia",
+              "roomTypes": "Tipos de Habitación",
+              "guests": "Huéspedes por Habitación",
+              "beds": "Número de Camas",
+              "priceRange": {
+                  "label": "Rango de Precios",
+                  "min": "Mín",
+                  "max": "Máx"
+              },
+              "placeholders": {
+                  "checkin": "Entrada",
+                  "checkout": "Salida"
+              },
+              "options": {
+                  "people": "Persona",
+                  "people_plural": "Personas",
+                  "beds": "Cama",
+                  "beds_plural": "Camas"
+              }
+          },
+          "detailsButton": "Ver Detalles",
+          "loadMore": "Cargar Más"
+      },
+      "roomDetails": {
+          "reviews": "Reseñas",
+          "guests": "Huéspedes",
+          "beds": "Cama",
+          "beds_plural": "Camas",
+          "description": "Descripción de la Habitación",
+          "amenities": "Comodidades de la Habitación",
+          "rules": {
+              "title": "Normas de la Casa",
+              "schedules": "Horarios",
+              "checkin": "Entrada",
+              "checkout": "Salida",
+              "childrenPolicy": {
+                  "title": "Política de Niños",
+                  "text": "Los niños son bienvenidos. Un niño de hasta 6 años se aloja gratis utilizando las camas existentes."
+              }
+          }
+      },
+      "roomNotFound": {
+          "title": "Habitación No Encontrada",
+          "message": "¡Vaya! Parece que la habitación que busca no existe o ha sido eliminada. ¿Qué tal si busca otras opciones?",
+          "button": "Volver a la Lista de Habitaciones"
+      },
+      "recommendation": {
+          "title": "También Te Puede Gustar"
+      },
+      "reservation": {
+          "night": "/noche",
+          "off": "OFF",
+          "checkin": "Entrada",
+          "checkout": "Salida",
+          "summary": {
+              "nights": "noche",
+              "nights_plural": "noches",
+              "discount": "Descuento",
+              "serviceFee": "Tarifa de servicio",
+              "taxes": "Impuestos",
+              "total": "Total",
+              "submit": "Reservar Ahora",
+              "disclaimer": "No se le cobrará todavía"
+          },
+          "features": {
+              "cancellation": "Cancelación gratuita hasta",
+              "payLater": "Pague solo al llegar",
+              "secure": "Reserva 100% segura"
+          }
+      },
+      "contact": {
+          "title": "Contáctenos",
+          "subtitle": "Estamos ansiosos por saber de usted. Ya sea para reservas, preguntas o comentarios, nuestro equipo está listo para ayudar.",
+          "info": {
+              "title": "Nuestra Información",
+              "address": { "title": "Dirección", "line1": "Av. Regency, 0001, Atalaia", "line2": "Ciudad Paradisíaca, CP 00001-000" },
+              "phone": { "title": "Teléfono", "reservations": "Reservas", "reception": "Recepción" },
+              "email": { "title": "Correo Electrónico" }
+          },
+          "form": {
+              "title": "Envíe un Mensaje",
+              "name": "Nombre Completo",
+              "email": "Correo Electrónico",
+              "subject": "Asunto",
+              "message": "Mensaje",
+              "submit": "Enviar Mensaje",
+              "sending": "Enviando...",
+              "success": "¡Gracias por contactarnos! Responderemos pronto.",
+              "placeholder": { "name": "Su nombre", "email": "su.email@ejemplo.com", "subject": "Ej: Información sobre reserva", "message": "Escriba su mensaje aquí..." }
+          }
+      },
+      "auth": {
+          "login": {
+              "title": "¡Bienvenido de nuevo!",
+              "subtitle": "Ingrese sus datos para continuar con su reserva.",
+              "submit": "Entrar",
+              "google": "Entrar con Google",
+              "noAccount": "¿No tiene una cuenta?",
+              "register": "Regístrese",
+              "forgotPassword": "Olvidé mi contraseña"
+          },
+          "register": {
+              "title": "Cree su cuenta en Regency",
+              "subtitle": "Complete sus datos para comenzar a reservar sus estancias.",
+              "submit": "Crear Cuenta",
+              "google": "Registrarse con Google",
+              "alreadyAccount": "¿Ya tiene una cuenta?",
+              "login": "Inicie Sesión"
+          },
+          "fields": {
+              "name": "Nombre Completo",
+              "email": "Ingrese su correo",
+              "password": "Ingrese su contraseña",
+              "confirmPassword": "Confirme su contraseña",
+              "phone": "Teléfono"
+          },
+          "placeholders": {
+              "name": "Su nombre completo",
+              "email": "ejemplo@regency.com",
+              "password": "Crear una contraseña segura",
+              "confirmPassword": "Confirme su contraseña",
+              "phone": "(00) 00000-0000"
+          },
+          "carousel": {
+              "slide1": "Descubra la comodidad y elegancia de nuestro hotel.",
+              "slide2": "Sabores que combinan con la puesta de sol.",
+              "slide3": "Salón de fiestas elegante y espacioso, con decoración sofisticada e iluminación acogedora."
+          }
+      },
+      "about": {
+          "title": "Sobre Nosotros",
+          "p1": "Ubicado entre montañas majestuosas y el azul infinito del mar, el Regency no es solo un hotel, es un refugio donde el tiempo se detiene y cada detalle fue pensado para encantar.",
+          "p2": "Desde habitaciones bañadas por luz natural hasta experiencias gastronómicas que celebran sabores locales e internacionales, cada momento aquí es una celebración del buen vivir.",
+          "p3": "Ya sea por negocios o placer, nuestro equipo está listo para transformar su estadía en un recuerdo inolvidable, con la sofisticación y el cuidado que usted merece.",
+          "cta": "Conozca más sobre nosotros"
+      },
+      "whyRegency": {
+          "title": "¿Por qué elegir Regency?",
+          "subtitle": "Experimente la combinación perfecta de lujo, confort y servicio excepcional que nos distingue.",
+          "location": { "title": "Ubicación Premium", "desc": "Situado con vistas impresionantes y fácil acceso a atracciones locales y puntos de referencia." },
+          "dining": { "title": "Cena Gourmet", "desc": "Experiencias culinarias exquisitas con ingredientes locales preparados por chefs galardonados" },
+          "wellness": { "title": "Spa de Bienestar", "desc": "Tratamientos de spa completos y programas de bienestar que renuevan cuerpo y mente" }
+      },
+      "homeRooms": {
+          "title": "Habitaciones Destacadas",
+          "subtitle": "Elija entre nuestra selección de habitaciones y suites meticulosamente diseñadas para una estancia cómoda y lujosa.",
+          "viewAll": "Ver todas las habitaciones",
+          "details": "Ver Detalles"
+      },
+      "roomCard": {
+          "night": "/Noche",
+          "people": "Personas"
+      },
+      "amenities": {
+          "title": "Servicios del Hotel",
+          "subtitle": "Disfrute de nuestras instalaciones premium diseñadas para mejorar su estancia y proporcionar el máximo confort.",
+          "viewMore": "Ver más",
+          "viewLess": "Ver menos",
+          "items": {
+              "wifi": { "title": "Wi-Fi de Alta Velocidad", "desc": "Gratuito en toda la propiedad." },
+              "pool": { "title": "Piscina Infinita", "desc": "Con vistas panorámicas al mar." },
+              "dining": { "title": "Cena Fina", "desc": "Restaurantes galardonados." },
+              "spa": { "title": "Spa de Lujo", "desc": "Tratamientos de bienestar de servicio completo." },
+              "fitness": { "title": "Gimnasio", "desc": "Equipamiento de última generación." },
+              "bar": { "title": "Bar en la Azotea", "desc": "Cócteles artesanales con vista." },
+              "parking": { "title": "Estacionamiento con Valet", "desc": "Gratuito para los huéspedes." },
+              "concierge": { "title": "Conserjería", "desc": "Servicio personalizado 24/7." }
+          }
+      },
+      "reviews": {
+          "title": "Experiencias de los Huéspedes",
+          "subtitle": "Descubra lo que nuestros huéspedes tienen que decir sobre sus estancias memorables en Regency.",
+          "item1": "¡Una experiencia increíble! El hotel es maravilloso y el servicio es excepcional.",
+          "item2": "¡Me encantó mi estancia! Habitaciones cómodas y una vista impresionante.",
+          "item3": "Excelente ubicación y servicios de calidad. ¡Muy recomendable!"
+      },
+      "checkBox": {
+      "checkin": "Entrada",
+      "checkout": "Salida",
+      "select": "Seleccionar",
+      "beds": "Cama",
+      "beds_plural": "Camas",
+      "adults": "Adulto",
+      "adults_plural": "Adultos",
+      "children": "Niño",
+      "children_plural": "Niños",
+      "checkAvailability": "Consultar Disponibilidad",
+      "popup": {
+        "beds": "Camas",
+        "adults": "Adultos",
+        "children": "Niños"
+      }
+    },
+    "footer": {
+          "quickLinks": {
+              "title": "Navegación Rápida",
+              "home": "Inicio",
+              "accommodation": "Alojamiento",
+              "events": "Eventos",
+              "contact": "Contacto"
+          },
+          "contactInfo": {
+              "title": "Información de Contacto"
+          },
+          "policies": {
+              "title": "Políticas",
+              "cancellation": "Políticas de cancelación y reservas",
+              "privacy": "Política de privacidad",
+              "terms": "Términos y condiciones"
+          },
+          "social": {
+              "title": "Redes Sociales"
+          },
+          "languages": {
+              "title": "Idiomas"
+          },
+          "copyright": "© 2025 Hotel Regency Heights. Todos los derechos reservados."
+      }
+  }

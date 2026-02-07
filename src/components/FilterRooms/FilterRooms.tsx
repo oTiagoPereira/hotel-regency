@@ -1,4 +1,3 @@
-
 import { useState, useMemo, useEffect, useRef } from "react";
 import { Range } from "react-range";
 import Button from "../Button";
@@ -8,6 +7,7 @@ import { format } from "date-fns";
 import { getTrackBackground } from "react-range";
 import type { DateRange } from "react-day-picker";
 import DatePicker from "../CheckBox/dayPicker";
+import { useTranslation } from "react-i18next";
 
 type RoomType = "Standard" | "Deluxe" | "Suite" | "Familiar";
 
@@ -22,17 +22,17 @@ const DEFAULT_PRICE_RANGE: [number, number] = [350, 800];
 const DEFAULT_DATE_RANGE: DateRange | undefined = undefined;
 
 function FilterRooms() {
+  const { t } = useTranslation();
   const [roomTypes, setRoomTypes] = useState<RoomType[]>(DEFAULT_ROOM_TYPES);
   const [capacities, setCapacities] = useState<number[]>(DEFAULT_CAPACITIES);
   const [bedCounts, setBedCounts] = useState<number[]>(DEFAULT_BED_COUNTS);
-  const [priceRange, setPriceRange] = useState<[number, number]>(
-    DEFAULT_PRICE_RANGE
-  );
+  const [priceRange, setPriceRange] =
+    useState<[number, number]>(DEFAULT_PRICE_RANGE);
   const [dateRange, setDateRange] = useState<DateRange | undefined>(
-    DEFAULT_DATE_RANGE
+    DEFAULT_DATE_RANGE,
   );
   const [openPicker, setOpenPicker] = useState<"checkin" | "checkout" | null>(
-    null
+    null,
   );
   const [open, setOpen] = useState(false);
 
@@ -65,10 +65,10 @@ function FilterRooms() {
 
   const handleCheckboxChange = <T,>(
     setter: React.Dispatch<React.SetStateAction<T[]>>,
-    value: T
+    value: T,
   ) => {
     setter((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
     );
   };
 
@@ -165,7 +165,7 @@ function FilterRooms() {
   const disabledCheckoutDates = dateRange?.from
     ? {
         before: new Date(
-          new Date(dateRange.from).setDate(dateRange.from.getDate() + 1)
+          new Date(dateRange.from).setDate(dateRange.from.getDate() + 1),
         ),
       }
     : { before: new Date(new Date().setHours(0, 0, 0, 0)) };
@@ -207,7 +207,7 @@ function FilterRooms() {
           className={FilterRoomsStyles.buttonPrimary}
           onClick={() => setOpen(true)}
         >
-          Filtros <FilterAlt />
+          {t("accommodation.filter.button")} <FilterAlt />
         </button>
       </div>
 
@@ -219,33 +219,40 @@ function FilterRooms() {
                 className={FilterRoomsStyles.resetButtonMobile}
                 onClick={handleReset}
               >
-                Resetar <RestartAlt />
+                {t("accommodation.filter.reset")} <RestartAlt />
               </button>
             )}
             <button
               onClick={() => setOpen(false)}
               className={FilterRoomsStyles.closeButtonMobile}
             >
-              Fechar <Close />
+              {t("accommodation.filter.close")} <Close />
             </button>
           </div>
 
           <div className={FilterRoomsStyles.headerDesktop}>
-            <h1 className={FilterRoomsStyles.headerTitle}>Filtros</h1>
+            <h1 className={FilterRoomsStyles.headerTitle}>
+              {t("accommodation.filter.button")}
+            </h1>
             {hasChanges && (
               <button
                 className={FilterRoomsStyles.buttonPrimary}
                 onClick={handleReset}
               >
-                Resetar <RestartAlt />
+                {t("accommodation.filter.reset")} <RestartAlt />
               </button>
             )}
           </div>
 
           <form onSubmit={handleSubmit} className={FilterRoomsStyles.form}>
             <div>
-              <label className={FilterRoomsStyles.label}>Datas da Estadia</label>
-              <div ref={datePickerWrapperRef} className={FilterRoomsStyles.datePickerWrapper}>
+              <label className={FilterRoomsStyles.label}>
+                {t("accommodation.filter.dates")}
+              </label>
+              <div
+                ref={datePickerWrapperRef}
+                className={FilterRoomsStyles.datePickerWrapper}
+              >
                 <div
                   className={FilterRoomsStyles.dateDisplayBox}
                   onClick={() => handleOpenPicker("checkin")}
@@ -253,7 +260,7 @@ function FilterRooms() {
                 >
                   {dateRange?.from
                     ? format(dateRange.from, "dd/MM/yyyy")
-                    : "Check-in"}
+                    : t("accommodation.filter.placeholders.checkin")}
                 </div>
                 <div
                   className={FilterRoomsStyles.dateDisplayBox}
@@ -262,36 +269,35 @@ function FilterRooms() {
                 >
                   {dateRange?.to
                     ? format(dateRange.to, "dd/MM/yyyy")
-                    : "Check-out"}
+                    : t("accommodation.filter.placeholders.checkout")}
                 </div>
-              </div>
-            </div>
-            
-            <div>
-              <label className={FilterRoomsStyles.label}>Tipos de Quarto</label>
-              <div className={FilterRoomsStyles.checkboxContainer}>
-                {(["Standard", "Deluxe", "Suite", "Familiar"] as RoomType[]).map(
-                  (type) => (
-                    <label
-                      key={type}
-                      className={FilterRoomsStyles.checkboxLabel}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={roomTypes.includes(type)}
-                        onChange={() => handleCheckboxChange(setRoomTypes, type)}
-                        className={FilterRoomsStyles.checkboxInput}
-                      />
-                      {type}
-                    </label>
-                  )
-                )}
               </div>
             </div>
 
             <div>
               <label className={FilterRoomsStyles.label}>
-                Hóspedes por Quarto
+                {t("accommodation.filter.roomTypes")}
+              </label>
+              <div className={FilterRoomsStyles.checkboxContainer}>
+                {(
+                  ["Standard", "Deluxe", "Suite", "Familiar"] as RoomType[]
+                ).map((type) => (
+                  <label key={type} className={FilterRoomsStyles.checkboxLabel}>
+                    <input
+                      type="checkbox"
+                      checked={roomTypes.includes(type)}
+                      onChange={() => handleCheckboxChange(setRoomTypes, type)}
+                      className={FilterRoomsStyles.checkboxInput}
+                    />
+                    {type}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className={FilterRoomsStyles.label}>
+                {t("accommodation.filter.guests")}
               </label>
               <div className={FilterRoomsStyles.checkboxContainer}>
                 {[1, 2, 3, 4].map((cap) => (
@@ -302,7 +308,10 @@ function FilterRooms() {
                       onChange={() => handleCheckboxChange(setCapacities, cap)}
                       className={FilterRoomsStyles.checkboxInput}
                     />
-                    {cap} {cap > 1 ? "Pessoas" : "Pessoa"}
+                    {cap}{" "}
+                    {cap > 1
+                      ? t("accommodation.filter.options.people_plural")
+                      : t("accommodation.filter.options.people")}
                   </label>
                 ))}
               </div>
@@ -310,7 +319,7 @@ function FilterRooms() {
 
             <div>
               <label className={FilterRoomsStyles.label}>
-                Quantidade de Camas
+                {t("accommodation.filter.beds")}
               </label>
               <div className={FilterRoomsStyles.checkboxContainer}>
                 {[1, 2, 3, 4].map((beds) => (
@@ -321,7 +330,10 @@ function FilterRooms() {
                       onChange={() => handleCheckboxChange(setBedCounts, beds)}
                       className={FilterRoomsStyles.checkboxInput}
                     />
-                    {beds} {beds > 1 ? "Camas" : "Cama"}
+                    {beds}{" "}
+                    {beds > 1
+                      ? t("accommodation.filter.options.beds_plural")
+                      : t("accommodation.filter.options.beds")}
                   </label>
                 ))}
               </div>
@@ -329,7 +341,7 @@ function FilterRooms() {
 
             <div>
               <label className={FilterRoomsStyles.priceRangeLabel}>
-                Faixa de Preço
+                {t("accommodation.filter.priceRange.label")}
               </label>
               <div>
                 <Range
@@ -372,13 +384,17 @@ function FilterRooms() {
                 />
                 <div className={FilterRoomsStyles.priceRangeValues}>
                   <div className={FilterRoomsStyles.priceBox}>
-                    <p className={FilterRoomsStyles.priceLabelText}>Mínimo</p>
+                    <p className={FilterRoomsStyles.priceLabelText}>
+                      {t("accommodation.filter.priceRange.min")}
+                    </p>
                     <span className={FilterRoomsStyles.priceValueText}>
                       R$ {priceRange[0]},00
                     </span>
                   </div>
                   <div className={FilterRoomsStyles.priceBox}>
-                    <p className={FilterRoomsStyles.priceLabelText}>Máximo</p>
+                    <p className={FilterRoomsStyles.priceLabelText}>
+                      {t("accommodation.filter.priceRange.max")}
+                    </p>
                     <span className={FilterRoomsStyles.priceValueText}>
                       R$ {priceRange[1]},00
                     </span>
@@ -389,35 +405,35 @@ function FilterRooms() {
           </form>
 
           <div
-              ref={calendarRef}
-              className="absolute z-50"
-              style={{ top: datePickerTopOffset + 50 }}
-            >
-              {openPicker === "checkin" && (
-                <DatePicker
-                  mode="range"
-                  selected={dateRange}
-                  onSelect={handleDateSelect}
-                  disabled={disabledCheckinDates}
-                />
-              )}
-              {openPicker === "checkout" && (
-                <DatePicker
-                  mode="range"
-                  selected={dateRange}
-                  onSelect={handleDateSelect}
-                  disabled={disabledCheckoutDates}
-                />
-              )}
-            </div>
+            ref={calendarRef}
+            className="absolute z-50"
+            style={{ top: datePickerTopOffset + 50 }}
+          >
+            {openPicker === "checkin" && (
+              <DatePicker
+                mode="range"
+                selected={dateRange}
+                onSelect={handleDateSelect}
+                disabled={disabledCheckinDates}
+              />
+            )}
+            {openPicker === "checkout" && (
+              <DatePicker
+                mode="range"
+                selected={dateRange}
+                onSelect={handleDateSelect}
+                disabled={disabledCheckoutDates}
+              />
+            )}
+          </div>
 
           <div className="mt-4">
-          <Button
-              label="Aplicar Filtros"
+            <Button
+              label={t("accommodation.filter.apply")}
               size="width_full"
               variant="primary"
               onClick={() => handleSubmit}
-              />
+            />
           </div>
         </aside>
       </div>
