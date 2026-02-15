@@ -46,7 +46,6 @@ export default function Carousel({
 
   return (
     <div className={`${styles.container} ${sectionClassName}`}>
-      {/* Mobile */}
       <div className={styles.mobileWrapper}>
         <div
           ref={carouselRef}
@@ -80,7 +79,6 @@ export default function Carousel({
         )}
       </div>
 
-      {/* Desktop */}
       <div
         className={`${styles.desktopWrapperBase} ${desktopGridCols} ${gridWrapperClassName}`}
       >

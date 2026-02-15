@@ -5,9 +5,16 @@ type ButtonProps = {
   onClick?: () => void;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
-  variant?: "primary" | "secondary" | "terciary" | "danger" | "disabled";
-  size?: "width_full" | "default";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "terciary"
+    | "danger"
+    | "disabled"
+    | "minimal";
+  size?: "width_full" | "default" | "small";
   Icon?: React.ElementType;
+  className?: string;
 };
 
 export const Button = ({
@@ -17,7 +24,8 @@ export const Button = ({
   type = "button",
   variant = "primary",
   size = "width_full",
-  Icon
+  Icon,
+  className = "",
 }: ButtonProps) => {
   return (
     <button
@@ -26,7 +34,7 @@ export const Button = ({
       type={type}
       className={`${baseStyles} ${
         disabled ? variants.disabled : variants[variant]
-      } ${sizes[size]}`}
+      } ${sizes[size]} ${className}`}
     >
       {Icon && <Icon />}
       {Icon ? <span className="ml-2">{label}</span> : label}

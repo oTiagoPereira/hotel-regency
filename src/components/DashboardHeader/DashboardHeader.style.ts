@@ -1,0 +1,17 @@
+export const DashboardHeaderStyles = {
+    header: "fixed top-0 right-0 left-0 md:left-64 h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:px-6 z-40 transition-all duration-300",
+    menuButton: "md:hidden p-2 -ml-2 text-gray-600 hover:bg-gray-100 rounded-lg",
+    title: "text-lg md:text-xl font-bold text-gray-800 truncate max-w-[200px] md:max-w-none",
+    subtitle: "text-xs text-gray-500 hidden md:block",
+    actions: "flex items-center gap-2 md:gap-4",
+    actionButton: "p-2 text-gray-400 hover:bg-gray-100 rounded-full",
+    notificationButton: "p-2 text-gray-400 hover:bg-gray-100 rounded-full relative",
+    notificationDot: "absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full",
+    divider: "h-8 w-[1px] bg-gray-200 mx-2 hidden md:block",
+    profileWrapper: "flex items-center gap-3 cursor-pointer hover:bg-gray-100 rounded-lg p-2",
+    avatarWrapper: "w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden",
+    avatar: "object-cover",
+    profileInfo: "hidden lg:block",
+    profileName: "text-sm font-bold text-gray-900",
+    profileRole: "text-xs text-gray-500",
+};

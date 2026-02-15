@@ -1,0 +1,16 @@
+export const ReviewsStyles = {
+  container: "space-y-6",
+  header: "flex justify-between items-center",
+  title: "text-2xl font-bold text-gray-900",
+  listContainer: "space-y-4",
+  card: "bg-white p-6 rounded-xl border border-gray-100 shadow-sm",
+  cardHeader: "flex justify-between items-start mb-4",
+  userInfo: "flex items-center gap-3",
+  avatar: "w-10 h-10 rounded-full",
+  userName: "font-semibold text-gray-900",
+  date: "text-xs text-gray-500",
+  starsContainer: "flex text-yellow-500",
+  starActive: "text-yellow-400",
+  starInactive: "text-gray-300",
+  comment: "text-gray-600 leading-relaxed",
+};

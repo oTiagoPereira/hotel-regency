@@ -242,5 +242,50 @@
               "title": "Languages"
           },
           "copyright": "© 2025 Hotel Regency Heights. All rights reserved."
+      },
+      "dashboard": {
+          "title": "Dashboard",
+          "greeting": "Hello, {{name}}",
+          "role": {
+              "admin": "Administrator",
+              "manager": "Manager",
+              "employee": "Employee"
+          },
+          "menu": {
+              "dashboard": "Dashboard",
+              "reservations": "Reservations",
+              "rooms": "Rooms",
+              "guests": "Guests",
+              "finance": "Finance",
+              "reviews": "Reviews",
+              "users": "Staff",
+              "settings": "Settings"
+          },
+          "stats": {
+              "totalReservations": "Total Reservations",
+              "occupiedRooms": "Occupied Rooms",
+              "monthlyRevenue": "Monthly Revenue",
+              "averageRating": "Average Rating",
+              "occupancyRate": "Occupancy Rate",
+              "revenue": "Revenue",
+              "thisMonth": "this month",
+              "vsLastMonth": "vs last month",
+              "occupancy": "occupancy"
+          },
+          "cards": {
+              "occupancy": "Occupancy Rate",
+              "revenue": "Revenue",
+              "recentCheckins": "Upcoming Check-ins",
+              "todaysCheckouts": "Today's Check-outs",
+              "recentIn": "Check-in at",
+              "recentOut": "Check-out at",
+              "recentReviews": "Recent Feedback"
+          },
+          "filters": {
+              "7days": "Last 7 days",
+              "30days": "Last 30 days",
+              "6months": "Last 6 months",
+              "12months": "Last 12 months"
+          }
       }
   }
