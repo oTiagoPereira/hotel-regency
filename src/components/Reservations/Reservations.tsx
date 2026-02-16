@@ -15,12 +15,66 @@ import {
   Check,
 } from "@mui/icons-material";
 import { ReservationsStyles as styles } from "./Reservations.style";
+import { AddReservationModal } from "./Modals/AddReservationModal";
+import { ReservationDetailsModal } from "./Modals/ReservationDetailsModal";
+import { CancelReservationModal } from "./Modals/CancelReservationModal";
+
+interface Reservation {
+  id: number;
+  guest: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
+  room: string;
+  guests: number;
+  checkIn: string;
+  checkOut: string;
+  status: string;
+  total: number;
+}
 
 export default function Reservations() {
   const { t } = useTranslation();
   const [filterStatus, setFilterStatus] = useState("all");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  // Modal State
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const [selectedReservation, setSelectedReservation] =
+    useState<Reservation | null>(null);
+
+  interface NewReservationData {
+    guestName: string;
+    guestEmail: string;
+    roomType: string;
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+  }
+
+  const handleAddReservation = (data: NewReservationData) => {
+    console.log("Adding reservation:", data);
+    // TODO: Connect to API
+  };
+
+  const handleCancelReservation = () => {
+    console.log("Cancelling reservation:", selectedReservation);
+    // TODO: Connect to API
+  };
+
+  const openDetailsModal = (reservation: Reservation) => {
+    setSelectedReservation(reservation);
+    setIsDetailsModalOpen(true);
+  };
+
+  const openCancelModal = (reservation: Reservation) => {
+    setSelectedReservation(reservation);
+    setIsCancelModalOpen(true);
+  };
 
   const reservations = [
     {
@@ -192,7 +246,7 @@ export default function Reservations() {
 
         <Button
           label={t("reservations.button.new", "Nova Reserva")}
-          onClick={() => {}}
+          onClick={() => setIsAddModalOpen(true)}
           Icon={Add}
           variant="primary"
           size="default"
@@ -319,6 +373,7 @@ export default function Reservations() {
                 <td className={styles.td}>
                   <div className={styles.actionsContainer}>
                     <button
+                      onClick={() => openDetailsModal(reservation)}
                       className={`${styles.actionButton} text-blue-500 hover:bg-blue-50`}
                       title="Ver Detalhes"
                     >
@@ -333,8 +388,17 @@ export default function Reservations() {
                       </button>
                     )}
                     <button
-                      className={`${styles.actionButton} text-red-500 hover:bg-red-50`}
-                      title="Cancelar/Deletar"
+                      onClick={() =>
+                        reservation.status !== "cancelled" &&
+                        openCancelModal(reservation)
+                      }
+                      className={`${styles.actionButton} ${reservation.status === "cancelled" ? "text-gray-300 cursor-not-allowed" : "text-red-500 hover:bg-red-50"}`}
+                      title={
+                        reservation.status === "cancelled"
+                          ? "Cancelada"
+                          : "Cancelar"
+                      }
+                      disabled={reservation.status === "cancelled"}
                     >
                       {reservation.status === "cancelled" ? (
                         <Close fontSize="small" />
@@ -364,6 +428,35 @@ export default function Reservations() {
           </div>
         </div>
       </div>
+
+      <AddReservationModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSave={handleAddReservation}
+      />
+
+      <ReservationDetailsModal
+        isOpen={isDetailsModalOpen}
+        onClose={() => {
+          setIsDetailsModalOpen(false);
+          setSelectedReservation(null);
+        }}
+        reservation={selectedReservation}
+        onCancelReservation={() => {
+          setIsDetailsModalOpen(false);
+          setIsCancelModalOpen(true);
+        }}
+      />
+
+      <CancelReservationModal
+        isOpen={isCancelModalOpen}
+        onClose={() => {
+          setIsCancelModalOpen(false);
+          setSelectedReservation(null);
+        }}
+        onConfirm={handleCancelReservation}
+        reservationId={selectedReservation?.id || 0}
+      />
     </div>
   );
 }

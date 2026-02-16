@@ -4,6 +4,7 @@ import { Input } from "../Input/Input";
 import { Select } from "../Select/Select";
 import {
   Search,
+  Add,
   FilterList,
   FileDownload,
   Edit,
@@ -16,13 +17,72 @@ import {
   CheckCircle,
 } from "@mui/icons-material";
 import { UsersStyles as styles } from "./Users.style";
+import { AddUserModal } from "./Modals/AddUserModal";
+import { DeactivateUserModal } from "./Modals/DeactivateUserModal";
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  document: string;
+  avatar: string;
+  role: string;
+  roleType: string;
+  accessLevel: string;
+  status: string;
+  lastAccess: string;
+}
+
+// Interface matching AddUserModal output
+interface UserFormData {
+  name: string;
+  email: string;
+  phone: string;
+  document: string;
+  role: string;
+  accessLevel: string;
+  password?: string;
+}
 
 export default function Users() {
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
 
+  // Modal State
+  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
+  const [isEditUserModalOpen, setIsEditUserModalOpen] = useState(false);
+  const [isDeactivateUserModalOpen, setIsDeactivateUserModalOpen] =
+    useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
   const handleExport = (format: string) => {
     console.log(`Exporting users as ${format}`);
+  };
+
+  const handleAddUser = (userData: UserFormData) => {
+    console.log("Adding user:", userData);
+    // TODO: Add API call
+  };
+
+  const handleEditUser = (userData: UserFormData) => {
+    console.log("Editing user:", userData);
+    // TODO: Add API call
+  };
+
+  const handleDeactivateUser = () => {
+    console.log("Deactivating user:", selectedUser);
+    // TODO: Add API call
+  };
+
+  const openEditModal = (user: User) => {
+    setSelectedUser(user);
+    setIsEditUserModalOpen(true);
+  };
+
+  const openDeactivateModal = (user: User) => {
+    setSelectedUser(user);
+    setIsDeactivateUserModalOpen(true);
   };
 
   const users = [
@@ -30,6 +90,8 @@ export default function Users() {
       id: 1,
       name: "Ana Silva",
       email: "ana.silva@empresa.com",
+      phone: "(11) 99999-1111",
+      document: "442132",
       avatar:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
       role: "Gerente",
@@ -42,6 +104,8 @@ export default function Users() {
       id: 2,
       name: "Carlos Santos",
       email: "carlos.santos@empresa.com",
+      phone: "(11) 99999-2222",
+      document: "432455",
       avatar:
         "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=150&auto=format&fit=crop",
       role: "Recepção",
@@ -54,6 +118,8 @@ export default function Users() {
       id: 3,
       name: "Maria Oliveira",
       email: "maria.oliveira@empresa.com",
+      phone: "(11) 99999-3333",
+      document: "442132",
       avatar:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop",
       role: "Vendas",
@@ -66,6 +132,8 @@ export default function Users() {
       id: 4,
       name: "João Costa",
       email: "joao.costa@empresa.com",
+      phone: "(11) 99999-4444",
+      document: "442132",
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop",
       role: "Suporte",
@@ -203,6 +271,15 @@ export default function Users() {
               CSV
             </option>
           </Select>
+
+          <Button
+            label="Novo Funcionário"
+            onClick={() => setIsAddUserModalOpen(true)}
+            variant="primary"
+            size="small"
+            Icon={Add}
+            className="md:w-auto"
+          />
         </div>
       </div>
 
@@ -269,6 +346,7 @@ export default function Users() {
                 <td className={styles.td}>
                   <div className={styles.actionsContainer}>
                     <button
+                      onClick={() => openEditModal(user)}
                       className={`${styles.actionButton} text-blue-500 hover:bg-blue-50`}
                     >
                       <Edit fontSize="small" />
@@ -279,6 +357,7 @@ export default function Users() {
                       <VpnKey fontSize="small" />
                     </button>
                     <button
+                      onClick={() => openDeactivateModal(user)}
                       className={`${styles.actionButton} text-red-500 hover:bg-red-50`}
                     >
                       <PersonOff fontSize="small" />
@@ -305,6 +384,32 @@ export default function Users() {
           </div>
         </div>
       </div>
+
+      <AddUserModal
+        isOpen={isAddUserModalOpen}
+        onClose={() => setIsAddUserModalOpen(false)}
+        onSave={handleAddUser}
+      />
+
+      <AddUserModal
+        isOpen={isEditUserModalOpen}
+        onClose={() => {
+          setIsEditUserModalOpen(false);
+          setSelectedUser(null);
+        }}
+        onSave={handleEditUser}
+        initialData={selectedUser}
+      />
+
+      <DeactivateUserModal
+        isOpen={isDeactivateUserModalOpen}
+        onClose={() => {
+          setIsDeactivateUserModalOpen(false);
+          setSelectedUser(null);
+        }}
+        onConfirm={handleDeactivateUser}
+        userName={selectedUser?.name || ""}
+      />
     </div>
   );
 }

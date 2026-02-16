@@ -36,3 +36,4 @@ export { default as Settings } from "./Settings";
 export * from "./LoadingSpinner/LoadingSpinner";
 export * from "./Input";
 export * from "./Select";
+export * from "./Modal/Modal";

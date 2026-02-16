@@ -14,11 +14,18 @@ import {
   Add,
 } from "@mui/icons-material";
 import { RoomsStyles as styles } from "./Rooms.style";
+import { AddRoomModal, type RoomData } from "./Modals/AddRoomModal";
 
 export default function Rooms() {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
+
+  const handleAddRoom = (roomData: RoomData) => {
+    console.log("Adding room:", roomData);
+    // TODO: Connect to API
+  };
 
   const rooms = [
     {
@@ -214,7 +221,7 @@ export default function Rooms() {
         </div>
         <Button
           label={t("rooms.button.add", "Adicionar Novo Quarto")}
-          onClick={() => {}}
+          onClick={() => setIsAddRoomModalOpen(true)}
           variant="minimal"
           size="small"
           Icon={Add}
@@ -294,6 +301,12 @@ export default function Rooms() {
           </div>
         </div>
       </div>
+
+      <AddRoomModal
+        isOpen={isAddRoomModalOpen}
+        onClose={() => setIsAddRoomModalOpen(false)}
+        onSave={handleAddRoom}
+      />
     </div>
   );
 }
