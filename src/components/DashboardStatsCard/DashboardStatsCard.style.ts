@@ -1,8 +1,8 @@
 export const DashboardStatsCardStyles = {
-    container: "bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-start justify-between",
-    title: "text-sm font-medium text-gray-500 mb-1",
-    value: "text-2xl font-bold text-gray-900 mb-1",
+    container: "bg-neutral p-6 rounded-xl border border-border-light shadow-sm flex items-start justify-between z-0 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default overflow-hidden relative group",
+    title: "text-sm font-medium text-text-muted mb-1 truncate",
+    value: "text-2xl font-bold text-text-color mb-1 tracking-tight truncate",
     subtextBase: "text-xs font-medium",
-    subtextDefault: "text-gray-500",
-    iconWrapper: "p-3 rounded-lg",
+    subtextDefault: "text-text-muted",
+    iconWrapper: "p-3 rounded-xl shadow-sm bg-opacity-80 backdrop-blur-sm",
 };

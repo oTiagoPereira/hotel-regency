@@ -1,225 +1,258 @@
-import { useState } from "react";
-import { Search, FileDownload, Visibility, Edit } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
+import {
+  FileDownload,
+  Visibility,
+  Edit,
+  Block,
+  Add,
+} from "@mui/icons-material";
 import { GuestsStyles as styles } from "./Guests.style";
-import { Input } from "../Input/Input";
 import { Select } from "../Select/Select";
-
-const guests = [
-  {
-    id: "001",
-    name: "Maria Silva",
-    email: "maria.silva@email.com",
-    phone: "(11) 99999-9999",
-    reservations: 24,
-    status: "active",
-    avatar:
-      "https://ui-avatars.com/api/?name=Maria+Silva&background=0D8ABC&color=fff",
-  },
-  {
-    id: "002",
-    name: "João Santos",
-    email: "joao.santos@email.com",
-    phone: "(11) 88888-8888",
-    reservations: 12,
-    status: "active",
-    avatar:
-      "https://ui-avatars.com/api/?name=Joao+Santos&background=10B981&color=fff",
-  },
-  {
-    id: "003",
-    name: "Ana Costa",
-    email: "ana.costa@email.com",
-    phone: "(11) 77777-7777",
-    reservations: 8,
-    status: "inactive",
-    avatar:
-      "https://ui-avatars.com/api/?name=Ana+Costa&background=F59E0B&color=fff",
-  },
-  {
-    id: "004",
-    name: "Pedro Lima",
-    email: "pedro.lima@email.com",
-    phone: "(11) 66666-6666",
-    reservations: 31,
-    status: "suspended",
-    avatar:
-      "https://ui-avatars.com/api/?name=Pedro+Lima&background=EF4444&color=fff",
-  },
-  {
-    id: "005",
-    name: "Carla Oliveira",
-    email: "carla.oliveira@email.com",
-    phone: "(11) 55555-5555",
-    reservations: 15,
-    status: "active",
-    avatar:
-      "https://ui-avatars.com/api/?name=Carla+Oliveira&background=8B5CF6&color=fff",
-  },
-];
+import { Button } from "../Button/Button";
+import { AddGuestModal } from "./Modals/AddGuestModal";
+import { GuestDetailsModal } from "./Modals/GuestDetailsModal";
+import { DeactivateGuestModal } from "./Modals/DeactivateGuestModal";
+import { Table, type Column } from "../Table/Table";
+import { Badge, type BadgeVariant } from "../Badge/Badge";
+import { PageHeader } from "../PageHeader/PageHeader";
+import { useGuests, type Guest } from "../../hooks/useGuests";
 
 export default function Guests() {
-  const [filterStatus, setFilterStatus] = useState("all");
+  const { t } = useTranslation();
+  const { filteredGuests, stats, filters, modals, actions } = useGuests();
 
-  const handleExport = (format: string) => {
-    console.log(`Exportando guests como ${format}`);
-  };
-  const getStatusStyle = (status: string) => {
+  const getStatusVariant = (status: string): BadgeVariant => {
     switch (status) {
       case "active":
-        return styles.statusActive;
+        return "success";
       case "inactive":
-        return styles.statusInactive;
+        return "warning";
       case "suspended":
-        return styles.statusSuspended;
+        return "danger";
       default:
-        return styles.statusInactive;
+        return "default";
     }
   };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
       case "active":
-        return "Ativo";
+        return t("dashboard.status.active");
       case "inactive":
-        return "Inativo";
+        return t("dashboard.status.inactive");
       case "suspended":
-        return "Suspenso";
+        return t("dashboard.status.suspended");
       default:
         return status;
     }
   };
 
+  const columns: Column<Guest>[] = [
+    {
+      key: "client",
+      header: t("dashboard.guests.table.client"),
+      render: (guest) => (
+        <div className={styles.clientCell}>
+          <img
+            src={guest.avatar}
+            alt={guest.name}
+            className={styles.avatar}
+          />
+          <div className={styles.clientInfo}>
+            <span className={styles.clientName}>{guest.name}</span>
+            <span className={styles.clientId}>
+              {t("dashboard.guests.table.id")}: #{guest.id}
+            </span>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: "contact",
+      header: t("dashboard.guests.table.contact"),
+      render: (guest) => (
+        <div className={styles.contactCell}>
+          <span className={styles.email}>{guest.email}</span>
+          <span className={styles.phone}>{guest.phone}</span>
+        </div>
+      ),
+    },
+    {
+      key: "reservations",
+      header: t("dashboard.guests.table.reservations"),
+      render: (guest) => (
+        <div className={styles.reservationsCell}>
+          <span className={styles.resCount}>
+            {guest.reservations}
+          </span>
+          <span className={styles.resLabel}>
+            {t("dashboard.guests.table.reservationsCount")}
+          </span>
+        </div>
+      ),
+    },
+    {
+      key: "status",
+      header: t("dashboard.guests.table.status"),
+      render: (guest) => (
+        <Badge variant={getStatusVariant(guest.status)}>
+          {getStatusLabel(guest.status)}
+        </Badge>
+      ),
+    },
+    {
+      key: "actions",
+      header: t("dashboard.guests.table.actions"),
+      render: (guest) => (
+        <div className={styles.actionsCell}>
+          <button
+            onClick={() => actions.openDetailsModal(guest)}
+            className={`${styles.actionButton} text-info hover:bg-info-light`}
+            title={t("dashboard.actions.view")}
+            aria-label={t("dashboard.actions.view")}
+          >
+            <Visibility fontSize="small" />
+          </button>
+          <button
+            onClick={() => actions.openEditModal(guest)}
+            className={`${styles.actionButton} text-text-muted hover:bg-surface`}
+            title={t("dashboard.actions.edit")}
+            aria-label={t("dashboard.actions.edit")}
+          >
+            <Edit fontSize="small" />
+          </button>
+          <button
+            onClick={() => actions.openDeactivateModal(guest)}
+            className={`${styles.actionButton} text-error hover:bg-error-light`}
+            title={t("dashboard.actions.deactivate")}
+            aria-label={t("dashboard.actions.deactivate")}
+          >
+            <Block fontSize="small" />
+          </button>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div className="relative w-full md:w-96">
-          <Input
-            placeholder="Buscar por nome, email ou telefone..."
-            icon={<Search fontSize="small" />}
-            containerClassName="w-full"
-          />
-        </div>
-
-        <div className={styles.headerActions}>
+      <PageHeader
+        searchPlaceholder={t("dashboard.guests.searchPlaceholder")}
+        searchValue={filters.searchTerm}
+        onSearchChange={filters.setSearchTerm}
+        actions={
+          <>
+            <Button
+              label={t("dashboard.guests.newGuest")}
+              Icon={Add}
+              variant="primary"
+              size="default"
+              onClick={() => modals.setIsAddGuestModalOpen(true)}
+            />
+            <Select
+              value=""
+              onChange={(e) => actions.handleExport(e.target.value)}
+              containerClassName="w-full md:min-w-[fit-content]"
+              icon={<FileDownload fontSize="small" />}
+              iconClassName="text-primary"
+              arrowClassName="text-primary"
+              placeholder={t("dashboard.actions.export")}
+              className="text-primary"
+            >
+              <option value="pdf" className="text-primary">
+                PDF
+              </option>
+              <option value="excel" className="text-primary">
+                Excel
+              </option>
+              <option value="csv" className="text-primary">
+                CSV
+              </option>
+            </Select>
+          </>
+        }
+        filters={
           <Select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
+            value={filters.filterStatus}
+            onChange={(e) => filters.setFilterStatus(e.target.value)}
             containerClassName="w-full md:min-w-[fit-content]"
           >
-            <option value="all">Todos os Status</option>
-            <option value="active">Ativo</option>
-            <option value="inactive">Inativo</option>
-            <option value="suspended">Suspenso</option>
+            <option value="all">{t("dashboard.actions.allStatus")}</option>
+            <option value="active">{t("dashboard.status.active")}</option>
+            <option value="inactive">{t("dashboard.status.inactive")}</option>
+            <option value="suspended">{t("dashboard.status.suspended")}</option>
           </Select>
+        }
+      />
 
-          <Select
-            value=""
-            onChange={(e) => handleExport(e.target.value)}
-            containerClassName="w-full md:min-w-[fit-content]"
-            icon={<FileDownload fontSize="small" />}
-            iconClassName="text-primary"
-            arrowClassName="text-primary"
-            placeholder="Exportar"
-            className="text-primary"
-          >
-            <option value="pdf" className="text-primary">
-              PDF
-            </option>
-            <option value="excel" className="text-primary">
-              Excel
-            </option>
-            <option value="csv" className="text-primary">
-              CSV
-            </option>
-          </Select>
-        </div>
-      </div>
+      <Table
+        columns={columns}
+        data={filteredGuests}
+        keyExtractor={(guest) => guest.id}
+        totalItems={stats.total}
+        resultsText={t("dashboard.users.pagination.results")}
+      />
 
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
-          <thead className={styles.thead}>
-            <tr>
-              <th className={styles.th}>Cliente</th>
-              <th className={styles.th}>Contato</th>
-              <th className={styles.th}>Reservas</th>
-              <th className={styles.th}>Status</th>
-              <th className={styles.th}>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {guests.map((guest) => (
-              <tr key={guest.id} className={styles.tr}>
-                <td className={styles.td}>
-                  <div className={styles.clientCell}>
-                    <img
-                      src={guest.avatar}
-                      alt={guest.name}
-                      className={styles.avatar}
-                    />
-                    <div className={styles.clientInfo}>
-                      <span className={styles.clientName}>{guest.name}</span>
-                      <span className={styles.clientId}>ID: #{guest.id}</span>
-                    </div>
-                  </div>
-                </td>
+      <AddGuestModal
+        isOpen={modals.isAddGuestModalOpen}
+        onClose={() => modals.setIsAddGuestModalOpen(false)}
+        onSave={actions.handleAddGuest}
+      />
 
-                <td className={styles.td}>
-                  <div className={styles.contactCell}>
-                    <span className={styles.email}>{guest.email}</span>
-                    <span className={styles.phone}>{guest.phone}</span>
-                  </div>
-                </td>
+      <AddGuestModal
+        isOpen={modals.isEditGuestModalOpen}
+        onClose={() => {
+          modals.setIsEditGuestModalOpen(false);
+          modals.setSelectedGuest(null);
+        }}
+        onSave={actions.handleEditGuest}
+        initialData={
+          modals.selectedGuest
+            ? {
+                name: modals.selectedGuest.name,
+                email: modals.selectedGuest.email,
+                phone: modals.selectedGuest.phone,
+                document: modals.selectedGuest.document,
+                vip: modals.selectedGuest.vip || false,
+              }
+            : null
+        }
+      />
 
-                <td className={styles.td}>
-                  <div className={styles.reservationsCell}>
-                    <span className={styles.resCount}>
-                      {guest.reservations}
-                    </span>
-                    <span className={styles.resLabel}>reservas</span>
-                  </div>
-                </td>
+      <GuestDetailsModal
+        isOpen={modals.isDetailsModalOpen}
+        onClose={() => {
+          modals.setIsDetailsModalOpen(false);
+          modals.setSelectedGuest(null);
+        }}
+        guest={
+          modals.selectedGuest
+            ? {
+                id: Number(modals.selectedGuest.id),
+                name: modals.selectedGuest.name,
+                email: modals.selectedGuest.email,
+                phone: modals.selectedGuest.phone,
+                document: modals.selectedGuest.document,
+                status: modals.selectedGuest.status,
+                avatar: modals.selectedGuest.avatar,
+                vip: modals.selectedGuest.vip || false,
+                totalReservations: modals.selectedGuest.totalReservations || 0,
+                totalSpent: modals.selectedGuest.totalSpent || 0,
+                lastVisit: modals.selectedGuest.lastVisit || "-",
+              }
+            : null
+        }
+      />
 
-                <td className={styles.td}>
-                  <span
-                    className={`${styles.statusBadge} ${getStatusStyle(guest.status)}`}
-                  >
-                    {getStatusLabel(guest.status)}
-                  </span>
-                </td>
-
-                <td className={styles.td}>
-                  <div className={styles.actionsCell}>
-                    <button
-                      className={styles.actionButton}
-                      title="Ver Detalhes"
-                    >
-                      <Visibility fontSize="small" />
-                    </button>
-                    <button className={styles.actionButton} title="Editar">
-                      <Edit fontSize="small" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className={styles.paginationContainer}>
-          <div className={styles.paginationInfo}>
-            Mostrando 1 a 5 de 47 resultados
-          </div>
-          <div className={styles.paginationControls}>
-            <button className={styles.paginationButton} disabled>
-              Anterior
-            </button>
-            <button className={styles.paginationCurrent}>1</button>
-            <button className={styles.paginationButton}>2</button>
-            <button className={styles.paginationButton}>3</button>
-            <button className={styles.paginationButton}>Próximo</button>
-          </div>
-        </div>
-      </div>
+      <DeactivateGuestModal
+        isOpen={modals.isDeactivateModalOpen}
+        onClose={() => {
+          modals.setIsDeactivateModalOpen(false);
+          modals.setSelectedGuest(null);
+        }}
+        onConfirm={actions.handleDeactivateGuest}
+        guestName={modals.selectedGuest?.name || ""}
+      />
     </div>
   );
 }

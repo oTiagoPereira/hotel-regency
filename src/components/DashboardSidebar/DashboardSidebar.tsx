@@ -1,3 +1,4 @@
+import { useMemo, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -20,48 +21,52 @@ export default function Sidebar() {
   const location = useLocation();
   const { isSidebarOpen, closeSidebar } = useDashboard();
 
-  const menuItems = [
-    {
-      path: "/dashboard",
-      label: "dashboard.menu.dashboard",
-      icon: <Dashboard />,
-    },
-    {
-      path: "/dashboard/reservations",
-      label: "dashboard.menu.reservations",
-      icon: <CalendarMonth />,
-    },
-    {
-      path: "/dashboard/rooms",
-      label: "dashboard.menu.rooms",
-      icon: <Hotel />,
-    },
-    {
-      path: "/dashboard/guests",
-      label: "dashboard.menu.guests",
-      icon: <People />,
-    },
-    {
-      path: "/dashboard/finance",
-      label: "dashboard.menu.finance",
-      icon: <AttachMoney />,
-    },
-    {
-      path: "/dashboard/reviews",
-      label: "dashboard.menu.reviews",
-      icon: <Star />,
-    },
-    {
-      path: "/dashboard/users",
-      label: "dashboard.menu.users",
-      icon: <People />,
-    },
-    {
-      path: "/dashboard/settings",
-      label: "dashboard.menu.settings",
-      icon: <Settings />,
-    },
-  ];
+  const menuItems: Array<{ path: string; label: string; icon: ReactNode }> =
+    useMemo(
+      () => [
+        {
+          path: "/dashboard",
+          label: "dashboard.menu.dashboard",
+          icon: <Dashboard />,
+        },
+        {
+          path: "/dashboard/reservations",
+          label: "dashboard.menu.reservations",
+          icon: <CalendarMonth />,
+        },
+        {
+          path: "/dashboard/rooms",
+          label: "dashboard.menu.rooms",
+          icon: <Hotel />,
+        },
+        {
+          path: "/dashboard/guests",
+          label: "dashboard.menu.guests",
+          icon: <People />,
+        },
+        {
+          path: "/dashboard/finance",
+          label: "dashboard.menu.finance",
+          icon: <AttachMoney />,
+        },
+        {
+          path: "/dashboard/reviews",
+          label: "dashboard.menu.reviews",
+          icon: <Star />,
+        },
+        {
+          path: "/dashboard/users",
+          label: "dashboard.menu.users",
+          icon: <People />,
+        },
+        {
+          path: "/dashboard/settings",
+          label: "dashboard.menu.settings",
+          icon: <Settings />,
+        },
+      ],
+      [], 
+    );
 
   return (
     <>
@@ -89,7 +94,8 @@ export default function Sidebar() {
           <button
             className={styles.closeButton}
             onClick={closeSidebar}
-            aria-label="Fechar menu"
+            aria-label={t("dashboard.menu.closeSidebar", "Fechar menu")}
+            title={t("dashboard.menu.closeSidebar", "Fechar menu")}
           >
             <Close fontSize="small" />
           </button>
@@ -121,7 +127,7 @@ export default function Sidebar() {
         <div className={styles.footer}>
           <button className={styles.logoutButton}>
             <Logout className={styles.logoutIcon} />
-            <span>Sair</span>
+            <span>{t("dashboard.menu.logout")}</span>
           </button>
         </div>
       </aside>

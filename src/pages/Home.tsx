@@ -10,7 +10,7 @@ const HomeRooms = lazy(() => import("../components/HomeRooms"));
 const Amenities = lazy(() => import("../components/Amenities"));
 const GuestExperience = lazy(() => import("../components/GuestExperience"));
 
-const fallbackElement = <div className="h-[300px] bg-gray-300 animate-pulse" />;
+const fallbackElement = <div className="h-[300px] bg-border-light animate-pulse" />;
 
 function Home() {
   const metaTags = useMemo(

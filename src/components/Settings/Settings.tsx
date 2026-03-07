@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 import { Select } from "../Select/Select";
@@ -19,31 +20,40 @@ import {
 import { SettingsStyles as styles } from "./Settings.style";
 
 export default function Settings() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("general");
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const tabs = [
-    { id: "general", label: "Gerais", icon: <SettingsIcon fontSize="small" /> },
+    {
+      id: "general",
+      label: t("dashboard.settings.tabs.general"),
+      icon: <SettingsIcon fontSize="small" />,
+    },
     {
       id: "checkin",
-      label: "Check-in/out",
+      label: t("dashboard.settings.tabs.checkin"),
       icon: <MeetingRoom fontSize="small" />,
     },
-    { id: "policies", label: "Políticas", icon: <Gavel fontSize="small" /> },
+    {
+      id: "policies",
+      label: t("dashboard.settings.tabs.policies"),
+      icon: <Gavel fontSize="small" />,
+    },
     {
       id: "payments",
-      label: "Pagamentos",
+      label: t("dashboard.settings.tabs.payments"),
       icon: <CreditCard fontSize="small" />,
     },
     {
       id: "notifications",
-      label: "Notificações",
+      label: t("dashboard.settings.tabs.notifications"),
       icon: <Notifications fontSize="small" />,
     },
     {
       id: "integrations",
-      label: "Integrações",
+      label: t("dashboard.settings.tabs.integrations"),
       icon: <Extension fontSize="small" />,
     },
   ];
@@ -59,20 +69,27 @@ export default function Settings() {
 
   const renderGeneralSettings = () => (
     <div className="animate-fadeIn">
-      <h3 className={styles.sectionHeader}>Configurações Gerais</h3>
+      <h3 className={styles.sectionHeader}>
+        {t("dashboard.settings.sections.general.title")}
+      </h3>
 
       <div className={styles.grid}>
         <div>
-          <Input label="Nome do Hotel" defaultValue="Hotel Paradise" />
+          <Input
+            label={t("dashboard.settings.sections.general.hotelName")}
+            defaultValue="Hotel Paradise"
+          />
         </div>
         <div>
-          <label className={styles.label}>Logo do Hotel</label>
+          <label className={styles.label}>
+            {t("dashboard.settings.sections.general.hotelLogo")}
+          </label>
           <div className={styles.logoContainer}>
             <div className={styles.logoPreview}>
               <ImageIcon />
             </div>
             <Button
-              label="Alterar Logo"
+              label={t("dashboard.settings.sections.general.changeLogo")}
               size="small"
               variant="primary"
               onClick={() => {}}
@@ -83,14 +100,20 @@ export default function Settings() {
 
       <div className={styles.grid}>
         <div>
-          <Select label="Idioma do Sistema" defaultValue="pt-BR">
+          <Select
+            label={t("dashboard.settings.sections.general.systemLanguage")}
+            defaultValue="pt-BR"
+          >
             <option value="pt-BR">Português (BR)</option>
             <option value="en-US">English (US)</option>
             <option value="es-ES">Español (ES)</option>
           </Select>
         </div>
         <div>
-          <Select label="Fuso Horário" defaultValue="America/Sao_Paulo">
+          <Select
+            label={t("dashboard.settings.sections.general.timezone")}
+            defaultValue="America/Sao_Paulo"
+          >
             <option value="America/Sao_Paulo">America/Sao_Paulo (UTC-3)</option>
             <option value="UTC">UTC (GMT+0)</option>
           </Select>
@@ -99,29 +122,57 @@ export default function Settings() {
 
       <div className={styles.grid}>
         <div>
-          <Input label="Telefone Fixo" placeholder="(11) 3456-7890" />
+          <Input
+            label={t("dashboard.settings.sections.general.phone")}
+            placeholder="(11) 3456-7890"
+          />
         </div>
         <div>
-          <Input label="WhatsApp" placeholder="(11) 99999-9999" />
+          <Input
+            label={t("dashboard.settings.sections.general.whatsapp")}
+            placeholder="(11) 99999-9999"
+          />
         </div>
       </div>
 
       <div className="mb-6">
-        <label className={styles.label}>Endereço Completo</label>
+        <label className={styles.label}>
+          {t("dashboard.settings.sections.general.address")}
+        </label>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <Input placeholder="CEP" />
-          <Input placeholder="Cidade" />
-          <Input placeholder="Estado" />
+          <Input
+            placeholder={t(
+              "dashboard.settings.sections.general.addressFields.zip",
+            )}
+          />
+          <Input
+            placeholder={t(
+              "dashboard.settings.sections.general.addressFields.city",
+            )}
+          />
+          <Input
+            placeholder={t(
+              "dashboard.settings.sections.general.addressFields.state",
+            )}
+          />
         </div>
-        <Input placeholder="Rua e número" />
+        <Input
+          placeholder={t(
+            "dashboard.settings.sections.general.addressFields.street",
+          )}
+        />
       </div>
 
       <div className="mb-6">
-        <label className={styles.label}>Política de Privacidade</label>
+        <label className={styles.label}>
+          {t("dashboard.settings.sections.general.privacyPolicy")}
+        </label>
         <textarea
           className={styles.textarea}
-          placeholder="Digite a política de privacidade do hotel..."
-          defaultValue="O Hotel Paradise respeita sua privacidade e protege seus dados pessoais..."
+          placeholder={t(
+            "dashboard.settings.sections.general.privacyPlaceholder",
+          )}
+          defaultValue={t("dashboard.settings.sections.general.privacyDefault")}
         ></textarea>
       </div>
     </div>
@@ -129,15 +180,21 @@ export default function Settings() {
 
   const renderCheckInSettings = () => (
     <div className="animate-fadeIn">
-      <h3 className={styles.sectionHeader}>Horários e Taxas</h3>
+      <h3 className={styles.sectionHeader}>
+        {t("dashboard.settings.sections.checkin.title")}
+      </h3>
       <div className={styles.grid}>
         <div>
-          <Input type="time" label="Horário de Check-in" defaultValue="14:00" />
+          <Input
+            type="time"
+            label={t("dashboard.settings.sections.checkin.checkinTime")}
+            defaultValue="14:00"
+          />
         </div>
         <div>
           <Input
             type="time"
-            label="Horário de Check-out"
+            label={t("dashboard.settings.sections.checkin.checkoutTime")}
             defaultValue="11:00"
           />
         </div>
@@ -146,19 +203,23 @@ export default function Settings() {
         <div>
           <Input
             type="number"
-            label="Taxa de Early Check-in (%)"
+            label={t("dashboard.settings.sections.checkin.earlyCheckinFee")}
             defaultValue="50"
-            placeholder="Ex: 50"
-            helperText="Porcentagem sobre a diária"
+            placeholder={t(
+              "dashboard.settings.sections.checkin.feePlaceholder",
+            )}
+            helperText={t("dashboard.settings.sections.checkin.feeHelper")}
           />
         </div>
         <div>
           <Input
             type="number"
-            label="Taxa de Late Check-out (%)"
+            label={t("dashboard.settings.sections.checkin.lateCheckoutFee")}
             defaultValue="50"
-            placeholder="Ex: 50"
-            helperText="Porcentagem sobre a diária"
+            placeholder={t(
+              "dashboard.settings.sections.checkin.feePlaceholder",
+            )}
+            helperText={t("dashboard.settings.sections.checkin.feeHelper")}
           />
         </div>
       </div>
@@ -167,27 +228,39 @@ export default function Settings() {
 
   const renderPoliciesSettings = () => (
     <div className="animate-fadeIn">
-      <h3 className={styles.sectionHeader}>Regras da Propriedade</h3>
+      <h3 className={styles.sectionHeader}>
+        {t("dashboard.settings.sections.policies.title")}
+      </h3>
       <div className={styles.gridFull}>
         <div>
-          <label className={styles.label}>Política de Cancelamento</label>
+          <label className={styles.label}>
+            {t("dashboard.settings.sections.policies.cancellation")}
+          </label>
           <textarea
             className={styles.textarea}
-            defaultValue="Cancelamento gratuito até 48 horas antes do check-in. Após este prazo, será cobrada a primeira diária."
+            defaultValue={t(
+              "dashboard.settings.sections.policies.cancellationDefault",
+            )}
           ></textarea>
         </div>
         <div>
-          <label className={styles.label}>Política para Crianças</label>
+          <label className={styles.label}>
+            {t("dashboard.settings.sections.policies.children")}
+          </label>
           <textarea
             className={styles.textarea}
-            defaultValue="Crianças até 5 anos não pagam se ocuparem as camas existentes."
+            defaultValue={t(
+              "dashboard.settings.sections.policies.childrenDefault",
+            )}
           ></textarea>
         </div>
         <div>
-          <label className={styles.label}>Política para Pets</label>
+          <label className={styles.label}>
+            {t("dashboard.settings.sections.policies.pets")}
+          </label>
           <textarea
             className={styles.textarea}
-            defaultValue="Aceitamos pets de pequeno porte mediante taxa adicional de R$ 50,00 por dia."
+            defaultValue={t("dashboard.settings.sections.policies.petsDefault")}
           ></textarea>
         </div>
       </div>
@@ -209,10 +282,15 @@ export default function Settings() {
 
   const renderPaymentsSettings = () => (
     <div className="animate-fadeIn">
-      <h3 className={styles.sectionHeader}>Configurações Financeiras</h3>
+      <h3 className={styles.sectionHeader}>
+        {t("dashboard.settings.sections.payments.title")}
+      </h3>
       <div className={styles.grid}>
         <div>
-          <Select label="Moeda Padrão" defaultValue="BRL">
+          <Select
+            label={t("dashboard.settings.sections.payments.currency")}
+            defaultValue="BRL"
+          >
             <option value="BRL">Real Brasileiro (BRL)</option>
             <option value="USD">Dólar Americano (USD)</option>
             <option value="EUR">Euro (EUR)</option>
@@ -221,32 +299,38 @@ export default function Settings() {
         <div>
           <Input
             type="number"
-            label="Impostos e Taxas (%)"
+            label={t("dashboard.settings.sections.payments.taxes")}
             defaultValue="15"
-            placeholder="Ex: 15"
+            placeholder={t(
+              "dashboard.settings.sections.payments.taxesPlaceholder",
+            )}
           />
         </div>
       </div>
 
-      <h4 className="font-medium text-gray-900 mb-4">
-        Métodos de Pagamento Aceitos
+      <h4 className="font-medium text-text-color mb-4">
+        {t("dashboard.settings.sections.payments.acceptedMethods")}
       </h4>
       <div className={styles.paymentGrid}>
         {[
           {
             id: "credit",
-            label: "Cartão de Crédito",
+            label: t("dashboard.settings.sections.payments.methods.credit"),
             icon: <CreditCard fontSize="large" />,
           },
           {
             id: "debit",
-            label: "Cartão de Débito",
+            label: t("dashboard.settings.sections.payments.methods.debit"),
             icon: <AccountBalance fontSize="large" />,
           },
-          { id: "pix", label: "Pix", icon: <QrCode fontSize="large" /> },
+          {
+            id: "pix",
+            label: t("dashboard.settings.sections.payments.methods.pix"),
+            icon: <QrCode fontSize="large" />,
+          },
           {
             id: "cash",
-            label: "Dinheiro",
+            label: t("dashboard.settings.sections.payments.methods.cash"),
             icon: <AttachMoney fontSize="large" />,
           },
         ].map((method) => {
@@ -275,34 +359,52 @@ export default function Settings() {
 
   const renderNotificationsSettings = () => (
     <div className="animate-fadeIn">
-      <h3 className={styles.sectionHeader}>Preferências de Notificação</h3>
+      <h3 className={styles.sectionHeader}>
+        {t("dashboard.settings.sections.notifications.title")}
+      </h3>
       <div className="space-y-6">
         {[
           {
             id: "new_res",
-            label: "Novas Reservas",
-            desc: "Receber alerta quando uma nova reserva for criada.",
+            label: t(
+              "dashboard.settings.sections.notifications.items.new_res.label",
+            ),
+            desc: t(
+              "dashboard.settings.sections.notifications.items.new_res.desc",
+            ),
           },
           {
             id: "cancel",
-            label: "Cancelamentos",
-            desc: "Receber alerta quando uma reserva for cancelada.",
+            label: t(
+              "dashboard.settings.sections.notifications.items.cancel.label",
+            ),
+            desc: t(
+              "dashboard.settings.sections.notifications.items.cancel.desc",
+            ),
           },
           {
             id: "checkin_alert",
-            label: "Alerta de Check-in",
-            desc: "Notificar 1 hora antes do check-in previsto.",
+            label: t(
+              "dashboard.settings.sections.notifications.items.checkin_alert.label",
+            ),
+            desc: t(
+              "dashboard.settings.sections.notifications.items.checkin_alert.desc",
+            ),
           },
           {
             id: "stock",
-            label: "Estoque Baixo",
-            desc: "Alertar quando itens do estoque estiverem acabando.",
+            label: t(
+              "dashboard.settings.sections.notifications.items.stock.label",
+            ),
+            desc: t(
+              "dashboard.settings.sections.notifications.items.stock.desc",
+            ),
           },
         ].map((item) => (
           <div key={item.id} className="flex items-center justify-between">
             <div>
-              <p className="font-medium text-gray-900">{item.label}</p>
-              <p className="text-sm text-gray-500">{item.desc}</p>
+              <p className="font-medium text-text-color">{item.label}</p>
+              <p className="text-sm text-text-muted">{item.desc}</p>
             </div>
             <label className={styles.switchLabel}>
               <input
@@ -320,29 +422,64 @@ export default function Settings() {
 
   const renderIntegrationsSettings = () => (
     <div className="animate-fadeIn">
-      <h3 className={styles.sectionHeader}>Integrações Externas</h3>
+      <h3 className={styles.sectionHeader}>
+        {t("dashboard.settings.sections.integrations.title")}
+      </h3>
       <div className="space-y-4">
         {[
-          { name: "Stripe", status: "Conectado", icon: "S" },
-          { name: "Google Analytics", status: "Conectado", icon: "G" },
-          { name: "Mailchimp", status: "Desconectado", icon: "M" },
-          { name: "WhatsApp Business", status: "Conectado", icon: "W" },
+          {
+            name: "Stripe",
+            status: t("dashboard.settings.sections.integrations.connected"),
+            icon: "S",
+          },
+          {
+            name: "Google Analytics",
+            status: t("dashboard.settings.sections.integrations.connected"),
+            icon: "G",
+          },
+          {
+            name: "Mailchimp",
+            status: t("dashboard.settings.sections.integrations.disconnected"),
+            icon: "M",
+          },
+          {
+            name: "WhatsApp Business",
+            status: t("dashboard.settings.sections.integrations.connected"),
+            icon: "W",
+          },
         ].map((item, i) => (
           <div key={i} className={styles.integrationItem}>
             <div className={styles.integrationInfo}>
               <div className={styles.integrationIcon}>{item.icon}</div>
               <div>
                 <p className={styles.integrationName}>{item.name}</p>
-                {item.status === "Conectado" ? (
-                  <span className={styles.integrationStatus}>Conectado</span>
+                {item.status ===
+                t("dashboard.settings.sections.integrations.connected") ? (
+                  <span className={styles.integrationStatus}>
+                    {t("dashboard.settings.sections.integrations.connected")}
+                  </span>
                 ) : (
-                  <span className="text-xs text-gray-400">Não configurado</span>
+                  <span className="text-xs text-text-muted">
+                    {t(
+                      "dashboard.settings.sections.integrations.notConfigured",
+                    )}
+                  </span>
                 )}
               </div>
             </div>
             <Button
-              label={item.status === "Conectado" ? "Configurar" : "Conectar"}
-              variant={item.status === "Conectado" ? "minimal" : "primary"}
+              label={
+                item.status ===
+                t("dashboard.settings.sections.integrations.connected")
+                  ? t("dashboard.settings.sections.integrations.configure")
+                  : t("dashboard.settings.sections.integrations.connect")
+              }
+              variant={
+                item.status ===
+                t("dashboard.settings.sections.integrations.connected")
+                  ? "minimal"
+                  : "primary"
+              }
               size="small"
               onClick={() => {}}
             />
@@ -383,11 +520,16 @@ export default function Settings() {
         <div className="mt-8 flex justify-end items-center gap-4">
           {showSuccess && (
             <span className={styles.successMessage}>
-              <CheckCircle fontSize="small" /> Salvo com sucesso!
+              <CheckCircle fontSize="small" />{" "}
+              {t("dashboard.settings.saveSuccess")}
             </span>
           )}
           <Button
-            label={isSaving ? "Salvando..." : "Salvar"}
+            label={
+              isSaving
+                ? t("dashboard.settings.saving")
+                : t("dashboard.actions.save")
+            }
             onClick={handleSave}
             disabled={isSaving}
             Icon={!isSaving ? Save : undefined}

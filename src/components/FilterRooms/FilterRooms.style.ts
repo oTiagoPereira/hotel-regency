@@ -5,7 +5,7 @@ export const FilterRoomsStyles = {
       open ? "translate-y-0" : "translate-y-full"
     } md:translate-y-0`,
   asideContainer:
-    "relative bg-white min-w-full h-full md:min-w-6/12 md:rounded-md shadow-md mx-auto py-5 px-5 text-text-color",
+    "relative bg-neutral min-w-full h-full md:min-w-6/12 md:rounded-md shadow-md mx-auto py-5 px-5 text-text-color",
   headerMobile: "flex justify-start items-start mb-4 md:hidden relative",
   headerDesktop:
     "hidden md:flex flex-wrap justify-between items-center mb-4 gap-2",
@@ -24,7 +24,7 @@ export const FilterRoomsStyles = {
   datePickerWrapper:
     "flex flex-wrap justify-between items-center gap-4",
   dateDisplayBox:
-    "border border-gray-300 rounded-md px-3 py-2 w-auto text-center cursor-pointer flex-grow",
+    "border border-border-light/80 rounded-md px-3 py-2 w-auto text-center cursor-pointer flex-grow",
 
   checkboxContainer: "flex flex-col gap-1",
   checkboxLabel: "flex items-center gap-2 cursor-pointer",
@@ -33,7 +33,7 @@ export const FilterRoomsStyles = {
   priceRangeLabel: "font-medium block mb-4",
   priceRangeValues: "flex justify-between mt-3 h-auto",
   priceBox: "flex flex-col gap-1",
-  priceLabelText: "text-sm text-gray-500",
+  priceLabelText: "text-sm text-text-muted",
   priceValueText:
-    "border border-gray-300 rounded-md px-3 py-2 text-sm font-medium",
+    "border border-border-light/80 rounded-md px-3 py-2 text-sm font-medium",
 };

@@ -5,7 +5,7 @@ export const navbarStyles = {
     innerContainer: "flex justify-between h-16",
 
     logoContainer: "flex-shrink-0 flex items-center",
-    logoLink: "text-white text-2xl font-bold",
+    logoLink: "text-neutral text-2xl font-bold",
     logoImage: "h-10 w-10",
 
     mobileButton:

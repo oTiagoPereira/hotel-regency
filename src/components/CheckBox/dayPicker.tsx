@@ -23,12 +23,12 @@ function DatePicker({ mode, selected, onSelect, disabled }: DayPickerProps) {
     showOutsideDays
     disabled={disabled}
     modifiersClassNames={{
-      selected: "bg-primary text-white",
+      selected: "bg-primary text-neutral",
       today: "text-primary font-bold",
       range_middle: "bg-primary",
-      preview: "bg-primary text-white",
-      range_start: "rounded-l-full bg-primary text-white",
-      range_end: "rounded-r-full text-white",
+      preview: "bg-primary text-neutral",
+      range_start: "rounded-l-full bg-primary text-neutral",
+      range_end: "rounded-r-full text-neutral",
     }}
     className="text-text-color"
   />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 import { Select } from "../Select/Select";
@@ -27,50 +28,49 @@ import {
 import { FinanceStyles as styles } from "./Finance.style";
 
 export default function Finance() {
+  const { t } = useTranslation();
   const [period, setPeriod] = useState("6m");
-  // const [exportFormat, setExportFormat] = useState("pdf"); // Removed as we use single action select for now, or controlled with reset
+  // const [exportFormat, setExportFormat] = useState("pdf"); // Removido, pois usamos a seleção de ação única por enquanto, ou controlada com a redefinição
 
   const handleExport = (format: string) => {
     console.log(`Exporting as ${format}`);
-    // Here logic to export
-    // Reset selection effectively by not keeping state or resetting it in a real implementation
-    // For this UI demo, we can just let it be selected or force reset if we controlled it fully
+    // Aqui a lógica de exportação
   };
 
   const revenueData = [
-    { name: "Jan", value: 42000 },
-    { name: "Fev", value: 38000 },
-    { name: "Mar", value: 45000 },
-    { name: "Abr", value: 52000 },
-    { name: "Mai", value: 48000 },
-    { name: "Jun", value: 60000 },
+    { name: t("dashboard.finance.charts.months.jan"), value: 42000 },
+    { name: t("dashboard.finance.charts.months.feb"), value: 38000 },
+    { name: t("dashboard.finance.charts.months.mar"), value: 45000 },
+    { name: t("dashboard.finance.charts.months.apr"), value: 52000 },
+    { name: t("dashboard.finance.charts.months.may"), value: 48000 },
+    { name: t("dashboard.finance.charts.months.jun"), value: 60000 },
   ];
 
   const occupancyData = [
-    { name: "Jan", value: 82 },
-    { name: "Fev", value: 78 },
-    { name: "Mar", value: 85 },
-    { name: "Abr", value: 88 },
-    { name: "Mai", value: 84 },
-    { name: "Jun", value: 89 },
+    { name: t("dashboard.finance.charts.months.jan"), value: 82 },
+    { name: t("dashboard.finance.charts.months.feb"), value: 78 },
+    { name: t("dashboard.finance.charts.months.mar"), value: 85 },
+    { name: t("dashboard.finance.charts.months.apr"), value: 88 },
+    { name: t("dashboard.finance.charts.months.may"), value: 84 },
+    { name: t("dashboard.finance.charts.months.jun"), value: 89 },
   ];
 
   const cancellationsData = [
-    { name: "Jan", value: 5.2 },
-    { name: "Fev", value: 4.8 },
-    { name: "Mar", value: 6.1 },
-    { name: "Abr", value: 4.0 },
-    { name: "Mai", value: 5.3 },
-    { name: "Jun", value: 4.2 },
+    { name: t("dashboard.finance.charts.months.jan"), value: 5.2 },
+    { name: t("dashboard.finance.charts.months.feb"), value: 4.8 },
+    { name: t("dashboard.finance.charts.months.mar"), value: 6.1 },
+    { name: t("dashboard.finance.charts.months.apr"), value: 4.0 },
+    { name: t("dashboard.finance.charts.months.may"), value: 5.3 },
+    { name: t("dashboard.finance.charts.months.jun"), value: 4.2 },
   ];
 
   const avgValueData = [
-    { name: "Jan", value: 1120 },
-    { name: "Fev", value: 1180 },
-    { name: "Mar", value: 1210 },
-    { name: "Abr", value: 1195 },
-    { name: "Mai", value: 1235 },
-    { name: "Jun", value: 1247 },
+    { name: t("dashboard.finance.charts.months.jan"), value: 1120 },
+    { name: t("dashboard.finance.charts.months.feb"), value: 1180 },
+    { name: t("dashboard.finance.charts.months.mar"), value: 1210 },
+    { name: t("dashboard.finance.charts.months.apr"), value: 1195 },
+    { name: t("dashboard.finance.charts.months.may"), value: 1235 },
+    { name: t("dashboard.finance.charts.months.jun"), value: 1247 },
   ];
 
   return (
@@ -84,7 +84,7 @@ export default function Finance() {
               defaultValue="2025-01-01"
               containerClassName="w-auto"
             />
-            <span className="text-gray-400">-</span>
+            <span className="text-text-muted">-</span>
             <Input
               type="date"
               defaultValue="2025-06-28"
@@ -96,19 +96,19 @@ export default function Finance() {
             onChange={(e) => setPeriod(e.target.value)}
             containerClassName="w-full sm:w-48"
           >
-            <option value="1m">Último mês</option>
-            <option value="3m">Últimos 3 meses</option>
-            <option value="6m">Últimos 6 meses</option>
-            <option value="1y">Último ano</option>
+            <option value="1m">{t("dashboard.finance.filters.l1m")}</option>
+            <option value="3m">{t("dashboard.finance.filters.l3m")}</option>
+            <option value="6m">{t("dashboard.finance.filters.l6m")}</option>
+            <option value="1y">{t("dashboard.finance.filters.l1y")}</option>
           </Select>
           <Button
-            label="Aplicar Filtros"
+            label={t("dashboard.finance.filters.apply")}
             Icon={Search}
             size="small"
             className="h-[50px]"
           />
           <Button
-            label="Resetar Filtros"
+            label={t("dashboard.finance.filters.reset")}
             variant="minimal"
             Icon={Refresh}
             size="small"
@@ -123,7 +123,7 @@ export default function Finance() {
             icon={<FileDownload fontSize="small" />}
             iconClassName="text-primary"
             arrowClassName="text-primary"
-            placeholder="Exportar"
+            placeholder={t("dashboard.actions.export")}
           >
             <option value="pdf" className="text-primary">
               PDF
@@ -141,8 +141,10 @@ export default function Finance() {
       <div className={styles.metricsGrid}>
         <div className={styles.metricCard}>
           <div className={styles.metricHeader}>
-            <span className={styles.metricTitle}>Receita Total</span>
-            <div className={`${styles.metricIcon} bg-green-100 text-green-700`}>
+            <span className={styles.metricTitle}>
+              {t("dashboard.finance.metrics.totalRevenue")}
+            </span>
+            <div className={`${styles.metricIcon} bg-success-light text-success`}>
               <AttachMoney />
             </div>
           </div>
@@ -150,15 +152,17 @@ export default function Finance() {
             <span className={styles.metricValue}>R$ 284.750</span>
             <span className={styles.trendUp}>
               <TrendingUp fontSize="inherit" />
-              +12.5% vs mês anterior
+              +12.5% {t("dashboard.finance.metrics.vsLastMonth")}
             </span>
           </div>
         </div>
 
         <div className={styles.metricCard}>
           <div className={styles.metricHeader}>
-            <span className={styles.metricTitle}>Taxa de Ocupação</span>
-            <div className={`${styles.metricIcon} bg-blue-100 text-blue-600`}>
+            <span className={styles.metricTitle}>
+              {t("dashboard.finance.metrics.occupancyRate")}
+            </span>
+            <div className={`${styles.metricIcon} bg-info-light text-info`}>
               <KingBed />
             </div>
           </div>
@@ -166,15 +170,17 @@ export default function Finance() {
             <span className={styles.metricValue}>87.3%</span>
             <span className={styles.trendUp}>
               <TrendingUp fontSize="inherit" />
-              +3.2% vs mês anterior
+              +3.2% {t("dashboard.finance.metrics.vsLastMonth")}
             </span>
           </div>
         </div>
 
         <div className={styles.metricCard}>
           <div className={styles.metricHeader}>
-            <span className={styles.metricTitle}>Cancelamentos</span>
-            <div className={`${styles.metricIcon} bg-red-100 text-red-600`}>
+            <span className={styles.metricTitle}>
+              {t("dashboard.finance.metrics.cancellations")}
+            </span>
+            <div className={`${styles.metricIcon} bg-error-light text-error`}>
               <Cancel />
             </div>
           </div>
@@ -185,16 +191,18 @@ export default function Finance() {
                 fontSize="inherit"
                 style={{ transform: "rotate(180deg)" }}
               />
-              -1.1% vs mês anterior
+              -1.1% {t("dashboard.finance.metrics.vsLastMonth")}
             </span>
           </div>
         </div>
 
         <div className={styles.metricCard}>
           <div className={styles.metricHeader}>
-            <span className={styles.metricTitle}>Valor Médio/Reserva</span>
+            <span className={styles.metricTitle}>
+              {t("dashboard.finance.metrics.avgValue")}
+            </span>
             <div
-              className={`${styles.metricIcon} bg-purple-100 text-purple-600`}
+              className={`${styles.metricIcon} bg-accent-light text-accent`}
             >
               <TrendingUp />
             </div>
@@ -203,7 +211,7 @@ export default function Finance() {
             <span className={styles.metricValue}>R$ 1.247</span>
             <span className={styles.trendUp}>
               <TrendingUp fontSize="inherit" />
-              +8.4% vs mês anterior
+              +8.4% {t("dashboard.finance.metrics.vsLastMonth")}
             </span>
           </div>
         </div>
@@ -212,10 +220,24 @@ export default function Finance() {
       <div className={styles.chartsGrid}>
         <div className={styles.chartCard}>
           <div className={styles.chartHeader}>
-            <h3 className={styles.chartTitle}>Receita Mensal</h3>
+            <h3 className={styles.chartTitle}>
+              {t("dashboard.finance.charts.monthlyRevenue")}
+            </h3>
             <div className={styles.chartActions}>
-              <button className={styles.chartButtonActive}>6M</button>
-              <button className={styles.chartButton}>1A</button>
+              <button 
+                className={styles.chartButtonActive}
+                aria-label={t("dashboard.finance.charts.filter6m", "Filtrar por 6 meses")}
+                title={t("dashboard.finance.charts.filter6m", "Filtrar por 6 meses")}
+              >
+                6M
+              </button>
+              <button 
+                className={styles.chartButton}
+                aria-label={t("dashboard.finance.charts.filter1y", "Filtrar por 1 ano")}
+                title={t("dashboard.finance.charts.filter1y", "Filtrar por 1 ano")}
+              >
+                1A
+              </button>
             </div>
           </div>
           <div className={styles.chartContainer}>
@@ -244,7 +266,10 @@ export default function Finance() {
                   width={60}
                 />
                 <Tooltip
-                  formatter={(value) => [`R$ ${value}`, "Receita"]}
+                  formatter={(value) => [
+                    `R$ ${value}`,
+                    t("dashboard.finance.charts.revenue"),
+                  ]}
                   cursor={{ fill: "#EFF6FF" }}
                   contentStyle={{
                     borderRadius: "8px",
@@ -265,8 +290,12 @@ export default function Finance() {
 
         <div className={styles.chartCard}>
           <div className={styles.chartHeader}>
-            <h3 className={styles.chartTitle}>Taxa de Ocupação</h3>
-            <span className="text-sm text-gray-500">Média: 87.3%</span>
+            <h3 className={styles.chartTitle}>
+              {t("dashboard.finance.charts.occupancyRate")}
+            </h3>
+            <span className="text-sm text-text-muted">
+              {t("dashboard.finance.charts.avg")}: 87.3%
+            </span>
           </div>
           <div className={styles.chartContainer}>
             <ResponsiveContainer width="100%" height="100%">
@@ -294,7 +323,10 @@ export default function Finance() {
                   width={40}
                 />
                 <Tooltip
-                  formatter={(value) => [`${value}%`, "Ocupação"]}
+                  formatter={(value) => [
+                    `${value}%`,
+                    t("dashboard.finance.charts.occupancy"),
+                  ]}
                   contentStyle={{
                     borderRadius: "8px",
                     border: "none",
@@ -321,8 +353,12 @@ export default function Finance() {
 
         <div className={styles.chartCard}>
           <div className={styles.chartHeader}>
-            <h3 className={styles.chartTitle}>Cancelamentos por Mês</h3>
-            <span className="text-sm text-gray-500">Meta: &lt; 5%</span>
+            <h3 className={styles.chartTitle}>
+              {t("dashboard.finance.charts.cancellationsPerMonth")}
+            </h3>
+            <span className="text-sm text-text-muted">
+              {t("dashboard.finance.charts.goal")}: &lt; 5%
+            </span>
           </div>
           <div className={styles.chartContainer}>
             <ResponsiveContainer width="100%" height="100%">
@@ -351,7 +387,10 @@ export default function Finance() {
                   width={40}
                 />
                 <Tooltip
-                  formatter={(value) => [`${value}%`, "Taxa"]}
+                  formatter={(value) => [
+                    `${value}%`,
+                    t("dashboard.finance.charts.rate"),
+                  ]}
                   contentStyle={{
                     borderRadius: "8px",
                     border: "none",
@@ -372,8 +411,12 @@ export default function Finance() {
 
         <div className={styles.chartCard}>
           <div className={styles.chartHeader}>
-            <h3 className={styles.chartTitle}>Valor Médio por Reserva</h3>
-            <span className="text-sm text-gray-500">Atual: R$ 1.247</span>
+            <h3 className={styles.chartTitle}>
+              {t("dashboard.finance.charts.avgValuePerReservation")}
+            </h3>
+            <span className="text-sm text-text-muted">
+              {t("dashboard.finance.charts.current")}: R$ 1.247
+            </span>
           </div>
           <div className={styles.chartContainer}>
             <ResponsiveContainer width="100%" height="100%">
@@ -402,7 +445,10 @@ export default function Finance() {
                   width={60}
                 />
                 <Tooltip
-                  formatter={(value) => [`R$ ${value}`, "Valor Médio"]}
+                  formatter={(value) => [
+                    `R$ ${value}`,
+                    t("dashboard.finance.charts.avgValue"),
+                  ]}
                   contentStyle={{
                     borderRadius: "8px",
                     border: "none",

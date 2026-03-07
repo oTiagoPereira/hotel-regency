@@ -33,7 +33,7 @@ export const whyRegencyStyles = {
     hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6
   `,
   card: `
-    bg-white shadow-lg rounded-lg p-6 text-center min-h-[220px] flex flex-col items-center justify-between md:px-8 w-[85vw] mx-auto md:w-auto
+    bg-neutral shadow-lg rounded-lg p-6 text-center min-h-[220px] flex flex-col items-center justify-between md:px-8 w-[85vw] mx-auto md:w-auto
   `,
   cardIcon: `
     p-3 flex items-center justify-center rounded-full bg-secondary text-icons-secondary

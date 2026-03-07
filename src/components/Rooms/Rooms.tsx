@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
 import { Select } from "../Select/Select";
 import {
-  Search,
   Edit,
   Delete,
   MeetingRoom,
@@ -14,123 +11,106 @@ import {
   Add,
 } from "@mui/icons-material";
 import { RoomsStyles as styles } from "./Rooms.style";
-import { AddRoomModal, type RoomData } from "./Modals/AddRoomModal";
+import { AddRoomModal } from "./Modals/AddRoomModal";
+import { DeleteRoomModal } from "./Modals/DeleteRoomModal";
+import { Table, type Column } from "../Table/Table";
+import { Badge, type BadgeVariant } from "../Badge/Badge";
+import { PageHeader } from "../PageHeader/PageHeader";
+import { useRooms } from "../../hooks/useRooms";
 
 export default function Rooms() {
   const { t } = useTranslation();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState("all");
-  const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
+  const { rooms, filteredRooms, stats, filters, modals, actions } = useRooms();
 
-  const handleAddRoom = (roomData: RoomData) => {
-    console.log("Adding room:", roomData);
-    // TODO: Connect to API
-  };
-
-  const rooms = [
-    {
-      id: 101,
-      type: "Suite Deluxe",
-      capacity: 2,
-      price: 450,
-      status: "available",
-      amenities: ["wifi", "tv", "ac", "king_bed"],
-      image:
-        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 102,
-      type: "Standard",
-      capacity: 2,
-      price: 300,
-      status: "occupied",
-      amenities: ["wifi", "tv", "ac"],
-      image:
-        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 103,
-      type: "Family Suite",
-      capacity: 4,
-      price: 600,
-      status: "available",
-      amenities: ["wifi", "tv", "ac", "king_bed", "kitchen"],
-      image:
-        "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 104,
-      type: "Standard View",
-      capacity: 2,
-      price: 350,
-      status: "maintenance",
-      amenities: ["wifi", "tv", "ac"],
-      image:
-        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 201,
-      type: "Executive Suite",
-      capacity: 2,
-      price: 550,
-      status: "available",
-      amenities: ["wifi", "tv", "ac", "king_bed", "work_desk"],
-      image:
-        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 202,
-      type: "Standard",
-      capacity: 2,
-      price: 300,
-      status: "available",
-      amenities: ["wifi", "tv", "ac"],
-      image:
-        "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=1000&auto=format&fit=crop",
-    },
-  ];
-
-  const stats = {
-    total: rooms.length,
-    available: rooms.filter((r) => r.status === "available").length,
-    occupied: rooms.filter((r) => r.status === "occupied").length,
-    maintenance: rooms.filter((r) => r.status === "maintenance").length,
-  };
-
-  const getStatusColor = (status: string) => {
+  const getStatusVariant = (status: string): BadgeVariant => {
     switch (status) {
       case "available":
-        return "bg-green-100 text-green-700";
+        return "success";
       case "occupied":
-        return "bg-yellow-100 text-yellow-700";
+        return "warning";
       case "maintenance":
-        return "bg-red-100 text-red-700";
+        return "danger";
       default:
-        return "bg-gray-100 text-gray-700";
+        return "default";
     }
   };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
       case "available":
-        return t("rooms.status.available", "Disponível");
+        return t("dashboard.rooms.filters.available");
       case "occupied":
-        return t("rooms.status.occupied", "Ocupado");
+        return t("dashboard.rooms.filters.occupied");
       case "maintenance":
-        return t("rooms.status.maintenance", "Manutenção");
+        return t("dashboard.rooms.filters.maintenance");
       default:
         return status;
     }
   };
 
-  const filteredRooms = rooms.filter((room) => {
-    const matchesSearch =
-      room.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      room.id.toString().includes(searchTerm);
-    const matchesFilter =
-      filterStatus === "all" || room.status === filterStatus;
-    return matchesSearch && matchesFilter;
-  });
+  const columns: Column<typeof rooms[0]>[] = [
+    {
+      key: "room",
+      header: t("dashboard.rooms.table.room"),
+      render: (room) => (
+        <div className={styles.roomInfo}>
+          <div className={styles.roomBadge}>{room.id}</div>
+          <span className={styles.roomName}>
+            {t("dashboard.rooms.table.room_prefix")} {room.id}
+          </span>
+        </div>
+      ),
+    },
+    {
+      key: "type",
+      header: t("dashboard.rooms.table.type"),
+    },
+    {
+      key: "status",
+      header: t("dashboard.rooms.table.status"),
+      render: (room) => (
+        <Badge variant={getStatusVariant(room.status)}>
+          {getStatusLabel(room.status)}
+        </Badge>
+      ),
+    },
+    {
+      key: "capacity",
+      header: t("dashboard.rooms.table.capacity"),
+      render: (room) => `${room.capacity} ${t("dashboard.rooms.table.people")}`,
+    },
+    {
+      key: "price",
+      header: t("dashboard.rooms.table.price"),
+      render: (room) => (
+        <span className={styles.priceText}>R$ {room.price},00</span>
+      ),
+    },
+    {
+      key: "actions",
+      header: t("dashboard.rooms.table.actions"),
+      render: (room) => (
+        <div className={styles.actionsContainer}>
+          <button
+            className={styles.actionButton}
+            onClick={() => actions.openEditModal(room)}
+            title={t("dashboard.actions.edit")}
+            aria-label={t("dashboard.actions.edit")}
+          >
+            <Edit fontSize="small" />
+          </button>
+          <button
+            onClick={() => actions.openDeleteModal(room)}
+            className={`${styles.actionButton} hover:text-error hover:bg-error-light`}
+            title={t("dashboard.actions.delete")}
+            aria-label={t("dashboard.actions.delete")}
+          >
+            <Delete fontSize="small" />
+          </button>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <div className={styles.container}>
@@ -138,12 +118,12 @@ export default function Rooms() {
         <div className={styles.statsCard}>
           <div className={styles.statsInfo}>
             <span className={styles.statsLabel}>
-              {t("rooms.stats.total", "Total de Quartos")}
+              {t("dashboard.rooms.stats.total")}
             </span>
             <span className={styles.statsValue}>{stats.total}</span>
           </div>
           <div
-            className={`${styles.statsIconContainer} bg-blue-100 text-blue-600`}
+            className={`${styles.statsIconContainer} bg-info-light text-info`}
           >
             <KingBed />
           </div>
@@ -151,12 +131,12 @@ export default function Rooms() {
         <div className={styles.statsCard}>
           <div className={styles.statsInfo}>
             <span className={styles.statsLabel}>
-              {t("rooms.stats.available", "Disponíveis")}
+              {t("dashboard.rooms.stats.available")}
             </span>
             <span className={styles.statsValue}>{stats.available}</span>
           </div>
           <div
-            className={`${styles.statsIconContainer} bg-green-100 text-green-600`}
+            className={`${styles.statsIconContainer} bg-success-light text-success`}
           >
             <MeetingRoom />
           </div>
@@ -164,12 +144,12 @@ export default function Rooms() {
         <div className={styles.statsCard}>
           <div className={styles.statsInfo}>
             <span className={styles.statsLabel}>
-              {t("rooms.stats.occupied", "Ocupados")}
+              {t("dashboard.rooms.stats.occupied")}
             </span>
             <span className={styles.statsValue}>{stats.occupied}</span>
           </div>
           <div
-            className={`${styles.statsIconContainer} bg-yellow-100 text-yellow-600`}
+            className={`${styles.statsIconContainer} bg-warning-light text-warning`}
           >
             <Person />
           </div>
@@ -177,135 +157,83 @@ export default function Rooms() {
         <div className={styles.statsCard}>
           <div className={styles.statsInfo}>
             <span className={styles.statsLabel}>
-              {t("rooms.stats.maintenance", "Manutenção")}
+              {t("dashboard.rooms.stats.maintenance")}
             </span>
             <span className={styles.statsValue}>{stats.maintenance}</span>
           </div>
           <div
-            className={`${styles.statsIconContainer} bg-red-100 text-red-600`}
+            className={`${styles.statsIconContainer} bg-error-light text-error`}
           >
             <Engineering />
           </div>
         </div>
       </div>
 
-      <div className={styles.controlsContainer}>
-        <div className={styles.leftControls}>
-          <div className="w-full md:w-64">
-            <Input
-              placeholder={t("rooms.search.placeholder", "Buscar quartos...")}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              icon={<Search fontSize="small" />}
-              containerClassName="w-full"
-            />
-          </div>
+      <PageHeader
+        searchPlaceholder={t("dashboard.rooms.searchPlaceholder")}
+        searchValue={filters.searchTerm}
+        onSearchChange={filters.setSearchTerm}
+        filters={
           <Select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
+            value={filters.filterStatus}
+            onChange={(e) => filters.setFilterStatus(e.target.value)}
             containerClassName="w-full md:w-auto min-w-[200px]"
           >
-            <option value="all">
-              {t("rooms.filter.all", "Todos os status")}
-            </option>
+            <option value="all">{t("dashboard.rooms.filters.all")}</option>
             <option value="available">
-              {t("rooms.filter.available", "Disponível")}
+              {t("dashboard.rooms.filters.available")}
             </option>
             <option value="occupied">
-              {t("rooms.filter.occupied", "Ocupado")}
+              {t("dashboard.rooms.filters.occupied")}
             </option>
             <option value="maintenance">
-              {t("rooms.filter.maintenance", "Manutenção")}
+              {t("dashboard.rooms.filters.maintenance")}
             </option>
           </Select>
-        </div>
-        <Button
-          label={t("rooms.button.add", "Adicionar Novo Quarto")}
-          onClick={() => setIsAddRoomModalOpen(true)}
-          variant="minimal"
-          size="small"
-          Icon={Add}
-        />
-      </div>
+        }
+        actions={
+          <Button
+            label={t("dashboard.rooms.newRoom")}
+            onClick={() => modals.setIsAddRoomModalOpen(true)}
+            variant="minimal"
+            size="small"
+            Icon={Add}
+          />
+        }
+      />
 
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
-          <thead className={styles.thead}>
-            <tr>
-              <th className={styles.th}>{t("rooms.table.room", "Quarto")}</th>
-              <th className={styles.th}>{t("rooms.table.type", "Tipo")}</th>
-              <th className={styles.th}>{t("rooms.table.status", "Status")}</th>
-              <th className={styles.th}>
-                {t("rooms.table.capacity", "Capacidade")}
-              </th>
-              <th className={styles.th}>
-                {t("rooms.table.price", "Valor/Noite")}
-              </th>
-              <th className={styles.th}>{t("rooms.table.actions", "Ações")}</th>
-            </tr>
-          </thead>
-          <tbody className={styles.tbody}>
-            {filteredRooms.map((room) => (
-              <tr key={room.id} className={styles.tr}>
-                <td className={styles.td}>
-                  <div className={styles.roomInfo}>
-                    <div className={styles.roomBadge}>{room.id}</div>
-                    <span className={styles.roomName}>
-                      {t("rooms.table.room_prefix", "Quarto")} {room.id}
-                    </span>
-                  </div>
-                </td>
-                <td className={styles.td}>{room.type}</td>
-                <td className={styles.td}>
-                  <span
-                    className={`${styles.statusBadge} ${getStatusColor(room.status)}`}
-                  >
-                    {getStatusLabel(room.status)}
-                  </span>
-                </td>
-                <td className={styles.td}>
-                  {room.capacity} {t("rooms.table.people", "pessoas")}
-                </td>
-                <td className={styles.td}>
-                  <span className={styles.priceText}>R$ {room.price},00</span>
-                </td>
-                <td className={styles.td}>
-                  <div className={styles.actionsContainer}>
-                    <button className={styles.actionButton}>
-                      <Edit fontSize="small" />
-                    </button>
-                    <button
-                      className={`${styles.actionButton} hover:text-red-600 hover:bg-red-50`}
-                    >
-                      <Delete fontSize="small" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className={styles.paginationContainer}>
-          <span className={styles.paginationInfo}>
-            Mostrando 1 a {filteredRooms.length} de {rooms.length} quartos
-          </span>
-          <div className={styles.paginationControls}>
-            <button className={styles.paginationButton} disabled>
-              Anterior
-            </button>
-            <button className={styles.paginationCurrent}>1</button>
-            <button className={styles.paginationButton}>2</button>
-            <button className={styles.paginationButton}>3</button>
-            <button className={styles.paginationButton}>Próximo</button>
-          </div>
-        </div>
-      </div>
+      <Table
+        columns={columns}
+        data={filteredRooms}
+        keyExtractor={(room) => room.id}
+        totalItems={rooms.length}
+        resultsText={t("dashboard.rooms.title")}
+      />
 
       <AddRoomModal
-        isOpen={isAddRoomModalOpen}
-        onClose={() => setIsAddRoomModalOpen(false)}
-        onSave={handleAddRoom}
+        isOpen={modals.isAddRoomModalOpen}
+        onClose={() => modals.setIsAddRoomModalOpen(false)}
+        onSave={actions.handleAddRoom}
+      />
+
+      <AddRoomModal
+        isOpen={modals.isEditRoomModalOpen}
+        onClose={() => {
+          modals.setIsEditRoomModalOpen(false);
+          modals.setSelectedRoom(null);
+        }}
+        onSave={actions.handleEditRoom}
+        initialData={modals.selectedRoom}
+      />
+
+      <DeleteRoomModal
+        isOpen={modals.isDeleteRoomModalOpen}
+        onClose={() => {
+          modals.setIsDeleteRoomModalOpen(false);
+          modals.setSelectedRoom(null);
+        }}
+        onConfirm={actions.handleDeleteRoom}
+        roomNumber={modals.selectedRoom?.number || ""}
       />
     </div>
   );

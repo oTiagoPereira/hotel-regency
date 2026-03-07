@@ -1,30 +1,33 @@
+import { useTranslation } from "react-i18next";
 import { Star } from "@mui/icons-material";
 import { ReviewsStyles as styles } from "./Reviews.style";
 
 export default function Reviews() {
+  const { t } = useTranslation();
+
   const reviews = [
     {
       id: 1,
       user: "Laura Oliveira",
-      date: "2 dias atrás",
+      date: `2 ${t("dashboard.reviews.dates.daysAgo")}`,
       rating: 5,
-      text: "Serviço impecável e quartos muito confortáveis! Com certeza voltarei.",
+      text: t("dashboard.reviews.item1"),
       avatar: "https://ui-avatars.com/api/?name=Laura+Oliveira",
     },
     {
       id: 2,
       user: "Marcos Pereira",
-      date: "5 dias atrás",
+      date: `5 ${t("dashboard.reviews.dates.daysAgo")}`,
       rating: 4,
-      text: "Localização perfeita e café da manhã delicioso. O único ponto negativo foi o check-in demorado.",
+      text: t("dashboard.reviews.item2"),
       avatar: "https://ui-avatars.com/api/?name=Marcos+Pereira",
     },
     {
       id: 3,
       user: "Julia Silva",
-      date: "1 semana atrás",
+      date: t("dashboard.reviews.dates.weekAgo"),
       rating: 5,
-      text: "Amei a experiência, o SPA é incrível.",
+      text: t("dashboard.reviews.item3"),
       avatar: "https://ui-avatars.com/api/?name=Julia+Silva",
     },
   ];

@@ -10,7 +10,7 @@ import { DashboardProvider } from "../contexts/DashboardContext";
 export default function DashboardLayout() {
   return (
     <DashboardProvider>
-      <div className="min-h-screen bg-gray-50 flex flex-col md:block">
+      <div className="min-h-screen bg-surface flex flex-col md:block max-w-[1920px]">
         <DashboardSidebar />
         <DashboardHeader />
         <main className="flex-1 pt-18 p-4 md:p-6 transition-all duration-300 ml-0 md:ml-64 md:pt-24">

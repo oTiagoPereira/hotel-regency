@@ -1,61 +1,57 @@
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Notifications, DarkMode } from "@mui/icons-material";
+import { Notifications, DarkMode, Menu } from "@mui/icons-material";
+import { useDashboard } from "../../contexts/DashboardContext";
 import { DashboardHeaderStyles as styles } from "./DashboardHeader.style";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
+  const { toggleSidebar } = useDashboard();
 
   const getHeaderInfo = () => {
-    const path = location.pathname;
-
-    if (path.includes("/dashboard/reservations")) {
-      return {
-        title: t("dashboard.menu.reservations"),
-        subtitle: "Gerencie todas as reservas",
-      };
-    }
-    if (path.includes("/dashboard/rooms")) {
-      return {
-        title: t("dashboard.menu.rooms"),
-        subtitle: "Gerencie os quartos do hotel",
-      };
-    }
-    if (path.includes("/dashboard/guests")) {
-      return {
-        title: t("dashboard.menu.guests"),
-        subtitle: "Lista de hóspedes registrados",
-      };
-    }
-    if (path.includes("/dashboard/finance")) {
-      return {
-        title: t("dashboard.menu.finance"),
-        subtitle: "Relatórios e métricas financeiras",
-      };
-    }
-    if (path.includes("/dashboard/reviews")) {
-      return {
-        title: t("dashboard.menu.reviews"),
-        subtitle: "Feedback dos hóspedes",
-      };
-    }
-    if (path.includes("/dashboard/users")) {
-      return {
-        title: t("dashboard.menu.users"),
-        subtitle: "Gerencie a equipe do hotel",
-      };
-    }
-    if (path.includes("/dashboard/settings")) {
-      return {
-        title: t("dashboard.menu.settings"),
-        subtitle: "Ajustes do sistema",
-      };
-    }
-    return {
+    const defaultInfo = {
       title: t("dashboard.menu.dashboard"),
-      subtitle: "Visão geral do hotel",
+      subtitle: t("dashboard.header.subtitle_dashboard"),
     };
+
+    const routeMap: Record<string, { title: string; subtitle: string }> = {
+      "/dashboard/reservations": {
+        title: t("dashboard.menu.reservations"),
+        subtitle: t("dashboard.header.subtitle_reservations"),
+      },
+      "/dashboard/rooms": {
+        title: t("dashboard.menu.rooms"),
+        subtitle: t("dashboard.header.subtitle_rooms"),
+      },
+      "/dashboard/guests": {
+        title: t("dashboard.menu.guests"),
+        subtitle: t("dashboard.header.subtitle_guests"),
+      },
+      "/dashboard/finance": {
+        title: t("dashboard.menu.finance"),
+        subtitle: t("dashboard.header.subtitle_finance"),
+      },
+      "/dashboard/reviews": {
+        title: t("dashboard.menu.reviews"),
+        subtitle: t("dashboard.header.subtitle_reviews"),
+      },
+      "/dashboard/users": {
+        title: t("dashboard.menu.users"),
+        subtitle: t("dashboard.header.subtitle_users"),
+      },
+      "/dashboard/settings": {
+        title: t("dashboard.menu.settings"),
+        subtitle: t("dashboard.header.subtitle_settings"),
+      },
+    };
+
+    const matchedRoute = Object.keys(routeMap).find((route) =>
+      location.pathname.includes(route),
+    );
+
+    return matchedRoute ? routeMap[matchedRoute] : defaultInfo;
   };
 
   const { title, subtitle } = getHeaderInfo();
@@ -66,16 +62,37 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div>
-        <h2 className={styles.title}>{title}</h2>
-        <p className={styles.subtitle}>{subtitle}</p>
+      <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
+        <button
+          className={styles.menuButton}
+          onClick={toggleSidebar}
+          aria-label={t("dashboard.menu.openSidebar", "Abrir menu lateral")}
+        >
+          <Menu />
+        </button>
+        <div className="min-w-0">
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.subtitle}>{subtitle}</p>
+        </div>
       </div>
 
       <div className={styles.actions}>
-        <button className={styles.actionButton}>
+        <LanguageSwitcher />
+
+        <div className={styles.divider}></div>
+
+        <button 
+          className={styles.actionButton}
+          aria-label={t("dashboard.header.darkMode", "Modo Escuro")}
+          title={t("dashboard.header.darkMode", "Modo Escuro")}
+        >
           <DarkMode />
         </button>
-        <button className={styles.notificationButton}>
+        <button 
+          className={styles.notificationButton}
+          aria-label={t("dashboard.header.notifications", "Notificações")}
+          title={t("dashboard.header.notifications", "Notificações")}
+        >
           <Notifications />
           <span className={styles.notificationDot}></span>
         </button>

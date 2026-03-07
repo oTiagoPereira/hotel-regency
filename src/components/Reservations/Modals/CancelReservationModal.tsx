@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import { Warning } from "@mui/icons-material";
@@ -15,23 +16,25 @@ export const CancelReservationModal = ({
   onConfirm,
   reservationId,
 }: CancelReservationModalProps) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Cancelar Reserva"
+      title={t("dashboard.reservations.modals.cancel")}
       size="small"
       footer={
         <>
           <Button
-            label="Voltar"
+            label={t("dashboard.actions.cancel")}
             onClick={onClose}
             variant="secondary"
             size="small"
             className="w-auto"
           />
           <Button
-            label="Confirmar Cancelamento"
+            label={t("dashboard.reservations.actions.confirmCancel")}
             onClick={() => {
               onConfirm();
               onClose();
@@ -44,15 +47,13 @@ export const CancelReservationModal = ({
       }
     >
       <div className="flex flex-col items-center text-center p-4">
-        <div className="bg-red-100 p-3 rounded-full mb-4">
-          <Warning className="text-red-600" fontSize="large" />
+        <div className="bg-error-light text-error p-4 rounded-full mb-6 ring-8 ring-red-50/50">
+          <Warning fontSize="large" />
         </div>
-        <h4 className="text-lg font-medium text-gray-900 mb-2">
-          Cancelar reserva #{reservationId}?
-        </h4>
-        <p className="text-gray-500">
-          Esta ação não pode ser desfeita. O hóspede será notificado sobre o
-          cancelamento.
+        <p className="text-text-muted text-sm md:text-base px-2">
+          {t("dashboard.reservations.modals.cancelMessage")}{" "}
+          <span className="font-semibold text-text-color/90">{reservationId}</span>.
+          <br /> {t("dashboard.reservations.modals.cancelWarning")}
         </p>
       </div>
     </Modal>

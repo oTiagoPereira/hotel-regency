@@ -28,7 +28,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
-      <Route path="/" element={<Home />} />
+      <Route index path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
       <Route path="/verify-email" element={<VerifyEmail />} />

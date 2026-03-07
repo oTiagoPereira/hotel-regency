@@ -6,7 +6,7 @@ export const GuestExperienceStyles = {
   sectionDescription: "text-text-color font-body",
 
   cardWrapper:
-    "bg-white shadow-lg text-text-color rounded-lg h-auto flex flex-col items-start justify-between min-w-[85vw] w-[85vw] md:min-w-0 md:w-auto p-4 gap-2",
+    "bg-neutral shadow-lg text-text-color rounded-lg h-auto flex flex-col items-start justify-between min-w-[85vw] w-[85vw] md:min-w-0 md:w-auto p-4 gap-2",
   cardTitle: "font-semibold text-lg font-body",
   cardText: "font-body",
 };

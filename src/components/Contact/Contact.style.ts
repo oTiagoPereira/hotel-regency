@@ -17,8 +17,8 @@ export const Contactstyles = {
   formContainer: "bg-neutral p-8 rounded-lg shadow-lg",
   form: "space-y-6",
   formLabel: "block text-sm font-medium text-text-color mb-2",
-  formInput: "w-full bg-background-input border border-gray-300 rounded-md py-2 px-3 text-text-color placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary transition",
-  formTextarea: "w-full bg-background-input border border-gray-300 rounded-md py-2 px-3 text-text-color placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary transition",
+  formInput: "w-full bg-background-input border border-border-light/80 rounded-md py-2 px-3 text-text-color placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary transition",
+  formTextarea: "w-full bg-background-input border border-border-light/80 rounded-md py-2 px-3 text-text-color placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary transition",
   buttonContainer: "mt-8",
   submitMessage: "mt-4 text-center text-primary",
 };

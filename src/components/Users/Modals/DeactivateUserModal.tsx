@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import { Warning } from "@mui/icons-material";
@@ -15,23 +16,25 @@ export const DeactivateUserModal = ({
   onConfirm,
   userName,
 }: DeactivateUserModalProps) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Desativar Usuário"
+      title={t("dashboard.users.modals.deactivate")}
       size="small"
       footer={
         <>
           <Button
-            label="Cancelar"
+            label={t("dashboard.actions.cancel")}
             onClick={onClose}
             variant="secondary"
             size="small"
             className="w-auto"
           />
           <Button
-            label="Desativar"
+            label={t("dashboard.actions.deactivate")}
             onClick={() => {
               onConfirm();
               onClose();
@@ -44,14 +47,13 @@ export const DeactivateUserModal = ({
       }
     >
       <div className="flex flex-col items-center text-center p-4">
-        <div className="bg-red-100 p-3 rounded-full mb-4">
-          <Warning className="text-red-600" fontSize="large" />
+        <div className="bg-error-light text-error p-4 rounded-full mb-6 ring-8 ring-red-50/50">
+          <Warning fontSize="large" />
         </div>
-        <h4 className="text-lg font-medium text-gray-900 mb-2">Tem certeza?</h4>
-        <p className="text-gray-500">
-          Você está prestes a desativar o acesso do usuário{" "}
-          <span className="font-semibold text-gray-700">{userName}</span>. Ele
-          não poderá mais acessar o sistema até ser reativado.
+        <p className="text-text-muted text-sm md:text-base px-2">
+          {t("dashboard.users.modals.deactivateMessage")}
+          <span className="font-semibold text-text-color/90">{userName}</span>.<br />
+          {t("dashboard.users.modals.deactivateWarning")}
         </p>
       </div>
     </Modal>

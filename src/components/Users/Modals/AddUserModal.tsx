@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Modal } from "../../Modal/Modal";
 import { Input } from "../../Input/Input";
 import { Select } from "../../Select/Select";
@@ -29,6 +30,7 @@ export const AddUserModal = ({
   onSave,
   initialData,
 }: AddUserModalProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<UserData>({
     name: "",
     email: "",
@@ -74,19 +76,23 @@ export const AddUserModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={initialData ? "Editar Usuário" : "Novo Usuário"}
+      title={
+        initialData
+          ? t("dashboard.users.modals.edit")
+          : t("dashboard.users.modals.add")
+      }
       size="default"
       footer={
         <>
           <Button
-            label="Cancelar"
+            label={t("dashboard.actions.cancel")}
             onClick={onClose}
             variant="secondary"
             size="small"
             className="w-auto"
           />
           <Button
-            label="Salvar"
+            label={t("dashboard.actions.save")}
             onClick={() => handleSubmit({} as React.FormEvent)}
             variant="primary"
             size="small"
@@ -95,10 +101,10 @@ export const AddUserModal = ({
         </>
       }
     >
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <Input
-          label="Nome Completo"
-          placeholder="Ex: Maria Silva"
+          label={t("dashboard.users.modals.fields.name")}
+          placeholder={t("dashboard.users.modals.placeholders.name")}
           value={formData.name}
           onChange={(e) => handleChange("name", e.target.value)}
           icon={<Person />}
@@ -107,9 +113,9 @@ export const AddUserModal = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
-            label="Email"
+            label={t("dashboard.users.modals.fields.email")}
             type="email"
-            placeholder="Ex: maria@hotel.com"
+            placeholder={t("dashboard.users.modals.placeholders.email")}
             value={formData.email}
             onChange={(e) => handleChange("email", e.target.value)}
             icon={<Email />}
@@ -117,8 +123,8 @@ export const AddUserModal = ({
           />
 
           <Input
-            label="Telefone"
-            placeholder="Ex: (11) 99999-9999"
+            label={t("dashboard.users.modals.fields.phone")}
+            placeholder={t("dashboard.users.modals.placeholders.phone")}
             value={formData.phone}
             onChange={(e) => handleChange("phone", e.target.value)}
             icon={<Phone />}
@@ -127,8 +133,8 @@ export const AddUserModal = ({
         </div>
 
         <Input
-          label="Credencial"
-          placeholder="Ex: 03214456"
+          label={t("dashboard.users.modals.fields.document")}
+          placeholder={t("dashboard.users.modals.placeholders.document")}
           value={formData.document}
           onChange={(e) => handleChange("document", e.target.value)}
           icon={<Person />}
@@ -137,19 +143,27 @@ export const AddUserModal = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Select
-            label="Cargo"
+            label={t("dashboard.users.modals.fields.role")}
             value={formData.role}
             onChange={(e) => handleChange("role", e.target.value)}
             icon={<Badge fontSize="small" />}
           >
-            <option value="manager">Gerente</option>
-            <option value="reception">Recepção</option>
-            <option value="sales">Vendas</option>
-            <option value="support">Suporte</option>
+            <option value="manager">
+              {t("dashboard.users.filters.roles.manager")}
+            </option>
+            <option value="reception">
+              {t("dashboard.users.filters.roles.reception")}
+            </option>
+            <option value="sales">
+              {t("dashboard.users.filters.roles.sales")}
+            </option>
+            <option value="support">
+              {t("dashboard.users.filters.roles.support")}
+            </option>
           </Select>
 
           <Select
-            label="Nível de Acesso"
+            label={t("dashboard.users.modals.fields.accessLevel")}
             value={formData.accessLevel}
             onChange={(e) => handleChange("accessLevel", e.target.value)}
             icon={<VpnKey fontSize="small" />}
@@ -163,14 +177,13 @@ export const AddUserModal = ({
         {/* Password field - required only for new users */}
         {!initialData && (
           <Input
-            label="Senha Inicial"
+            label={t("dashboard.users.modals.fields.password")}
             type="password"
             placeholder="******"
             value={formData.password}
             onChange={(e) => handleChange("password", e.target.value)}
             icon={<VpnKey />}
             required={!initialData}
-            helperText="O usuário poderá alterar a senha no primeiro acesso."
           />
         )}
       </form>

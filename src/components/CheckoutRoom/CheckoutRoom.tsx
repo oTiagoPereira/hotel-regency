@@ -1,5 +1,6 @@
 import { CreditCard, Person } from "@mui/icons-material";
 import { useState, type ChangeEvent } from "react";
+import { useTranslation } from "react-i18next";
 import Button from "../Button";
 import { CheckoutRoomStyles as Styles } from "./CheckoutRoom.style";
 
@@ -19,6 +20,7 @@ const reservationDetails = {
 };
 
 function CheckoutRoom() {
+  const { t } = useTranslation();
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const [showPixQr, setShowPixQr] = useState(false);
   const [installments, setInstallments] = useState(1);
@@ -268,7 +270,7 @@ function CheckoutRoom() {
                 <div className={Styles.paymentContent}>
                   {!showPixQr ? (
                     <>
-                      <p className="text-gray-600">
+                      <p className="text-text-color/80">
                         Clique no botão para gerar o QR Code para pagamento via
                         PIX. Ele será válido por 15 minutos.
                       </p>
@@ -295,9 +297,14 @@ function CheckoutRoom() {
                           readOnly
                           value="00020126580014br.gov.bcb.pix0136... (código de exemplo)"
                           className={Styles.pixCodeInput}
+                          aria-label="Código PIX copia e cola"
                         />
-                        <button className={Styles.pixCopyButton}>
-                          Copiar código
+                        <button 
+                          className={Styles.pixCopyButton}
+                          aria-label={t("checkout.copyPix", "Copiar código PIX")}
+                          title={t("checkout.copyPix", "Copiar código PIX")}
+                        >
+                          {t("checkout.copyCode", "Copiar código")}
                         </button>
                       </div>
                     </div>
@@ -326,7 +333,7 @@ function CheckoutRoom() {
               <p className="font-bold">{reservationDetails.guests}</p>
             </div>
           </div>
-          <hr className="border-gray-200" />
+          <hr className="border-border-light" />
           <div className="space-y-3">
             <h3 className={Styles.summaryItemLabel}>Itens da reserva</h3>
             {reservationDetails.items.map((item) => (
@@ -341,7 +348,7 @@ function CheckoutRoom() {
               </div>
             ))}
           </div>
-          <hr className="border-gray-200" />
+          <hr className="border-border-light" />
           <div className={Styles.summarySection}>
             <div className={Styles.summaryRow}>
               <span>Subtotal</span>
@@ -392,7 +399,10 @@ function CheckoutRoom() {
               </label>
             </div>
           </div>
-          <Button label="Finalizar e Pagar" variant="primary" />
+          <Button 
+            label={t("checkout.finishAndPay", "Finalizar e Pagar")} 
+            variant="primary" 
+          />
         </div>
       </div>
     </section>

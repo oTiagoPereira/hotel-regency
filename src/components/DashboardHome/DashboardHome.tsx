@@ -5,13 +5,17 @@ import { DashboardHomeStyles as styles } from "./DashboardHome.style";
 import OccupancyChart from "./OccupancyChart";
 import RevenueChart from "./RevenueChart";
 import { Select } from "../Select/Select";
-
 import { useState } from "react";
+import { useDashboardData } from "../../hooks/useDashboardData";
+import { GuestList } from "../GuestList/GuestList";
+
 export default function DashboardHome() {
   const { t } = useTranslation();
 
   const [occupancyPeriod, setOccupancyPeriod] = useState("7days");
   const [revenuePeriod, setRevenuePeriod] = useState("30days");
+
+  const { isLoading, checkins, checkouts, reviews } = useDashboardData();
 
   return (
     <>
@@ -20,37 +24,37 @@ export default function DashboardHome() {
           title={t("dashboard.stats.totalReservations")}
           value="248"
           subtext={`+12% ${t("dashboard.stats.thisMonth")}`}
-          subtextClass="text-green-600"
+          subtextClass="text-success"
           icon={<CalendarToday />}
-          iconBgClass="bg-blue-50"
-          iconColorClass="text-blue-600"
+          iconBgClass="bg-info-light"
+          iconColorClass="text-info"
         />
         <DashboardStatsCard
           title={t("dashboard.stats.occupiedRooms")}
           value="156/200"
           subtext={`78% ${t("dashboard.stats.occupancy")}`}
-          subtextClass="text-blue-600"
+          subtextClass="text-info"
           icon={<Hotel />}
-          iconBgClass="bg-green-50"
-          iconColorClass="text-green-600"
+          iconBgClass="bg-success-light"
+          iconColorClass="text-success"
         />
         <DashboardStatsCard
           title={t("dashboard.stats.monthlyRevenue")}
           value="R$ 485K"
           subtext={`+8% ${t("dashboard.stats.vsLastMonth")}`}
-          subtextClass="text-green-600"
+          subtextClass="text-success"
           icon={<AttachMoney />}
-          iconBgClass="bg-yellow-50"
-          iconColorClass="text-yellow-600"
+          iconBgClass="bg-warning-light"
+          iconColorClass="text-warning"
         />
         <DashboardStatsCard
           title={t("dashboard.stats.averageRating")}
           value="4.8"
           subtext={`+0.2 ${t("dashboard.stats.thisMonth")}`}
-          subtextClass="text-green-600"
+          subtextClass="text-success"
           icon={<Star />}
-          iconBgClass="bg-purple-50"
-          iconColorClass="text-purple-600"
+          iconBgClass="bg-accent-light"
+          iconColorClass="text-accent"
         />
       </div>
 
@@ -65,6 +69,7 @@ export default function DashboardHome() {
               onChange={(e) => setOccupancyPeriod(e.target.value)}
               className="py-1 px-3 text-xs"
               containerClassName="max-w-[fit-content]"
+              aria-label={t("dashboard.cards.occupancy")}
             >
               <option value="7days">{t("dashboard.filters.7days")}</option>
               <option value="30days">{t("dashboard.filters.30days")}</option>
@@ -82,6 +87,7 @@ export default function DashboardHome() {
               onChange={(e) => setRevenuePeriod(e.target.value)}
               className="py-1 px-3 text-xs"
               containerClassName="max-w-[fit-content]"
+              aria-label={t("dashboard.cards.revenue")}
             >
               <option value="30days">{t("dashboard.filters.30days")}</option>
               <option value="6months">{t("dashboard.filters.6months")}</option>
@@ -100,41 +106,7 @@ export default function DashboardHome() {
             {t("dashboard.cards.recentCheckins")}
           </h3>
           <div className={styles.listContainer}>
-            {/* TODO: Implementar fetch de dados */}
-            {[
-              {
-                name: "Maria Santos",
-                room: "205",
-                time: "14:00",
-                img: "https://ui-avatars.com/api/?name=Maria+Santos",
-              },
-              {
-                name: "Carlos Lima",
-                room: "312",
-                time: "15:30",
-                img: "https://ui-avatars.com/api/?name=Carlos+Lima",
-              },
-              {
-                name: "Ana Costa",
-                room: "108",
-                time: "16:00",
-                img: "https://ui-avatars.com/api/?name=Ana+Costa",
-              },
-            ].map((guest, i) => (
-              <div key={i} className={styles.listItem}>
-                <img
-                  src={guest.img}
-                  alt={guest.name}
-                  className={styles.avatar}
-                />
-                <div>
-                  <p className={styles.itemName}>{guest.name}</p>
-                  <p className={styles.itemDetail}>
-                    {t("dashboard.menu.rooms")} {guest.room} - {guest.time}
-                  </p>
-                </div>
-              </div>
-            ))}
+            <GuestList guests={checkins} isLoading={isLoading} />
           </div>
         </div>
 
@@ -143,41 +115,7 @@ export default function DashboardHome() {
             {t("dashboard.cards.todaysCheckouts")}
           </h3>
           <div className={styles.listContainer}>
-            {/* TODO: Implementar fetch de dados */}
-            {[
-              {
-                name: "Pedro Silva",
-                room: "401",
-                time: "11:00",
-                img: "https://ui-avatars.com/api/?name=Pedro+Silva",
-              },
-              {
-                name: "Julia Mendes",
-                room: "203",
-                time: "12:00",
-                img: "https://ui-avatars.com/api/?name=Julia+Mendes",
-              },
-              {
-                name: "Roberto Alves",
-                room: "506",
-                time: "10:30",
-                img: "https://ui-avatars.com/api/?name=Roberto+Alves",
-              },
-            ].map((guest, i) => (
-              <div key={i} className={styles.listItem}>
-                <img
-                  src={guest.img}
-                  alt={guest.name}
-                  className={styles.avatar}
-                />
-                <div>
-                  <p className={styles.itemName}>{guest.name}</p>
-                  <p className={styles.itemDetail}>
-                    {t("dashboard.menu.rooms")} {guest.room} - {guest.time}
-                  </p>
-                </div>
-              </div>
-            ))}
+            <GuestList guests={checkouts} isLoading={isLoading} />
           </div>
         </div>
 
@@ -186,34 +124,75 @@ export default function DashboardHome() {
             {t("dashboard.cards.recentReviews")}
           </h3>
           <div className={styles.listContainer}>
-            <div className={styles.reviewItem}>
-              <div className={styles.reviewStars}>
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <span className={styles.reviewRating}>Excelente</span>
+            {isLoading ? (
+              <div className="flex flex-col gap-4">
+                {[1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className="p-3 bg-surface rounded-lg animate-pulse min-h-[100px]"
+                  >
+                    <div className="flex mb-2 gap-1">
+                      {[1, 2, 3, 4, 5].map((j) => (
+                        <div
+                          key={j}
+                          className="w-4 h-4 rounded-full bg-border-light"
+                        ></div>
+                      ))}
+                    </div>
+                    <div className="h-3 bg-border-light rounded w-full mb-2"></div>
+                    <div className="h-3 bg-border-light rounded w-2/3 mb-2"></div>
+                    <div className="h-2 bg-border-light rounded w-1/4 mt-4"></div>
+                  </div>
+                ))}
               </div>
-              <p className={styles.reviewText}>
-                "Serviço impecável e quartos muito confortáveis!"
-              </p>
-              <p className={styles.reviewAuthor}>- Laura Oliveira</p>
-            </div>
-            <div className={styles.reviewItemGray}>
-              <div className={styles.reviewStars}>
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <Star fontSize="small" />
-                <Star fontSize="small" className={styles.starGray} />
-                <span className={styles.reviewRatingGray}>Muito Bom</span>
+            ) : reviews.length === 0 ? (
+              <div className="p-4 text-center text-sm text-text-muted bg-surface rounded-lg">
+                {t(
+                  "dashboard.general.noData",
+                  "Nenhum dado disponível no momento.",
+                )}
               </div>
-              <p className={styles.reviewText}>
-                "Localização perfeita e café da manhã delicioso."
-              </p>
-              <p className={styles.reviewAuthor}>- Marcos Pereira</p>
-            </div>
+            ) : (
+              reviews.map((review, i) => (
+                <div
+                  key={i}
+                  className={
+                    i % 2 === 0 ? styles.reviewItem : styles.reviewItemGray
+                  }
+                >
+                  <div
+                    className={styles.reviewStars}
+                    aria-label={`Avaliação: ${review.rating} de 5 estrelas`}
+                  >
+                    {[...Array(5)].map((_, index) => (
+                      <Star
+                        key={index}
+                        fontSize="small"
+                        className={
+                          index >= review.rating ? styles.starGray : ""
+                        }
+                        aria-hidden="true"
+                      />
+                    ))}
+                    <span
+                      className={
+                        i % 2 === 0
+                          ? styles.reviewRating
+                          : styles.reviewRatingGray
+                      }
+                    >
+                      {review.rating >= 4
+                        ? "Excelente"
+                        : review.rating === 3
+                          ? "Bom"
+                          : "Regular"}
+                    </span>
+                  </div>
+                  <p className={styles.reviewText}>"{review.text}"</p>
+                  <p className={styles.reviewAuthor}>- {review.author}</p>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

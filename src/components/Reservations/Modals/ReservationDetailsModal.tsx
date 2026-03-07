@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
 import {
@@ -36,18 +37,20 @@ export const ReservationDetailsModal = ({
   reservation,
   onCancelReservation,
 }: ReservationDetailsModalProps) => {
+  const { t } = useTranslation();
+
   if (!reservation) return null;
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={`Reserva #${reservation.id}`}
+      title={`${t("dashboard.reservations.modals.details")} #${reservation.id}`}
       size="default"
       footer={
         <>
           <Button
-            label="Fechar"
+            label={t("dashboard.reservations.actions.close")}
             onClick={onClose}
             variant="secondary"
             size="small"
@@ -55,7 +58,7 @@ export const ReservationDetailsModal = ({
           />
           {reservation.status !== "cancelled" && onCancelReservation && (
             <Button
-              label="Cancelar Reserva"
+              label={t("dashboard.reservations.actions.cancel")}
               onClick={onCancelReservation}
               variant="danger"
               size="small"
@@ -68,92 +71,101 @@ export const ReservationDetailsModal = ({
       <div className="space-y-6">
         {/* Status Banner */}
         <div
-          className={`p-3 rounded-lg flex items-center ${
+          className={`p-4 rounded-xl flex items-center border ${
             reservation.status === "confirmed"
-              ? "bg-green-100 text-green-800"
+              ? "bg-success-light text-success border-success-light"
               : reservation.status === "pending"
-                ? "bg-yellow-100 text-yellow-800"
-                : "bg-red-100 text-red-800"
+                ? "bg-warning-light text-warning border-warning-light"
+                : "bg-error-light text-error border-error-light"
           }`}
         >
-          <Info className="mr-2" fontSize="small" />
-          <span className="font-medium capitalize">
-            Status:{" "}
+          <Info className="mr-2" />
+          <span className="font-semibold capitalize">
+            {t("dashboard.reservations.table.status")}:{" "}
             {reservation.status === "confirmed"
-              ? "Confirmada"
+              ? t("dashboard.reservations.status.confirmed")
               : reservation.status === "pending"
-                ? "Pendente"
-                : "Cancelada"}
+                ? t("dashboard.reservations.status.pending")
+                : t("dashboard.reservations.status.cancelled")}
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 className="text-sm font-semibold text-gray-500 uppercase mb-3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-surface border border-border-light p-5 rounded-xl">
+            <h4 className="text-sm font-semibold text-text-muted uppercase mb-4 flex items-center">
               <Person fontSize="small" className="mr-2" />
-              Hóspede
+              {t("dashboard.reservations.modals.fields.guest")}
             </h4>
-            <div className="flex items-center mb-3">
+            <div className="flex items-center">
               <img
                 src={reservation.guest.avatar}
                 alt={reservation.guest.name}
-                className="w-10 h-10 rounded-full mr-3 object-cover"
+                className="w-12 h-12 rounded-full mr-4 object-cover border border-border-light shadow-sm"
               />
               <div>
-                <p className="font-medium text-gray-900">
+                <p className="font-semibold text-text-color">
                   {reservation.guest.name}
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-text-muted mt-0.5">
                   {reservation.guest.email}
                 </p>
               </div>
             </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold text-gray-500 uppercase mb-3 flex items-center">
+          <div className="bg-surface border border-border-light p-5 rounded-xl">
+            <h4 className="text-sm font-semibold text-text-muted uppercase mb-4 flex items-center">
               <Hotel fontSize="small" className="mr-2" />
-              Acomodação
+              {t("dashboard.reservations.table.room")}
             </h4>
-            <p className="font-medium text-gray-900">{reservation.room}</p>
-            <p className="text-sm text-gray-500">
-              {reservation.guests} hóspede(s)
+            <p className="font-semibold text-text-color text-lg mb-1">
+              {reservation.room}
+            </p>
+            <p className="text-sm text-text-muted">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-neutral border border-border-light">
+                <Person fontSize="small" /> {reservation.guests}{" "}
+                {t("dashboard.reservations.table.guests")}
+              </span>
             </p>
           </div>
         </div>
 
-        <hr className="border-gray-100" />
-
-        <div>
-          <h4 className="text-sm font-semibold text-gray-500 uppercase mb-3 flex items-center">
+        <div className="bg-surface border border-border-light p-5 rounded-xl">
+          <h4 className="text-sm font-semibold text-text-muted uppercase mb-4 flex items-center">
             <CalendarToday fontSize="small" className="mr-2" />
-            Período
+            {t("dashboard.reservations.modals.sections.stayInfo")}
           </h4>
-          <div className="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-            <div className="text-center">
-              <p className="text-xs text-gray-500 mb-1">Check-in</p>
-              <p className="font-medium text-gray-900">
+          <div className="flex justify-between items-center bg-neutral border border-border-light p-4 rounded-lg shadow-sm">
+            <div className="text-center flex-1">
+              <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1">
+                {t("dashboard.reservations.table.checkIn")}
+              </p>
+              <p className="font-semibold text-text-color">
                 {new Date(reservation.checkIn).toLocaleDateString("pt-BR")}
               </p>
             </div>
-            <div className="h-px w-10 bg-gray-300"></div>
-            <div className="text-center">
-              <p className="text-xs text-gray-500 mb-1">Check-out</p>
-              <p className="font-medium text-gray-900">
+            <div className="h-px w-12 bg-border-light mx-4 relative">
+              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-neutral px-2 text-text-muted text-xs">
+                -
+              </span>
+            </div>
+            <div className="text-center flex-1">
+              <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1">
+                {t("dashboard.reservations.table.checkOut")}
+              </p>
+              <p className="font-semibold text-text-color">
                 {new Date(reservation.checkOut).toLocaleDateString("pt-BR")}
               </p>
             </div>
           </div>
         </div>
 
-        <hr className="border-gray-100" />
-
         <div className="flex justify-between items-center">
-          <div className="flex items-center text-gray-700">
+          <div className="flex items-center text-text-color/90">
             <CreditCard className="mr-2" />
-            <span>Total da Reserva</span>
+            <span>{t("dashboard.reservations.table.total")}</span>
           </div>
-          <span className="text-xl font-bold text-gray-900">
+          <span className="text-xl font-bold text-text-color">
             R${" "}
             {reservation.total.toLocaleString("pt-BR", {
               minimumFractionDigits: 2,

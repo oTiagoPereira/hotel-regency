@@ -1,7 +1,7 @@
 export const heroEventsStyles = {
   mainContainer: "bg-background",
   heroSection:
-    "h-[300px] md:h-[600px] bg-cover bg-center flex flex-col justify-center items-center text-white text-center px-4 relative",
+    "h-[300px] md:h-[600px] bg-cover bg-center flex flex-col justify-center items-center text-neutral text-center px-4 relative",
   heroOverlay:
     "bg-black opacity-50 md:opacity-60 p-10 rounded-lg w-full h-full absolute z-[0]",
   heroContent: "relative z-[1]",
@@ -13,7 +13,7 @@ export const heroEventsStyles = {
     "max-w-screen-2xl mx-auto flex flex-col justify-between px-4 sm:px-6 lg:px-8 w-full",
   eventsContainer: "mt-12 w-full mx-auto space-y-6",
   eventCard:
-    "bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center gap-6",
+    "bg-neutral p-4 rounded-lg shadow-sm border border-border-light flex flex-col sm:flex-row items-center gap-6",
   eventImage: "w-full md:w-40 h-50 sm:h-36 object-cover rounded-md",
   eventDetails: "flex-grow text-center sm:text-left",
   eventTitle: "font-serif text-2xl text-heading",

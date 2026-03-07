@@ -252,15 +252,340 @@
               "employee": "Empleado"
           },
           "menu": {
-              "dashboard": "Tablero",
-              "reservations": "Reservas",
-              "rooms": "Habitaciones",
-              "guests": "Huéspedes",
-              "finance": "Finanzas",
-              "reviews": "Reseñas",
-              "users": "Personal",
-              "settings": "Ajustes"
-          },
+            "dashboard": "Dashboard",
+            "reservations": "Reservas",
+            "rooms": "Habitaciones",
+            "guests": "Huéspedes",
+            "finance": "Finanzas",
+            "reviews": "Reseñas",
+            "users": "Personal",
+            "settings": "Configuraciones",
+            "logout": "Cerrar sesión"
+        },
+        "reservations": {
+            "title": "Lista de Reservas",
+            "searchPlaceholder": "Buscar reservas...",
+            "newReservation": "Nueva Reserva",
+            "stats": {
+                "total": "Total Reservas",
+                "confirmed": "Confirmadas",
+                "pending": "Pendientes",
+                "cancelled": "Canceladas"
+            },
+            "status": {
+                "confirmed": "Confirmada",
+                "pending": "Pendiente",
+                "cancelled": "Cancelada"
+            },
+            "filters": {
+                "all": "Todos los estados",
+                "confirmed": "Confirmada",
+                "pending": "Pendiente",
+                "cancelled": "Cancelada",
+                "startDate": "Fecha Inicio",
+                "endDate": "Fecha Fin",
+                "filter": "Filtrar"
+            },
+            "table": {
+                "client": "Cliente",
+                "room": "Habitación",
+                "checkIn": "Check-in",
+                "checkOut": "Check-out",
+                "status": "Estado",
+                "total": "Total",
+                "actions": "Acciones",
+                "guest": "huésped",
+                "guests": "huéspedes"
+            },
+            "actions": {
+                "view": "Ver Detalles",
+                "approve": "Aprobar",
+                "cancel": "Cancelar",
+                "cancelled": "Cancelada",
+                "close": "Cerrar",
+                "save": "Guardar Reserva",
+                "confirmCancel": "Confirmar Cancelación"
+            },
+            "modals": {
+                "add": "Nueva Reserva",
+                "details": "Detalles de la Reserva",
+                "cancel": "Cancelar Reserva",
+                "fields": {
+                    "guest": "Huésped",
+                    "selectGuest": "Seleccione un huésped",
+                    "roomType": "Tipo de Habitación",
+                    "roomTypeSelect": "Seleccione tipo",
+                    "checkIn": "Fecha de Check-in",
+                    "checkOut": "Fecha de Check-out",
+                    "guests": "Número de Huéspedes",
+                    "email": "Email",
+                    "phone": "Teléfono",
+                    "room": "Habitación"
+                },
+                "sections": {
+                    "guestInfo": "Información del Huésped",
+                    "stayInfo": "Detalles de Estancia",
+                    "payment": "Pago"
+                },
+                "payment": {
+                    "dailyRate": "Tarifa Diaria",
+                    "totalNights": "Noches Totales",
+                    "subtotal": "Subtotal",
+                    "taxes": "Impuestos (10%)",
+                    "total": "Total",
+                    "nights": "noches"
+                },
+                "cancelMessage": "Está a punto de cancelar la reserva #",
+                "cancelWarning": "Esta acción no se puede deshacer y puede generar multas de acuerdo a la política de cancelación.",
+                "reason": "Motivo de Cancelación",
+                "reasonDesc": "Por favor, indique el motivo de la cancelación (opcional)."
+            }
+        },
+        "rooms": {
+            "title": "Habitaciones",
+            "searchPlaceholder": "Buscar habitaciones...",
+            "newRoom": "Añadir Nueva Habitación",
+            "stats": {
+                "total": "Total de Habitaciones",
+                "available": "Disponibles",
+                "occupied": "Ocupadas",
+                "maintenance": "Mantenimiento"
+            },
+            "filters": {
+                "all": "Todos los estados",
+                "available": "Disponible",
+                "occupied": "Ocupado",
+                "maintenance": "Mantenimiento"
+            },
+            "table": {
+                "room": "Habitación",
+                "type": "Tipo",
+                "status": "Estado",
+                "capacity": "Capacidad",
+                "price": "Precio/Noche",
+                "actions": "Acciones",
+                "room_prefix": "Habitación",
+                "people": "personas"
+            },
+            "modals": {
+                "add": "Añadir Nueva Habitación",
+                "edit": "Editar Habitación",
+                "delete": "Eliminar Habitación",
+                "fields": {
+                    "number": "Número de Habitación",
+                    "type": "Tipo de Habitación",
+                    "capacity": "Capacidad",
+                    "price": "Tarifa Diaria ($)"
+                },
+                "placeholders": {
+                    "number": "Ej: 101",
+                    "price": "0.00"
+                },
+                "types": {
+                    "standard": "Estándar",
+                    "deluxe": "Suite Deluxe",
+                    "family": "Suite Familiar",
+                    "presidential": "Suite Presidencial"
+                },
+                "amenities": "Comodidades",
+                "amenitiesList": {
+                    "wifi": "Wi-Fi Gratis",
+                    "tv": "Smart TV",
+                    "ac": "Aire Acondicionado",
+                    "minibar": "Minibar",
+                    "king_bed": "Cama King Size",
+                    "ocean_view": "Vista al Mar",
+                    "balcony": "Balcón",
+                    "bathtub": "Bañera",
+                    "work_desk": "Escritorio de Trabajo",
+                    "safe": "Caja Fuerte Digital"
+                },
+                "deleteMessage": "¿Está seguro de que desea eliminar",
+                "deleteWarning": "Esta acción no se puede deshacer y eliminará permanentemente la habitación del sistema."
+            }
+        },
+        "guests": {
+            "title": "Huéspedes",
+            "searchPlaceholder": "Buscar por nombre, email o teléfono...",
+            "newGuest": "Nuevo Huésped",
+            "table": {
+                "client": "Cliente",
+                "contact": "Contacto",
+                "reservations": "Reservas",
+                "status": "Estado",
+                "actions": "Acciones",
+                "id": "ID",
+                "reservationsCount": "reservas"
+            },
+            "modals": {
+                "add": "Añadir Huésped",
+                "edit": "Editar Huésped",
+                "deactivate": "Desactivar Huésped",
+                "details": "Detalles del Huésped",
+                "fields": {
+                    "name": "Nombre Completo",
+                    "email": "Email",
+                    "phone": "Teléfono",
+                    "document": "Documento (Identidad/Pasaporte)",
+                    "vip": "Estado VIP"
+                },
+                "placeholders": {
+                    "name": "Ingrese nombre completo",
+                    "email": "email@ejemplo.com",
+                    "phone": "(00) 00000-0000",
+                    "document": "000.000.000-00"
+                },
+                "vipDesc": "Huésped frecuente o VIP",
+                "deactivateMessage": "¿Está seguro que desea desactivar el registro de",
+                "deactivateWarning": "Su historial de reservas se mantendrá, pero el huésped no podrá hacer nuevas reservas hasta su reactivación."
+            }
+        },
+        "users": {
+            "title": "Lista del Personal",
+            "stats": {
+                "total": "Usuarios Totales",
+                "active": "Activos",
+                "inactive": "Inactivos",
+                "admins": "Administradores"
+            },
+            "filters": {
+                "search": "Buscar personal...",
+                "allRoles": "Todos los roles",
+                "roles": {
+                    "manager": "Gerente",
+                    "reception": "Recepción",
+                    "sales": "Ventas",
+                    "support": "Soporte"
+                }
+            },
+            "table": {
+                "employee": "Empleado",
+                "role": "Rol",
+                "accessLevel": "Nivel de Acceso",
+                "status": "Estado",
+                "lastAccess": "Último Acceso",
+                "actions": "Acciones"
+            },
+            "pagination": {
+                "showing": "Mostrando",
+                "to": "a",
+                "of": "de",
+                "results": "resultados",
+                "prev": "Anterior",
+                "next": "Siguiente"
+            },
+            "newUser": "Nuevo Miembro del Personal",
+            "modals": {
+                "add": "Añadir Miembro del Personal",
+                "edit": "Editar Miembro del Personal",
+                "deactivate": "Desactivar Miembro del Personal",
+                "fields": {
+                    "name": "Nombre Completo",
+                    "email": "Correo Corporativo",
+                    "phone": "Teléfono",
+                    "document": "Documento de ID",
+                    "role": "Rol",
+                    "accessLevel": "Nivel de Acceso",
+                    "password": "Contraseña (Opcional)"
+                },
+                "placeholders": {
+                    "name": "Ingrese nombre completo",
+                    "email": "email@hotelregency.com",
+                    "phone": "(00) 00000-0000",
+                    "document": "000000000",
+                    "password": "Deje en blanco para mantener la actual"
+                },
+                "deactivateMessage": "¿Está seguro de que desea desactivar el acceso para ",
+                "deactivateWarning": "El usuario ya no podrá acceder al sistema del hotel después de esta acción."
+            }
+        },
+        "finance": {
+            "filters": {
+                "l1m": "Último mes",
+                "l3m": "Últimos 3 meses",
+                "l6m": "Últimos 6 meses",
+                "l1y": "Último año",
+                "apply": "Aplicar Filtros",
+                "reset": "Restablecer Filtros"
+            },
+            "metrics": {
+                "totalRevenue": "Ingresos Totales",
+                "occupancyRate": "Tasa de Ocupación",
+                "cancellations": "Cancelaciones",
+                "avgValue": "Valor Promedio/Reserva",
+                "vsLastMonth": "vs mes anterior"
+            },
+            "charts": {
+                "monthlyRevenue": "Ingresos Mensuales",
+                "occupancyRate": "Tasa de Ocupación",
+                "cancellationsPerMonth": "Cancelaciones por Mes",
+                "avgValuePerReservation": "Valor Promedio por Reserva",
+                "avg": "Promedio",
+                "goal": "Meta",
+                "current": "Actual",
+                "revenue": "Ingresos",
+                "occupancy": "Ocupación",
+                "rate": "Tasa",
+                "avgValue": "Valor Promedio",
+                "months": {
+                    "jan": "Ene",
+                    "feb": "Feb",
+                    "mar": "Mar",
+                    "apr": "Abr",
+                    "may": "May",
+                    "jun": "Jun"
+                }
+            }
+        },
+        "reviews": {
+            "title": "Experiencias de los Huéspedes",
+            "subtitle": "Descubra lo que nuestros huéspedes dicen sobre sus memorables estadías en Regency.",
+            "item1": "¡Una experiencia increíble! El hotel es maravilloso y el servicio es excepcional.",
+            "item2": "¡Me encantó mi estadía! Habitaciones cómodas y una vista impresionante.",
+            "item3": "Excelente ubicación y servicios de calidad. ¡Muy recomendado!",
+            "dates": {
+                "daysAgo": "días atrás",
+                "weekAgo": "hace 1 semana"
+            }
+        },
+        "actions": {
+            "edit": "Editar",
+            "view": "Ver Detalles",
+            "deactivate": "Desactivar",
+            "activate": "Activar",
+            "delete": "Eliminar",
+            "cancel": "Cancelar",
+            "save": "Guardar",
+            "confirm": "Confirmar",
+            "add": "Añadir",
+            "export": "Exportar",
+            "search": "Buscar...",
+            "allStatus": "Todos los Estados"
+        },
+        "status": {
+            "active": "Activo",
+            "inactive": "Inactivo",
+            "suspended": "Suspendido",
+            "confirmed": "Confirmado",
+            "pending": "Pendiente",
+            "cancelled": "Cancelado",
+            "checkin": "Entrada",
+            "checkout": "Salida",
+            "available": "Disponible",
+            "occupied": "Ocupada",
+            "maintenance": "Mantenimiento"
+        },
+        "header": {
+            "title": "Tablero",
+            "subtitle_dashboard": "Resumen del sistema",
+            "subtitle_reservations": "Gestiona todas las reservas del hotel",
+            "subtitle_rooms": "Gestiona las habitaciones del hotel",
+            "subtitle_guests": "Lista de huéspedes registrados",
+            "subtitle_finance": "Informes y métricas financieras",
+            "subtitle_reviews": "Comentarios de los huéspedes",
+            "subtitle_users": "Gestiona el personal del hotel",
+            "subtitle_settings": "Ajustes del sistema"
+        },
           "stats": {
               "totalReservations": "Reservas Totales",
               "occupiedRooms": "Habitaciones Ocupadas",
@@ -286,6 +611,100 @@
               "30days": "Últimos 30 días",
               "6months": "Últimos 6 meses",
               "12months": "Últimos 12 meses"
+          },
+          "settings": {
+              "tabs": {
+                  "general": "General",
+                  "checkin": "Check-in/out",
+                  "policies": "Políticas",
+                  "payments": "Pagos",
+                  "notifications": "Notificaciones",
+                  "integrations": "Integraciones"
+              },
+              "sections": {
+                  "general": {
+                      "title": "Configuraciones Generales",
+                      "hotelName": "Nombre del Hotel",
+                      "hotelLogo": "Logotipo del Hotel",
+                      "changeLogo": "Cambiar Logo",
+                      "systemLanguage": "Idioma del Sistema",
+                      "timezone": "Zona Horaria",
+                      "phone": "Teléfono Principal",
+                      "whatsapp": "WhatsApp Oficial",
+                      "address": "Dirección Física",
+                      "addressFields": {
+                          "zip": "Código Postal",
+                          "city": "Ciudad",
+                          "state": "Estado",
+                          "street": "Calle, Número, Complemento"
+                      },
+                      "privacyPolicy": "Política de Privacidad",
+                      "privacyPlaceholder": "Introduce la política de privacidad del hotel...",
+                      "privacyDefault": "Regency Hotel respeta su privacidad y protege sus datos personales..."
+                  },
+                  "checkin": {
+                      "title": "Horarios y Tarifas de Check-in",
+                      "checkinTime": "Horario de Check-in",
+                      "checkoutTime": "Horario de Check-out",
+                      "earlyCheckinFee": "Tarifa de Early Check-in ($)",
+                      "lateCheckoutFee": "Tarifa de Late Check-out ($)",
+                      "feePlaceholder": "Ej: 50",
+                      "feeHelper": "Valor cobrado por hora adicional"
+                  },
+                  "policies": {
+                      "title": "Políticas del Hotel",
+                      "cancellation": "Política de Cancelación",
+                      "cancellationDefault": "Cancelación gratuita hasta 48 horas antes del check-in. Después de este período, se cobrará la primera noche.",
+                      "children": "Política para Niños",
+                      "childrenDefault": "Los niños de hasta 5 años se alojan gratis si utilizan las camas existentes.",
+                      "pets": "Política de Mascotas",
+                      "petsDefault": "Aceptamos mascotas pequeñas por una tarifa adicional de $50.00 por día."
+                  },
+                  "payments": {
+                      "title": "Moneda y Pagos",
+                      "currency": "Moneda Principal",
+                      "taxes": "Impuestos (%)",
+                      "taxesPlaceholder": "Ej: 15",
+                      "acceptedMethods": "Métodos de Pago Aceptados",
+                      "methods": {
+                          "credit": "Tarjeta de Crédito",
+                          "debit": "Tarjeta de Débito",
+                          "pix": "Transferencia (PIX)",
+                          "cash": "Efectivo"
+                      }
+                  },
+                  "notifications": {
+                      "title": "Preferencias de Notificación",
+                      "items": {
+                          "new_res": {
+                              "label": "Nuevas Reservas",
+                              "desc": "Recibe un correo cuando se confirma una nueva reserva."
+                          },
+                          "cancel": {
+                              "label": "Cancelaciones",
+                              "desc": "Avisos inmediatos sobre cancelaciones de huéspedes."
+                          },
+                          "checkin_alert": {
+                              "label": "Alertas de Check-in",
+                              "desc": "Notificaciones de huéspedes que llegan hoy."
+                          },
+                          "stock": {
+                              "label": "Stock Bajo (Minibar)",
+                              "desc": "Avisar cuando sea necesario reponer artículos."
+                          }
+                      }
+                  },
+                  "integrations": {
+                      "title": "Integraciones del Sistema",
+                      "connected": "Conectado",
+                      "disconnected": "Desconectado",
+                      "notConfigured": "No configurado",
+                      "configure": "Configurar",
+                      "connect": "Conectar"
+                  }
+              },
+              "saveSuccess": "¡Configuraciones guardadas con éxito!",
+              "saving": "Guardando..."
           }
       }
   }

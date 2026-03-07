@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Button from "../Button";
 import ImgHeroBanner from "../../assets/images/img-hall-banner.webp";
 import ImgBarAtrio from "../../assets/images/img-bar-atrio.webp";
@@ -92,6 +93,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
 };
 
 function Events() {
+  const { t } = useTranslation();
   const { ref: heroRef, inView: heroInView } = useIsVisible();
   const { ref: eventsRef, inView: eventsInView } = useIsVisible();
   const { ref: locationsRef, inView: locationsInView } = useIsVisible();
@@ -156,7 +158,7 @@ function Events() {
                   <p className={heroEventsStyles.eventInfo}>{event.time}</p>
                 </div>
                 <div className={heroEventsStyles.eventButtonContainer}>
-                  <Button label="Reserve Agora" variant="secondary" />
+                  <Button label={t("events.bookNow", "Reserve Agora")} variant="secondary" />
                 </div>
               </motion.div>
             ))}
@@ -201,7 +203,7 @@ function Events() {
               </p>
               <div className={heroEventsStyles.locationButtonContainer}>
                 <Button
-                  label="Reservar Agora"
+                  label={t("events.bookNow", "Reservar Agora")}
                   variant="secondary"
                   type="button"
                   size="default"
@@ -231,7 +233,7 @@ function Events() {
               </p>
               <div className={heroEventsStyles.locationButtonContainer}>
                 <Button
-                  label="Reservar Agora"
+                  label={t("events.bookNow", "Reservar Agora")}
                   variant="secondary"
                   type="button"
                   size="default"
@@ -312,7 +314,7 @@ function Events() {
 
             <div className={heroEventsStyles.formButtonContainer}>
               <Button
-                label="Fazer Reserva"
+                label={t("events.makeReservation", "Fazer Reserva")}
                 variant="primary"
                 type="submit"
                 size="default"

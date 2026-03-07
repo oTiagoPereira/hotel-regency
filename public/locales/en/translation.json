@@ -247,7 +247,7 @@
           "title": "Dashboard",
           "greeting": "Hello, {{name}}",
           "role": {
-              "admin": "Administrator",
+          "admin": "Administrator",
               "manager": "Manager",
               "employee": "Employee"
           },
@@ -259,8 +259,333 @@
               "finance": "Finance",
               "reviews": "Reviews",
               "users": "Staff",
-              "settings": "Settings"
+              "settings": "Settings",
+              "logout": "Log out"
           },
+        "reservations": {
+            "title": "Reservations List",
+            "searchPlaceholder": "Search reservations...",
+            "newReservation": "New Reservation",
+            "stats": {
+                "total": "Total Reservations",
+                "confirmed": "Confirmed",
+                "pending": "Pending",
+                "cancelled": "Cancelled"
+            },
+            "status": {
+                "confirmed": "Confirmed",
+                "pending": "Pending",
+                "cancelled": "Cancelled"
+            },
+            "filters": {
+                "all": "All statuses",
+                "confirmed": "Confirmed",
+                "pending": "Pending",
+                "cancelled": "Cancelled",
+                "startDate": "Start Date",
+                "endDate": "End Date",
+                "filter": "Filter"
+            },
+            "table": {
+                "client": "Client",
+                "room": "Room",
+                "checkIn": "Check-in",
+                "checkOut": "Check-out",
+                "status": "Status",
+                "total": "Total",
+                "actions": "Actions",
+                "guest": "guest",
+                "guests": "guests"
+            },
+            "actions": {
+                "view": "View Details",
+                "approve": "Approve",
+                "cancel": "Cancel",
+                "cancelled": "Cancelled",
+                "close": "Close",
+                "save": "Save Reservation",
+                "confirmCancel": "Confirm Cancellation"
+            },
+            "modals": {
+                "add": "New Reservation",
+                "details": "Reservation Details",
+                "cancel": "Cancel Reservation",
+                "fields": {
+                    "guest": "Guest",
+                    "selectGuest": "Select a guest",
+                    "roomType": "Room Type",
+                    "roomTypeSelect": "Select type",
+                    "checkIn": "Check-in Date",
+                    "checkOut": "Check-out Date",
+                    "guests": "Number of Guests",
+                    "email": "Email",
+                    "phone": "Phone",
+                    "room": "Room"
+                },
+                "sections": {
+                    "guestInfo": "Guest Information",
+                    "stayInfo": "Stay Details",
+                    "payment": "Payment"
+                },
+                "payment": {
+                    "dailyRate": "Daily Rate",
+                    "totalNights": "Total Nights",
+                    "subtotal": "Subtotal",
+                    "taxes": "Taxes (10%)",
+                    "total": "Total",
+                    "nights": "nights"
+                },
+                "cancelMessage": "You are about to cancel reservation #",
+                "cancelWarning": "This action cannot be undone and may generate penalties according to the cancellation policy.",
+                "reason": "Reason for Cancellation",
+                "reasonDesc": "Please provide a reason for the cancellation (optional)."
+            }
+        },
+        "rooms": {
+            "title": "Rooms",
+            "searchPlaceholder": "Search rooms...",
+            "newRoom": "Add New Room",
+            "stats": {
+                "total": "Total Rooms",
+                "available": "Available",
+                "occupied": "Occupied",
+                "maintenance": "Maintenance"
+            },
+            "filters": {
+                "all": "All statuses",
+                "available": "Available",
+                "occupied": "Occupied",
+                "maintenance": "Maintenance"
+            },
+            "table": {
+                "room": "Room",
+                "type": "Type",
+                "status": "Status",
+                "capacity": "Capacity",
+                "price": "Price/Night",
+                "actions": "Actions",
+                "room_prefix": "Room",
+                "people": "people"
+            },
+            "modals": {
+                "add": "Add New Room",
+                "edit": "Edit Room",
+                "delete": "Delete Room",
+                "fields": {
+                    "number": "Room Number",
+                    "type": "Room Type",
+                    "capacity": "Capacity",
+                    "price": "Daily Rate ($)"
+                },
+                "placeholders": {
+                    "number": "e.g., 101",
+                    "price": "0.00"
+                },
+                "types": {
+                    "standard": "Standard",
+                    "deluxe": "Deluxe Suite",
+                    "family": "Family Suite",
+                    "presidential": "Presidential Suite"
+                },
+                "amenities": "Amenities",
+                "amenitiesList": {
+                    "wifi": "Free Wi-Fi",
+                    "tv": "Smart TV",
+                    "ac": "Air Conditioning",
+                    "minibar": "Minibar",
+                    "king_bed": "King Size Bed",
+                    "ocean_view": "Ocean View",
+                    "balcony": "Balcony",
+                    "bathtub": "Bathtub",
+                    "work_desk": "Work Desk",
+                    "safe": "Digital Safe"
+                },
+                "deleteMessage": "Are you sure you want to delete",
+                "deleteWarning": "This action cannot be undone and will permanently remove the room from the system."
+            }
+        },
+        "guests": {
+            "title": "Guests",
+            "searchPlaceholder": "Search by name, email or phone...",
+            "newGuest": "New Guest",
+            "table": {
+                "client": "Client",
+                "contact": "Contact",
+                "reservations": "Reservations",
+                "status": "Status",
+                "actions": "Actions",
+                "id": "ID",
+                "reservationsCount": "reservations"
+            },
+            "modals": {
+                "add": "Add Guest",
+                "edit": "Edit Guest",
+                "deactivate": "Deactivate Guest",
+                "details": "Guest Details",
+                "fields": {
+                    "name": "Full Name",
+                    "email": "Email",
+                    "phone": "Phone",
+                    "document": "Document (ID/Passport)",
+                    "vip": "VIP Status"
+                },
+                "placeholders": {
+                    "name": "Enter full name",
+                    "email": "email@example.com",
+                    "phone": "(00) 00000-0000",
+                    "document": "000.000.000-00"
+                },
+                "vipDesc": "Frequent or VIP guest",
+                "deactivateMessage": "Are you sure you want to deactivate the record of",
+                "deactivateWarning": "Reservation history will be kept, but the guest won't be able to make new reservations until reactivated."
+            }
+        },
+        "users": {
+            "title": "Staff List",
+            "stats": {
+                "total": "Total Users",
+                "active": "Active",
+                "inactive": "Inactive",
+                "admins": "Administrators"
+            },
+            "filters": {
+                "search": "Search staff...",
+                "allRoles": "All Roles",
+                "roles": {
+                    "manager": "Manager",
+                    "reception": "Receptionist",
+                    "sales": "Sales",
+                    "support": "Support"
+                }
+            },
+            "table": {
+                "employee": "Employee",
+                "role": "Role",
+                "accessLevel": "Access Level",
+                "status": "Status",
+                "lastAccess": "Last Access",
+                "actions": "Actions"
+            },
+            "pagination": {
+                "showing": "Showing",
+                "to": "to",
+                "of": "of",
+                "results": "results",
+                "prev": "Previous",
+                "next": "Next"
+            },
+            "newUser": "New Staff Member",
+            "modals": {
+                "add": "Add Staff Member",
+                "edit": "Edit Staff Member",
+                "deactivate": "Deactivate Staff Member",
+                "fields": {
+                    "name": "Full Name",
+                    "email": "Corporate E-mail",
+                    "phone": "Phone",
+                    "document": "ID Document",
+                    "role": "Role",
+                    "accessLevel": "Access Level",
+                    "password": "Password (Optional)"
+                },
+                "placeholders": {
+                    "name": "Enter full name",
+                    "email": "email@hotelregency.com",
+                    "phone": "(00) 00000-0000",
+                    "document": "000000000",
+                    "password": "Leave blank to keep current"
+                },
+                "deactivateMessage": "Are you sure you want to deactivate access for ",
+                "deactivateWarning": "The user will no longer be able to access the hotel system after this action."
+            }
+        },
+        "finance": {
+            "filters": {
+                "l1m": "Last month",
+                "l3m": "Last 3 months",
+                "l6m": "Last 6 months",
+                "l1y": "Last year",
+                "apply": "Apply Filters",
+                "reset": "Reset Filters"
+            },
+            "metrics": {
+                "totalRevenue": "Total Revenue",
+                "occupancyRate": "Occupancy Rate",
+                "cancellations": "Cancellations",
+                "avgValue": "Avg Value/Res",
+                "vsLastMonth": "vs last month"
+            },
+            "charts": {
+                "monthlyRevenue": "Monthly Revenue",
+                "occupancyRate": "Occupancy Rate",
+                "cancellationsPerMonth": "Cancellations per Month",
+                "avgValuePerReservation": "Avg Value per Reservation",
+                "avg": "Avg",
+                "goal": "Goal",
+                "current": "Current",
+                "revenue": "Revenue",
+                "occupancy": "Occupancy",
+                "rate": "Rate",
+                "avgValue": "Avg Value",
+                "months": {
+                    "jan": "Jan",
+                    "feb": "Feb",
+                    "mar": "Mar",
+                    "apr": "Apr",
+                    "may": "May",
+                    "jun": "Jun"
+                }
+            }
+        },
+        "reviews": {
+            "title": "Guest Experiences",
+            "subtitle": "Discover what our guests have to say about their memorable stays at Regency.",
+            "item1": "An amazing experience! The hotel is wonderful and the service is exceptional.",
+            "item2": "Loved my stay! Comfortable rooms and a breathtaking view.",
+            "item3": "Excellent location and quality services. Highly recommended!",
+            "dates": {
+                "daysAgo": "days ago",
+                "weekAgo": "1 week ago"
+            }
+        },
+        "actions": {
+            "edit": "Edit",
+            "view": "View Details",
+            "deactivate": "Deactivate",
+            "activate": "Activate",
+            "delete": "Delete",
+            "cancel": "Cancel",
+            "save": "Save",
+            "confirm": "Confirm",
+            "add": "Add",
+            "export": "Export",
+            "search": "Search...",
+            "allStatus": "All Statuses"
+        },
+        "status": {
+            "active": "Active",
+            "inactive": "Inactive",
+            "suspended": "Suspended",
+            "confirmed": "Confirmed",
+            "pending": "Pending",
+            "cancelled": "Cancelled",
+            "checkin": "Check-in",
+            "checkout": "Check-out",
+            "available": "Available",
+            "occupied": "Occupied",
+            "maintenance": "Maintenance"
+        },
+        "header": {
+            "title": "Dashboard",
+            "subtitle_dashboard": "System overview",
+            "subtitle_reservations": "Manage all hotel reservations",
+            "subtitle_rooms": "Manage hotel rooms",
+            "subtitle_guests": "Registered guests list",
+            "subtitle_finance": "Financial reports and metrics",
+            "subtitle_reviews": "Guest feedback",
+            "subtitle_users": "Manage hotel staff",
+            "subtitle_settings": "System settings"
+        },
           "stats": {
               "totalReservations": "Total Reservations",
               "occupiedRooms": "Occupied Rooms",
@@ -286,6 +611,100 @@
               "30days": "Last 30 days",
               "6months": "Last 6 months",
               "12months": "Last 12 months"
-          }
-      }
-  }
+          },
+        "settings": {
+            "tabs": {
+                "general": "General",
+                "checkin": "Check-in/out",
+                "policies": "Policies",
+                "payments": "Payments",
+                "notifications": "Notifications",
+                "integrations": "Integrations"
+            },
+            "sections": {
+                "general": {
+                    "title": "General Settings",
+                    "hotelName": "Hotel Name",
+                    "hotelLogo": "Hotel Logo",
+                    "changeLogo": "Change Logo",
+                    "systemLanguage": "System Language",
+                    "timezone": "Timezone",
+                    "phone": "Main Phone",
+                    "whatsapp": "Official WhatsApp",
+                    "address": "Physical Address",
+                    "addressFields": {
+                        "zip": "ZIP Code",
+                        "city": "City",
+                        "state": "State",
+                        "street": "Street, Number, Complement"
+                    },
+                    "privacyPolicy": "Privacy Policy",
+                    "privacyPlaceholder": "Enter the hotel's privacy policy...",
+                    "privacyDefault": "Regency Hotel respects your privacy and protects your personal data..."
+                },
+                "checkin": {
+                    "title": "Check-in Times and Fees",
+                    "checkinTime": "Check-in Time",
+                    "checkoutTime": "Check-out Time",
+                    "earlyCheckinFee": "Early Check-in Fee ($)",
+                    "lateCheckoutFee": "Late Check-out Fee ($)",
+                    "feePlaceholder": "Ex: 50",
+                    "feeHelper": "Amount charged per additional hour"
+                },
+                "policies": {
+                    "title": "Hotel Policies",
+                    "cancellation": "Cancellation Policy",
+                    "cancellationDefault": "Free cancellation up to 48 hours before check-in. After this period, the first night will be charged.",
+                    "children": "Children Policy",
+                    "childrenDefault": "Children up to 5 years old stay free if using existing beds.",
+                    "pets": "Pets Policy",
+                    "petsDefault": "We accept small pets for an additional fee of $50.00 per day."
+                },
+                "payments": {
+                    "title": "Currency and Payments",
+                    "currency": "Default Currency",
+                    "taxes": "Taxes (%)",
+                    "taxesPlaceholder": "Ex: 15",
+                    "acceptedMethods": "Accepted Payment Methods",
+                    "methods": {
+                        "credit": "Credit Card",
+                        "debit": "Debit Card",
+                        "pix": "Bank Transfer (PIX)",
+                        "cash": "Cash"
+                    }
+                },
+                "notifications": {
+                    "title": "Notification Preferences",
+                    "items": {
+                        "new_res": {
+                            "label": "New Reservations",
+                            "desc": "Receive an email when a new reservation is confirmed."
+                        },
+                        "cancel": {
+                            "label": "Cancellations",
+                            "desc": "Immediate notices about guest cancellations."
+                        },
+                        "checkin_alert": {
+                            "label": "Check-in Alerts",
+                            "desc": "Notifications of guests arriving today."
+                        },
+                        "stock": {
+                            "label": "Low Stock (Minibar)",
+                            "desc": "Warn when items need to be restocked."
+                        }
+                    }
+                },
+                "integrations": {
+                    "title": "System Integrations",
+                    "connected": "Connected",
+                    "disconnected": "Disconnected",
+                    "notConfigured": "Not configured",
+                    "configure": "Configure",
+                    "connect": "Connect"
+                }
+            },
+            "saveSuccess": "Settings saved successfully!",
+            "saving": "Saving..."
+        }
+    }
+}

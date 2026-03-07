@@ -67,8 +67,7 @@ export const Modal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            aria-modal="true"
-            role="dialog"
+            aria-hidden="true"
           />
 
           <motion.div
@@ -77,9 +76,16 @@ export const Modal = ({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? "modal-title" : undefined}
           >
             <div className={styles.header}>
-              <h3 className={styles.title}>{title}</h3>
+              {title && (
+                <h3 id="modal-title" className={styles.title}>
+                  {title}
+                </h3>
+              )}
               <button
                 onClick={onClose}
                 className={styles.closeButton}
