@@ -1,4 +1,90 @@
 {
+    "seo": {
+        "home": {
+            "title": "Inicio - Regency Hotel",
+            "description": "Descubra el confort y la elegancia del Hotel Regency Heights. Situado en una región privilegiada, ofrecemos alojamientos sofisticados, desayuno incluido, Wi-Fi gratuito y un excelente servicio para una estancia inolvidable.",
+            "keywords": "hotel, alojamiento, confort, elegancia, desayuno, Wi-Fi gratuito, excelente servicio"
+        },
+        "accommodation": {
+            "title": "Alojamiento - Regency Hotel",
+            "description": "Conozca las opciones de alojamiento del Regency Hotel. Habitaciones cómodas, elegantes y bien equipadas, con desayuno incluido, Wi-Fi gratuito y una ubicación privilegiada para una estancia inolvidable.",
+            "keywords": "alojamiento, habitaciones de hotel, confort, elegancia, desayuno, Wi-Fi gratuito, estancia, Regency Hotel"
+        }
+    },
+    "rooms_data": {
+        "1": {
+            "title": "Habitación Deluxe",
+            "description": "Suite Deluxe con vista panorámica al mar, espaciosa y elegante, con 45m². Incluye cama king-size premium, sábanas de algodón egipcio de 400 hilos, cómoda sala de estar, escritorio ergonómico y baño de mármol con bañera de hidromasaje.",
+            "amenities": {
+                "wifi": "Wi-Fi de Alta Velocidad",
+                "pool": "Piscina con Borde Infinito",
+                "air-conditioning": "Aire Acondicionado Central",
+                "free-parking": "Estacionamiento Gratuito",
+                "pets-allowed": "Se Aceptan Mascotas",
+                "accessible": "Accesibilidad"
+            }
+        },
+        "2": {
+            "title": "Suite Master",
+            "description": "Suite Master de 60m² con dos camas king-size, perfecta para familias o grupos. Cuenta con sala de estar independiente, baño doble de mármol, hidromasaje y servicio de habitaciones 24h.",
+            "amenities": {
+                "wifi": "Wi-Fi de Alta Velocidade",
+                "restaurant": "Restaurante de Renombre",
+                "bar": "Bar con Bebidas Premium",
+                "free-parking": "Estacionamiento Gratuito",
+                "spa": "Tratamiento de Spa Incluido (30 min)",
+                "accessible": "Accesibilidad"
+            }
+        },
+        "3": {
+            "title": "Habitación Estándar",
+            "description": "Habitación estándar de 30m² con cama queen-size, ideal para estancias cortas. Incluye escritorio, Wi-Fi de alta velocidad y baño moderno.",
+            "amenities": {
+                "wifi": "Wi-Fi de Alta Velocidade",
+                "free-parking": "Estacionamiento Gratuito",
+                "air-conditioning": "Aire Acondicionado"
+            }
+        },
+        "4": {
+            "title": "Habitación Económica",
+            "description": "Opción económica de 20m² con cama de matrimonio estándar, ideal para viajeros que buscan practicidad y buena relación calidad-precio. Cuenta con aire acondicionado, TV por cable y Wi-Fi gratuito.",
+            "amenities": {
+                "wifi": "Wi-Fi Gratuito",
+                "air-conditioning": "Aire Acondicionado"
+            }
+        },
+        "5": {
+            "title": "Suite Premium Vista Mar",
+            "description": "Suite exclusiva de 80m² con vista privilegiada al océano. Incluye cama king-size, bañera de hidromasaje con vista panorámica, balcón privado y servicio VIP.",
+            "amenities": {
+                "wifi": "Wi-Fi de Alta Velocidade",
+                "spa": "Acceso al Spa Ilimitado",
+                "pool": "Piscina Privada",
+                "breakfast": "Desayuno en la Habitación",
+                "butler": "Servicio de Mayordomo"
+            }
+        },
+        "6": {
+            "title": "Habitación Familiar",
+            "description": "Habitación espaciosa de 50m² diseñada para familias, con una cama king-size y dos camas individuales. Cuenta con minibar, TV Smart y amplio balcón.",
+            "amenities": {
+                "wifi": "Wi-Fi de Alta Velocidade",
+                "kids-zone": "Área para Niños",
+                "free-parking": "Estacionamiento Gratuito"
+            }
+        },
+        "7": {
+            "title": "Suite Presidencial",
+            "description": "La máxima experiencia de lujo: 150m² de puro confort, con dos suites integradas, comedor, cine en casa, jacuzzi panorámico y servicio personalizado 24h.",
+            "amenities": {
+                "wifi": "Wi-Fi de Alta Velocidade",
+                "private-chef": "Chef Exclusivo",
+                "helicopter": "Traslado en Helicóptero Incluido",
+                "spa": "Spa Exclusivo",
+                "pool": "Piscina Privada"
+            }
+        }
+    },
     "navbar": {
       "home": "Inicio",
       "about": "Sobre Nosotros",
@@ -560,7 +646,8 @@
             "add": "Añadir",
             "export": "Exportar",
             "search": "Buscar...",
-            "allStatus": "Todos los Estados"
+            "allStatus": "Todos los Estados",
+            "noData": "No se encontraron datos"
         },
         "status": {
             "active": "Activo",
@@ -706,5 +793,75 @@
               "saveSuccess": "¡Configuraciones guardadas con éxito!",
               "saving": "Guardando..."
           }
+      },
+      "client": {
+      "title": "Panel del Huésped",
+      "menu": {
+          "dashboard": "Dashboard",
+          "reservations": "Mis Reservas",
+          "profile": "Mi Perfil"
+      },
+      "header": {
+          "title": "Área de Cliente",
+          "subtitle": "Gestione sus reservas y cuenta"
+      },
+      "role": {
+          "guest": "Huésped"
+      },
+      "home": {
+          "greeting": "¡Hola, {{name}}!",
+          "subtitle": "Bienvenido de nuevo a tu panel exclusivo.",
+          "nextTrip": "Tu Próximo Viaje",
+          "seeDetails": "Ver Detalles",
+          "stats": {
+              "total": "Estancias Totales",
+              "upcoming": "Viajes Futuros",
+              "loyalty": "Puntos de Fidelidad",
+              "support": "Mensajes de Soporte"
+          },
+          "recentInvoices": "Facturas Recientes",
+          "viewAll": "Ver todas",
+          "emptyNextTrip": "No tienes viajes futuros en este momento.",
+          "planNewTrip": "Planificar Nuevo Viaje"
+      },
+      "reservations": {
+          "title": "Historial de Reservas",
+          "subtitle": "Ver y gestionar todas sus estancias pasadas y futuras",
+          "confirmCancel": "¿Estás seguro de que deseas solicitar la cancelación de esta reserva?",
+          "table": {
+              "id": "ID",
+              "hotel": "Hotel",
+              "date": "Período",
+              "amount": "Monto Pagado",
+              "status": "Estado",
+              "actions": "Acciones"
+          },
+          "status": {
+              "Confirmed": "Confirmada",
+              "Pending": "Pendiente",
+              "Cancelled": "Cancelada",
+              "Completed": "Completada"
+          },
+          "actions": {
+              "view": "Ver Reserva",
+              "cancel": "Cancelar Reserva",
+              "download": "Descargar Recibo"
+          }
+      },
+      "profile": {
+          "title": "Configuración de Perfil",
+          "subtitle": "Mantén tus datos y métodos de seguridad actualizados",
+          "basicInfo": "Información Personal",
+          "name": "Nombre Completo",
+          "email": "Correo Electrónico",
+          "phone": "Teléfono / WhatsApp",
+          "cpf": "Documento (Id / Pasaporte)",
+          "security": "Seguridad de la Cuenta",
+          "newPassword": "Nueva Contraseña",
+          "confirmPassword": "Confirmar Nueva Contraseña",
+          "save": "Guardar Cambios",
+          "preferences": "Preferencias de Viaje",
+          "newsletter": "Recibir ofertas por email"
       }
   }
+}

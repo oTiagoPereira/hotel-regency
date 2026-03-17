@@ -1,0 +1,16 @@
+export { default as AboutUs } from "./AboutUs/AboutUs";
+export { default as Amenities } from "./Amenities/Amenities";
+export { default as CarouselHome } from "./CarouselHome/CarouselHome";
+export { default as FilterRooms } from "./FilterRooms/FilterRooms";
+export { default as GuestExperience } from "./GuestExperience/GuestExperience";
+export { default as HeroBanner } from "./HeroBanner/HeroBanner";
+export { default as HomeRooms } from "./HomeRooms/HomeRooms";
+export { default as RoomDescription } from "./RoomDescription/RoomDescription";
+export { default as RoomNotFound } from "./RoomNotFound/RoomNotFound";
+export { default as RoomRecommendation } from "./RoomRecommendation/RoomRecommendation";
+export { default as RoomsSection } from "./RoomsSection/RoomsSection";
+export { default as WhyRegency } from "./WhyRegency/WhyRegency";
+export { default as Contact } from "./Contact/Contact";
+export { default as HeroEvents } from "./HeroEvents/HeroEvents";
+export { default as RoomsCard } from "./RoomsCard/RoomsCard";
+export * from "./types";
